@@ -25,12 +25,12 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-             actions: [
+        actions: [
           Padding(
             padding: const EdgeInsets.only(top: 20),
             child: GestureDetector(
               onTap: () {
-             Get.to(()=>AddProductManual());
+                Get.to(() => AddProductManual());
               },
               child: Container(
                 color: themeColorBlue.withOpacity(0.2),
@@ -160,10 +160,10 @@ class ProductList extends StatelessWidget {
                   .collection('AllProduct')
                   .doc(value.rawContent)
                   .get();
-              final data = ProductAddingModel.fromMap(firebase.data()!);
 
               if (firebase.data() == null) {
-                Navigator.push(
+                log("if condition");
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => AddProduct(
@@ -172,6 +172,9 @@ class ProductList extends StatelessWidget {
                   ),
                 );
               } else {
+                final data = ProductAddingModel.fromMap(firebase.data()!);
+
+                log("else condition");
                 await customShowDilogBox(
                     context: context,
                     title: 'Product Details',
@@ -255,10 +258,6 @@ class ProductList extends StatelessWidget {
                     actiontext: 'Add Product',
                     doyouwantActionButton: true);
               }
-              log('message');
-
-              // Get.to(()=>
-              // AddProduct(barcodeValue: value.rawContent,));
             });
           }),
     );
