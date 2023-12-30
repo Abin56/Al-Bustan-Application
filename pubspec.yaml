@@ -49,7 +49,9 @@ dependencies:
   uuid:
   get:
   fluttertoast:
-  intl:  
+  intl: 
+  barcode_scan2: 
+  syncfusion_flutter_barcodes: ^24.1.43
 
 dev_dependencies:
   flutter_test:
