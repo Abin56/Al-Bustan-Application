@@ -45,7 +45,7 @@ class TextFormFiledContainerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GooglePoppinsWidgets(text: title, fontsize: 12),
+          GooglePoppinsWidgets(text: title, fontsize: 12,),
           SizedBox(
             height: 45,
             width: width,

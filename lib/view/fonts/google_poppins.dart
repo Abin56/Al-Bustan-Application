@@ -19,7 +19,7 @@ class GooglePoppinsWidgets extends StatelessWidget {
     this.textAlign,
     this.textScaleFactor,
     this.decoration,
-    super.key,
+    super.key,  
   });
 
   @override

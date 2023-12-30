@@ -119,7 +119,7 @@ String? checkFieldDateIsValid(String? fieldContent) {
   return 'Date is not valid (dd-mm-yyyy)';
 }
 
-final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
 
 String timestampToDate(int timestamp) {
   var date = DateTime.fromMillisecondsSinceEpoch(timestamp);

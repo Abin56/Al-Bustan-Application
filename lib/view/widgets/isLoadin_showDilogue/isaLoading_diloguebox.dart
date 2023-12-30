@@ -48,7 +48,7 @@ class LoadingLottieWidget extends StatelessWidget {
               child: SizedBox(
                 width: 80,
                 child: LottieBuilder.asset(
-                  'assets/png/Animation - 1702360112312.json',
+                  'images/Animation - 1702360112312.json',
                 ),
               ),
             ),
