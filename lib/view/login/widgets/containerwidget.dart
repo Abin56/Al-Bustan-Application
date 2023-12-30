@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ContainerImage extends StatelessWidget {
-  double height;
-  double width;
-  String imagePath;
+ final double height;
+final  double width;
+ final String imagePath;
 
-  ContainerImage({
+ const ContainerImage({
     required this.height,
     required this.width,
     required this.imagePath,
@@ -26,11 +26,11 @@ class ContainerImage extends StatelessWidget {
 }
 
 class NetworkContainerImage extends StatelessWidget {
-  double height;
-  double width;
-  String imagePath;
+ final double height;
+final  double width;
+final  String imagePath;
 
-  NetworkContainerImage({
+ const NetworkContainerImage({
     required this.height,
     required this.width,
     required this.imagePath,

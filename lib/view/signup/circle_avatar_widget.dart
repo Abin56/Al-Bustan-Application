@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:canteen_productadd_application/view/controller/create_profileController/create_profile_controller.dart';
-import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,7 @@ class _CircleAvatharImageSelectionWidgetState
       final pickedImage =
           await ImagePicker().pickImage(source: ImageSource.camera);
       if (pickedImage != null) {
-        imageFile = File(pickedImage.path);
+        final imageFile = File(pickedImage.path);
         isImageSelected = true;
         createProfileController.employeeImagePath.value = imageFile;
         if (kDebugMode) {

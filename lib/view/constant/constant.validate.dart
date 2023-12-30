@@ -119,8 +119,6 @@ String? checkFieldDateIsValid(String? fieldContent) {
   return 'Date is not valid (dd-mm-yyyy)';
 }
 
-
-
 String timestampToDate(int timestamp) {
   var date = DateTime.fromMillisecondsSinceEpoch(timestamp);
   var formattedDate =
@@ -133,7 +131,8 @@ String _twoDigits(int n) {
   return "0$n";
 }
 
-const _chars = '1234567890';
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+
 Random _rnd = Random();
 
 String getRandomString(int length) => String.fromCharCodes(Iterable.generate(

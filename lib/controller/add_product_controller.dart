@@ -10,14 +10,17 @@ class AddProductController extends GetxController {
   TextEditingController quantityController = TextEditingController();
   TextEditingController expirydateController = TextEditingController();
 
-  Future<void> addProduct(String barcodeNumber) async {
+  Future<void> addProduct(String barcodeNumber,BuildContext context) async {
     final productdetails = ProductAddingModel(
       docId: barcodeNumber,
       barcodeNumber: barcodeNumber,
       productname: productnameController.text,
       quantityinStock: int.parse(quantityController.text.trim()),
       price: int.parse(productpriceController.text.trim()),
-      expiryDate: DateTime.now().add(Duration(days: int.parse(expirydateController.text))).toString(), addDate: DateTime.now().toString(),
+      expiryDate: DateTime.now()
+          .add(Duration(days: int.parse(expirydateController.text)))
+          .toString(),
+      addDate: DateTime.now().toString(),
     );
     await FirebaseFirestore.instance
         .collection('AllProduct')
@@ -28,5 +31,8 @@ class AddProductController extends GetxController {
     productpriceController.clear();
     quantityController.clear();
     expirydateController.clear();
+    Navigator.pop(context);
   }
+
+
 }

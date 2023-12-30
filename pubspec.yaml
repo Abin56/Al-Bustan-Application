@@ -52,6 +52,11 @@ dependencies:
   intl: 
   barcode_scan2: 
   syncfusion_flutter_barcodes: ^24.1.43
+  flutter_launcher_icons: 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/albustanblack.png"
 
 dev_dependencies:
   flutter_test:

@@ -2,22 +2,16 @@ import 'package:canteen_productadd_application/controller/add_product_controller
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
-import '../widgets/textform feild Widget/textformfeildWidget.dart';
 
-class AddProduct extends StatefulWidget {
-  final String barcodeValue;
+class AddProductManual extends StatelessWidget {
 
-  const AddProduct({super.key, required this.barcodeValue});
+   AddProductManual({super.key,});
 
-  @override
-  State<AddProduct> createState() => _AddProductState();
-}
-
-class _AddProductState extends State<AddProduct> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final AddProductController addProductController =
@@ -25,6 +19,7 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
+    String barcoodevalue = getRandomString(20);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -38,7 +33,7 @@ class _AddProductState extends State<AddProduct> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GooglePoppinsWidgets(
-                    text: 'ADD PRODUCT',
+                    text: 'ADD PRODUCT MANUAL',
                     fontsize: 15,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
@@ -59,10 +54,10 @@ class _AddProductState extends State<AddProduct> {
                 child: Center(
                   child: SizedBox(
                     height: 60,
-                    width: 240,
+                    width: 300,
                     child: SfBarcodeGenerator(
                       symbology: Code128(),
-                      value: widget.barcodeValue,
+                      value:barcoodevalue ,
                       showValue: true,
                     ),
                   ),
@@ -122,7 +117,7 @@ class _AddProductState extends State<AddProduct> {
                     // final _formKey=key;
                     if (_formKey.currentState!.validate()) {
                       await addProductController.addProduct(
-                          widget.barcodeValue, context);
+                          barcoodevalue, context);
                     }
                   },
                 ),

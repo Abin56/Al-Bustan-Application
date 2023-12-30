@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class SigninTextFormfield extends StatelessWidget {
-   SigninTextFormfield({
+  const SigninTextFormfield({
     super.key,
     this.textEditingController, 
      required this.labelText, 
@@ -15,14 +15,14 @@ class SigninTextFormfield extends StatelessWidget {
       this. obscureText,
      
   });
-   TextEditingController? textEditingController;
-   String labelText;
-   String hintText;
-   Widget? suffixIcon;
-   Widget? prefixIcon;
-   dynamic? obscureText;
-   String? Function(String? fieldContent)? function;
-        IconData? icon;
+ final  TextEditingController? textEditingController;
+  final String labelText;
+   final String hintText;
+  final Widget? suffixIcon;
+   final Widget? prefixIcon;
+    final dynamic obscureText;
+  final String? Function(String? fieldContent)? function;
+       final IconData? icon;
         
 
   @override
