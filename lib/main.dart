@@ -1,16 +1,16 @@
 import 'package:canteen_productadd_application/firebase_options.dart';
-import 'package:canteen_productadd_application/view/add_product/add_product.dart';
-import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
+import 'package:canteen_productadd_application/view/login/loginScreen.dart';
+import 'package:canteen_productadd_application/view/signup/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-Future<void>main()async{
-    WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-);
-runApp(const MyApp());
-
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -18,8 +18,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-     home:  ProductList(),
+    return  GetMaterialApp(
+      home: LoginScreen(),
     );
   }
 }

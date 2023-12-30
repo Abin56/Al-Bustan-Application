@@ -11,11 +11,12 @@ class ButtonContainerWidget extends StatelessWidget {
   final double width;
     final double height;
     final double fontSize;
+   final FontWeight? fontWeight;
 
 
 
 
-   ButtonContainerWidget({super.key,required this.text ,required this.width,required this.height,required this. fontSize,required this.onTap});
+   ButtonContainerWidget({super.key,required this.text ,this.fontWeight, required this.width,required this.height,required this. fontSize,required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +33,9 @@ class ButtonContainerWidget extends StatelessWidget {
           child: GooglePoppinsWidgets(
             textAlign: TextAlign.center,
             color: cWhite,
-            fontWeight: FontWeight.w500,
+            fontWeight: fontWeight,
             text: text,
-            fontsize: fontSize,
+            fontsize: fontSize, 
           ),
         ),
       ),

@@ -24,7 +24,7 @@ class BackButtonContainerWidget extends StatelessWidget {
               text: 'BACK',
               color: cWhite,
               fontsize: 12,
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold, ),
         ),
       ),
     );
