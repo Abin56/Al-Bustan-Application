@@ -43,8 +43,10 @@ dependencies:
   firebase_storage:
   google_fonts: 
   google_sign_in:
+  google_nav_bar: 
   image_picker:
   lottie: 
+  line_icons: 
   shared_preferences: 
   uuid:
   get:
