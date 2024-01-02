@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,7 +11,7 @@ class AddProductController extends GetxController {
   TextEditingController productpriceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
   TextEditingController expirydateController = TextEditingController();
-
+List<ProductCategoryModel> employeeList = [];
   Future<void> addProduct(String barcodeNumber, BuildContext context) async {
     final productdetails = ProductAddingModel(
       authuid: FirebaseAuth.instance.currentUser!.uid,
