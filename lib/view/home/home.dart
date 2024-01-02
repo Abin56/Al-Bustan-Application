@@ -1,4 +1,3 @@
-import 'package:canteen_productadd_application/view/add_product/add_product.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
