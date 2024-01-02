@@ -1,16 +1,19 @@
-import 'package:canteen_productadd_application/controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
-
 class AddProductManual extends StatelessWidget {
-
-   AddProductManual({super.key,});
+  AddProductManual({
+    super.key,
+  });
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -25,7 +28,6 @@ class AddProductManual extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-     
             Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Column(
@@ -57,7 +59,7 @@ class AddProductManual extends StatelessWidget {
                     width: 300,
                     child: SfBarcodeGenerator(
                       symbology: Code128(),
-                      value:barcoodevalue ,
+                      value: barcoodevalue,
                       showValue: true,
                     ),
                   ),
@@ -71,6 +73,57 @@ class AddProductManual extends StatelessWidget {
                   width: 380,
                   validator: checkFieldEmpty,
                   controller: addProductController.productnameController,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 20, right: 20, left: 20, bottom: 0),
+                child: Row(
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 15),
+                          child: SizedBox(
+                            height: 60,
+                            child: Center(
+                              child: GooglePoppinsWidgets(
+                                text: "Select Category",
+                                fontsize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ),
+                        )),
+                    Expanded(
+                      flex: 3,
+                      child: SizedBox(
+                        height: 60,
+                        child: DropdownSearch<ProductCategoryModel>(
+                          autoValidateMode: AutovalidateMode.always,
+                          asyncItems: (value) {
+                            addProductController.productCatList.clear();
+
+                            return addProductController.fetchProductCategory();
+                          },
+                          itemAsString: (value) => value.categoryName,
+                          onChanged: (value) async {
+                            addProductController.recCatisLoading.value = true;
+                            if (value != null) {
+                              addProductController.recCatDocID.value =
+                                  value.docid;
+                              addProductController.recCatName.value =
+                                  value.categoryName;
+                            }
+                          },
+                          dropdownDecoratorProps: DropDownDecoratorProps(
+                              baseStyle: GoogleFonts.poppins(
+                                  fontSize: 13,
+                                  color: Colors.black.withOpacity(0.7))),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               Padding(

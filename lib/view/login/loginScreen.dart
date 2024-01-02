@@ -1,6 +1,6 @@
+import 'package:canteen_productadd_application/controller/login_controller/login_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
-import 'package:canteen_productadd_application/view/controller/login_controller/login_controller.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
 import 'package:canteen_productadd_application/view/login/forgetPassword/forgetPassword.dart';
