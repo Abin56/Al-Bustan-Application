@@ -5,6 +5,8 @@ class ProductAddingModel {
   String docId;
   String barcodeNumber;
   String productname;
+  String categoryID;
+  String categoryName;
   int price;
   int quantityinStock;
   String expiryDate;
@@ -15,6 +17,8 @@ class ProductAddingModel {
     required this.docId,
     required this.barcodeNumber,
     required this.productname,
+    required this.categoryID,
+    required this.categoryName,
     required this.price,
     required this.quantityinStock,
     required this.expiryDate,
@@ -26,6 +30,8 @@ class ProductAddingModel {
     String? docId,
     String? barcodeNumber,
     String? productname,
+    String? categoryID,
+    String? categoryName,
     int? price,
     int? quantityinStock,
     String? expiryDate,
@@ -36,6 +42,8 @@ class ProductAddingModel {
       docId: docId ?? this.docId,
       barcodeNumber: barcodeNumber ?? this.barcodeNumber,
       productname: productname ?? this.productname,
+      categoryID: categoryID ?? this.categoryID,
+      categoryName: categoryName ?? this.categoryName,
       price: price ?? this.price,
       quantityinStock: quantityinStock ?? this.quantityinStock,
       expiryDate: expiryDate ?? this.expiryDate,
@@ -49,6 +57,8 @@ class ProductAddingModel {
       'docId': docId,
       'barcodeNumber': barcodeNumber,
       'productname': productname,
+      'categoryID': categoryID,
+      'categoryName': categoryName,
       'price': price,
       'quantityinStock': quantityinStock,
       'expiryDate': expiryDate,
@@ -62,6 +72,8 @@ class ProductAddingModel {
       docId: map['docId'] ?? '',
       barcodeNumber: map['barcodeNumber'] ?? '',
       productname: map['productname'] ?? '',
+      categoryID: map['categoryID'] ?? '',
+      categoryName: map['categoryName'] ?? '',
       price: map['price'] as int,
       quantityinStock: map['quantityinStock'] ?? 0,
       expiryDate: map['expiryDate'] ?? '',
@@ -77,7 +89,7 @@ class ProductAddingModel {
 
   @override
   String toString() {
-    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, price: $price, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid)';
+    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, price: $price, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid)';
   }
 
   @override
@@ -87,6 +99,8 @@ class ProductAddingModel {
     return other.docId == docId &&
         other.barcodeNumber == barcodeNumber &&
         other.productname == productname &&
+        other.categoryID == categoryID &&
+        other.categoryName == categoryName &&
         other.price == price &&
         other.quantityinStock == quantityinStock &&
         other.expiryDate == expiryDate &&
@@ -99,6 +113,8 @@ class ProductAddingModel {
     return docId.hashCode ^
         barcodeNumber.hashCode ^
         productname.hashCode ^
+        categoryID.hashCode ^
+        categoryName.hashCode ^
         price.hashCode ^
         quantityinStock.hashCode ^
         expiryDate.hashCode ^
