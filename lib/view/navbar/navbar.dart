@@ -2,6 +2,7 @@ import 'package:canteen_productadd_application/view/add_product/list%20products/
 import 'package:canteen_productadd_application/view/employee_profile/employee_profile_home.dart';
 import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
 import 'package:canteen_productadd_application/view/request/request_page.dart';
+import 'package:canteen_productadd_application/view/user_profile/user_profile_details.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -26,7 +27,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
     //   'Delivery',
     //   style: optionStyle,
     // ),
-    const ProductList(),
+    const UserProfileDetails(),
   ];
 
   @override
