@@ -1,4 +1,4 @@
-import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
+import 'package:canteen_productadd_application/view/navbar/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context, snap) {
             if (snap.hasData) {
               if (snap.data!.data()!['activate'] == true) {
-                return const ProductList();
+                return const NavigationBarPage();
               } else {
                 return Center(
                   child: LottieBuilder.asset('images/NO ACCESS.json'),

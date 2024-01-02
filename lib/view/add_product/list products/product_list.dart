@@ -5,15 +5,13 @@ import 'dart:developer';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/add_product/add_product.dart';
-import 'package:canteen_productadd_application/view/add_product/list%20products/add_product_manual.dart';
-import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_productadd_application/view/widgets/custom_showDilog/custom_showdilog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class ProductList extends StatelessWidget {
@@ -25,29 +23,29 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: GestureDetector(
-              onTap: () {
-                Get.to(() => AddProductManual());
-              },
-              child: Container(
-                color: themeColorBlue.withOpacity(0.2),
-                height: 40,
-                width: 200,
-                child: Center(
-                  child: GooglePoppinsWidgets(
-                    text: "ADD PRODUCT MANUAL",
-                    fontsize: 13,
-                    color: cBlack,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        // actions: [
+        //   Padding(
+        //     padding: const EdgeInsets.only(top: 20),
+        //     child: GestureDetector(
+        //       onTap: () {
+        //         Get.to(() => AddProductManual());
+        //       },
+        //       child: Container(
+        //         color: themeColorBlue.withOpacity(0.2),
+        //         height: 40,
+        //         width: 200,
+        //         child: Center(
+        //           child: GooglePoppinsWidgets(
+        //             text: "ADD PRODUCT MANUAL",
+        //             fontsize: 13,
+        //             color: cBlack,
+        //             fontWeight: FontWeight.bold,
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -84,7 +82,8 @@ class ProductList extends StatelessWidget {
       body: StreamBuilder(
         stream: FirebaseFirestore.instance
             .collection('AllProduct')
-            .orderBy('addDate', descending: true)
+            .where('authuid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+            // .orderBy('addDate', descending: true)
             .snapshots(),
         builder: (context, snapshot) {
           {

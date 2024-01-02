@@ -13,17 +13,17 @@ import 'package:get/get.dart';
 
 class LoginScreen extends StatelessWidget {
   final int? pageIndex;
- 
 
-   LoginScreen({this.pageIndex, super.key});
+  LoginScreen({this.pageIndex, super.key});
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
- 
- final  UserLoginController userlogincontroller =
+
+  final UserLoginController userlogincontroller =
       Get.put(UserLoginController());
   @override
   Widget build(BuildContext context) {
-    return Form(key: formKey ,
+    return Form(
+      key: formKey,
       child: Scaffold(
         appBar: AppBar(
           title: Row(
@@ -65,14 +65,13 @@ class LoginScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                ContainerImage(
+                const ContainerImage(
                     height: 340,
                     width: double.infinity,
                     imagePath: 'images/Al_bustan.jpg'),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                     
                       Padding(
                         padding: const EdgeInsets.only(right: 210, bottom: 20),
                         child: GooglePoppinsWidgets(
@@ -82,7 +81,6 @@ class LoginScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-      
                       TextFormFiledContainerWidget(
                           hintText: " Enter your email id",
                           title: 'Email id',
@@ -99,12 +97,10 @@ class LoginScreen extends StatelessWidget {
                           validator: checkFieldPasswordIsValid,
                         ),
                       ),
-      
                       Padding(
                         padding: const EdgeInsets.only(left: 210),
                         child: GestureDetector(
                           onTap: () {
-                            
                             Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) =>
@@ -117,21 +113,18 @@ class LoginScreen extends StatelessWidget {
                             child: GooglePoppinsWidgets(
                               fontsize: 12,
                               text: 'Forgot Password?',
-                                                    
                               fontWeight: FontWeight.w400,
                               color: themeColorBlue,
                             ),
                           ),
                         ),
                       ),
-      
                       Padding(
                         padding: const EdgeInsets.only(top: 25),
                         child: GestureDetector(
-                            onTap: ()async {
+                            onTap: () async {
                               if (formKey.currentState!.validate()) {
-                               await userlogincontroller.userLogin();
-                           
+                                await userlogincontroller.userLogin();
                               } else {}
                             },
                             child: loginButtonWidget(
@@ -154,7 +147,7 @@ class LoginScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>  SignUpPage()),
+                                      builder: (context) => SignUpPage()),
                                 );
                               },
                               child: GooglePoppinsWidgets(

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-
 class NavigationBarPage extends StatefulWidget {
   const NavigationBarPage({super.key});
 
@@ -18,17 +17,16 @@ class NavigationBarPageState extends State<NavigationBarPage> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-  static const List<Widget> _widgetOptions = <Widget>[
-   
-   EmployeeProfileHomePage(),
-   //ProductList(),
-    RequestListingHistoryPage(),
-    EmployeeHomeScreen(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const EmployeeProfileHomePage(),
+    //ProductList(),
+    const RequestListingHistoryPage(),
+    const EmployeeHomeScreen(),
     // Text(
     //   'Delivery',
     //   style: optionStyle,
     // ),
-    ProductList(),
+    const ProductList(),
   ];
 
   @override
@@ -37,7 +35,8 @@ class NavigationBarPageState extends State<NavigationBarPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
-        backgroundColor:  const Color.fromARGB(255, 24,192,204).withOpacity(0.1),
+        backgroundColor:
+            const Color.fromARGB(255, 24, 192, 204).withOpacity(0.1),
         title: const Text('Al-Bustan'),
       ),
       body: Center(
