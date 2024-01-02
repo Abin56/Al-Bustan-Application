@@ -1,5 +1,7 @@
 import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
+import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/employee_profile/employee_profile_home.dart';
+import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
 import 'package:canteen_productadd_application/view/request/request_page.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +37,13 @@ class NavigationBarPageState extends State<NavigationBarPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
-        backgroundColor:
-            const Color.fromARGB(255, 24, 192, 204).withOpacity(0.1),
-        title: const Text('Al-Bustan'),
+        backgroundColor: themeColorBlue,
+        title: GooglePoppinsWidgets(
+          text: 'Al-Bustan',
+          fontsize: 25,
+          fontWeight: FontWeight.bold,
+          color: cWhite,
+        ),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
