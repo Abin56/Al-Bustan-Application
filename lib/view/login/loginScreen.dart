@@ -2,6 +2,7 @@ import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/controller/login_controller/login_controller.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
 import 'package:canteen_productadd_application/view/login/forgetPassword/forgetPassword.dart';
 import 'package:canteen_productadd_application/view/login/widgets/containerwidget.dart';
 import 'package:canteen_productadd_application/view/login/widgets/loginbutton.dart';
@@ -11,15 +12,16 @@ import 'package:canteen_productadd_application/view/widgets/textform%20feild%20W
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../controller/login_controller.dart';
+
 class LoginScreen extends StatelessWidget {
   final int? pageIndex;
 
   LoginScreen({this.pageIndex, super.key});
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  final LoginController logincontroller = Get.put(LoginController());
 
-  final UserLoginController userlogincontroller =
-      Get.put(UserLoginController());
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -84,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                       TextFormFiledContainerWidget(
                           hintText: " Enter your email id",
                           title: 'Email id',
-                          controller: userlogincontroller.emailcontroller,
+                          controller: logincontroller.eemailController,
                           width: 300,
                           validator: checkFieldEmailIsValid),
                       Padding(
@@ -92,7 +94,7 @@ class LoginScreen extends StatelessWidget {
                         child: TextFormFiledContainerWidget(
                           hintText: " Enter your password",
                           title: 'Password',
-                          controller: userlogincontroller.passwordcontroller,
+                          controller: logincontroller.ppasswordController,
                           width: 300,
                           validator: checkFieldPasswordIsValid,
                         ),
@@ -124,7 +126,7 @@ class LoginScreen extends StatelessWidget {
                         child: GestureDetector(
                             onTap: () async {
                               if (formKey.currentState!.validate()) {
-                                await userlogincontroller.userLogin();
+                                await logincontroller.userLogin();
                               } else {}
                             },
                             child: loginButtonWidget(
@@ -147,7 +149,8 @@ class LoginScreen extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => SignUpPage()),
+                                    builder: (context) => SignUpPage(),
+                                  ),
                                 );
                               },
                               child: GooglePoppinsWidgets(
