@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/home/home.dart';
 import 'package:canteen_productadd_application/view/model/employe_createProfile/employe_createprofile_model.dart';
@@ -13,6 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CreateProfileController extends GetxController {
+  UserAuthDetailController userAuthController =
+      Get.put(UserAuthDetailController());
   Rxn<File> employeeImagePath = Rxn();
   RxBool isLoading = false.obs;
   String downloadURL = '';
@@ -54,7 +57,7 @@ class CreateProfileController extends GetxController {
             password: passwordController.text.trim())
         .then((value) async {
       final userDetails = EmployeeProfileCreateModel(
-        activate: false,
+          activate: false,
           docid: value.user!.uid,
           name: nameController.text,
           email: emailController.text.trim(),
@@ -73,9 +76,10 @@ class CreateProfileController extends GetxController {
         phonenoController.clear();
         employeeImagePath.value = null;
         showToast(msg: "Profile created successfully");
-        Get.offAll(()=>const HomeScreen());
+        await userAuthController
+            .fetchUserDetails()
+            .then((value) => Get.offAll(() => const HomeScreen()));
       });
     });
   }
-
 }

@@ -1,7 +1,7 @@
+import 'package:canteen_productadd_application/controller/create_profileController/create_profile_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
-import 'package:canteen_productadd_application/view/controller/create_profileController/create_profile_controller.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/login/loginScreen.dart';
 import 'package:canteen_productadd_application/view/login/widgets/loginbutton.dart';
@@ -148,9 +148,9 @@ class SignUpPage extends StatelessWidget {
                                         await createProfileController
                                             .addEmployeeDetailsToServer();
                                       });
-                                    }else{
-                                           return showToast(
-                                            msg: 'Password missmatch');
+                                    } else {
+                                      return showToast(
+                                          msg: 'Password missmatch');
                                     }
                                   }
                                 },

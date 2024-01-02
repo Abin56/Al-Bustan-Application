@@ -1,4 +1,4 @@
-import 'package:canteen_productadd_application/controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
