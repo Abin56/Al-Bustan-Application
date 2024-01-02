@@ -97,6 +97,10 @@ class EmployeeProfileHomePage extends StatelessWidget {
               height: 50,
               child: AppBar(
                 bottom:  TabBar(
+                   
+                 // indicatorColor: Colors.grey,
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey,
                   tabs: [
                     Tab(
                       //icon: const Icon(Icons.production_quantity_limits_rounded),
@@ -113,7 +117,6 @@ class EmployeeProfileHomePage extends StatelessWidget {
               ),
             ),
 
-            // create widgets for each tab bar here
             Expanded(
               child: TabBarView(
                 children: [
@@ -132,7 +135,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                 color: cGreen,
                                 width: 50,
                                 height: 30,
-                                child: Center(child: GooglePoppinsWidgets(text: "New", fontsize: 11,color: cWhite,)),
+                                child: Center(child: GooglePoppinsWidgets(text: "${index+1}", fontsize: 11,color: cWhite,)),
                               ),
                               Center(child: GoogleMonstserratWidgets(text: "Product Orders", fontsize: 14,fontWeight: FontWeight.bold,))
                             ],
@@ -157,7 +160,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                 color: cGreen,
                                 width: 50,
                                 height: 30,
-                                child: Center(child: GooglePoppinsWidgets(text: "New", fontsize: 11,color: cWhite,)),
+                                child: Center(child: GooglePoppinsWidgets(text:  "${index+1}", fontsize: 11,color: cWhite,)),
                               ),
                               Center(child: GoogleMonstserratWidgets(text: "Delivery Orders", fontsize: 14,fontWeight: FontWeight.bold,))
                             ],
