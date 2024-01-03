@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAwRCLZs3PGjU59tPzZR3u3sJohFNn2IDw',
-    appId: '1:707115755995:android:9226785eb1fb57c5ff9ffe',
-    messagingSenderId: '707115755995',
-    projectId: 'al-bustan-4c313',
-    storageBucket: 'al-bustan-4c313.appspot.com',
+    apiKey: 'AIzaSyBpaCWBWQf0XkThXMx9w3XuREuIT4KyF40',
+    appId: '1:849184854589:android:f0726b6e5a1837e5b89054',
+    messagingSenderId: '849184854589',
+    projectId: 'al-bustan-6c421',
+    storageBucket: 'al-bustan-6c421.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCFs-nW3rfyph1cFY4Vg1-pM9PeyHxoDSg',
-    appId: '1:707115755995:ios:283e254acbaa247fff9ffe',
-    messagingSenderId: '707115755995',
-    projectId: 'al-bustan-4c313',
-    storageBucket: 'al-bustan-4c313.appspot.com',
+    apiKey: 'AIzaSyDjpRsqqLfoOIm3A4YVvDgQC5HIhL9xYaU',
+    appId: '1:849184854589:ios:618c0bc2deae8eedb89054',
+    messagingSenderId: '849184854589',
+    projectId: 'al-bustan-6c421',
+    storageBucket: 'al-bustan-6c421.appspot.com',
+    iosClientId: '849184854589-qqn2guuofs393mif36iagnlut13m2b1m.apps.googleusercontent.com',
     iosBundleId: 'com.example.canteenProductaddApplication',
   );
 }

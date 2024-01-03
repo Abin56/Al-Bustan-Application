@@ -1,45 +1,36 @@
 {
   "project_info": {
-    "project_number": "707115755995",
-    "project_id": "al-bustan-4c313",
-    "storage_bucket": "al-bustan-4c313.appspot.com"
+    "project_number": "849184854589",
+    "project_id": "al-bustan-6c421",
+    "storage_bucket": "al-bustan-6c421.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:707115755995:android:9226785eb1fb57c5ff9ffe",
+        "mobilesdk_app_id": "1:849184854589:android:f0726b6e5a1837e5b89054",
         "android_client_info": {
           "package_name": "com.lepton.albustan.in"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "849184854589-tdjd7v2mpma2rkgp5lupkftacle54mss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyAwRCLZs3PGjU59tPzZR3u3sJohFNn2IDw"
+          "current_key": "AIzaSyBpaCWBWQf0XkThXMx9w3XuREuIT4KyF40"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:707115755995:android:7a48ded6e5e36da2ff9ffe",
-        "android_client_info": {
-          "package_name": "com.lepton.albustan_app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAwRCLZs3PGjU59tPzZR3u3sJohFNn2IDw"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849184854589-tdjd7v2mpma2rkgp5lupkftacle54mss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
