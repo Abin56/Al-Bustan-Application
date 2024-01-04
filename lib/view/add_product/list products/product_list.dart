@@ -3,8 +3,10 @@
 import 'dart:developer';
 
 import 'package:barcode_scan2/barcode_scan2.dart';
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/model/pending_product_model/pending_productModel.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
-import 'package:canteen_productadd_application/view/add_product/add_product.dart';
+import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
@@ -12,12 +14,15 @@ import 'package:canteen_productadd_application/view/widgets/custom_showDilog/cus
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class ProductList extends StatelessWidget {
+  final AddProductController addProductController =
+      Get.put(AddProductController());
   // final AddProductController productListController =Get.find<AddProductController>();
 
-  const ProductList({super.key});
+  ProductList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +95,7 @@ class ProductList extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
-                    final data = ProductAddingModel.fromMap(
+                    final data = PendingProductAddingModel.fromMap(
                         snapshot.data!.docs[index].data());
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -156,23 +161,14 @@ class ProductList extends StatelessWidget {
           onTap: () async {
             await BarcodeScanner.scan().then((value) async {
               final firebase = await FirebaseFirestore.instance
-                  .collection('AllProduct')
+                  .collection('pendingProducts')
                   .doc(value.rawContent)
                   .get();
+              log("${value.rawContent}}");
 
               if (firebase.data() == null) {
-                log("if condition");
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddProduct(
-                      barcodeValue: value.rawContent,
-                    ),
-                  ),
-                );
+                showToast(msg: 'No Product Found');
               } else {
-                final data = ProductAddingModel.fromMap(firebase.data()!);
-
                 log("else condition");
                 await customShowDilogBox(
                     context: context,
@@ -212,7 +208,7 @@ class ProductList extends StatelessWidget {
                                     style: TextStyle(fontSize: 10),
                                   ),
                                   GooglePoppinsWidgets(
-                                    text: data.productname,
+                                    text: firebase.data()!['productname'],
                                     fontsize: 12,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -222,21 +218,42 @@ class ProductList extends StatelessWidget {
                                     style: TextStyle(fontSize: 10),
                                   ),
                                   GooglePoppinsWidgets(
-                                    text: data.quantityinStock.toString(),
+                                    text:
+                                        "${firebase.data()!['quantityinStock']}",
                                     fontsize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
                                   sh10,
                                   const Text(
-                                    "ExpiryDate",
+                                    "Category",
                                     style: TextStyle(fontSize: 10),
                                   ),
                                   GooglePoppinsWidgets(
-                                    text: dateConveter(
-                                        DateTime.parse(data.expiryDate)),
-                                    fontsize: 12,
+                                    text: "${firebase.data()!['categoryName']}",
+                                    fontsize: 14,
                                     fontWeight: FontWeight.bold,
                                   ),
+                                  sh10,
+                                  const Text(
+                                    "Package Type",
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                  GooglePoppinsWidgets(
+                                    text: "${firebase.data()!['packageType']}",
+                                    fontsize: 14,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  sh10,
+                                  // const Text(
+                                  //   "ExpiryDate",
+                                  //   style: TextStyle(fontSize: 10),
+                                  // ),
+                                  // GooglePoppinsWidgets(
+                                  //   text: dateConveter(
+                                  //       DateTime.parse(data.expiryDate)),
+                                  //   fontsize: 12,
+                                  //   fontWeight: FontWeight.bold,
+                                  // ),
                                 ],
                               ),
                             )
@@ -245,13 +262,17 @@ class ProductList extends StatelessWidget {
                       )
                     ],
                     actiononTapfuction: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddProduct(
-                            barcodeValue: value.rawContent,
-                          ),
-                        ),
+                      await addProductController.addCheckAutomaticProduct(
+                        barcode: value.rawContent,
+                        categoryID: firebase['categoryID'],
+                        categoryName: firebase['categoryName'],
+                        productname: firebase['productname'],
+                        quantityinStock: firebase['quantityinStock'],
+                        outprice: firebase['outPrice'],
+                        inprice: firebase['inPrice'],
+                        companyName: firebase['companyName'],
+                        packageType: firebase['packageType'],
+                        unit: firebase['unit'],
                       );
                     },
                     actiontext: 'Add Product',

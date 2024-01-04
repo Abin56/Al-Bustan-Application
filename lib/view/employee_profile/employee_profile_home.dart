@@ -130,12 +130,11 @@ class EmployeeProfileHomePage extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
-                            flex: 1,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 7),
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.to(() => const ProductList());
+                                  Get.to(() =>  ProductList());
                                 },
                                 child: Container(
                                   //  width: 200,
@@ -151,31 +150,31 @@ class EmployeeProfileHomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 7,
-                              ),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => AddProductManual());
-                                },
-                                child: Container(
-                                  //  width: 200,
-                                  height: 40,
-                                  color:
-                                      const Color.fromARGB(255, 25, 165, 152),
-                                  child: Center(
-                                      child: GoogleMonstserratWidgets(
-                                    text: "Add New Product",
-                                    fontsize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                                ),
-                              ),
-                            ),
-                          )
+                          // Expanded(
+                          //   flex: 1,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //       left: 7,
+                          //     ),
+                          //     child: GestureDetector(
+                          //       onTap: () {
+                          //         Get.to(() => AddProductManual());
+                          //       },
+                          //       child: Container(
+                          //         //  width: 200,
+                          //         height: 40,
+                          //         color:
+                          //             const Color.fromARGB(255, 25, 165, 152),
+                          //         child: Center(
+                          //             child: GoogleMonstserratWidgets(
+                          //           text: "Add New Product",
+                          //           fontsize: 12,
+                          //           fontWeight: FontWeight.bold,
+                          //         )),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                     ),

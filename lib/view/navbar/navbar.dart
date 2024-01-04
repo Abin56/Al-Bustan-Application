@@ -28,7 +28,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
     //   'Delivery',
     //   style: optionStyle,
     // ),
-    const ProductList(),
+     ProductList(),
   ];
 
   @override

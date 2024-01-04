@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:canteen_productadd_application/model/pending_product_model/pending_productModel.dart';
 import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/add_product/add_product.dart';
@@ -65,7 +66,8 @@ class AddProductController extends GetxController {
     return productCatList;
   }
 
-  Future<void> checkProductAreSame(String docid, BuildContext context,String storeID) async {
+  Future<void> checkProductAreSame(
+      String docid, BuildContext context, String storeID) async {
     try {
       final firebasecollection = await FirebaseFirestore.instance
           .collection('AllProduct')
@@ -77,7 +79,10 @@ class AddProductController extends GetxController {
         // ignore: use_build_context_synchronously
         Navigator.push(context, MaterialPageRoute(
           builder: (context) {
-            return RequestAddProduct(barcodeValue: docid,docid: storeID,);
+            return RequestAddProduct(
+              barcodeValue: docid,
+              docid: storeID,
+            );
           },
         ));
       }
@@ -124,5 +129,42 @@ class AddProductController extends GetxController {
     expirydateController.clear();
 
     Navigator.pop(context);
+  }
+
+  Future<void> addCheckAutomaticProduct({
+    required String barcode,
+    required String categoryID,
+    required String categoryName,
+    required String productname,
+    required String quantityinStock,
+    required String inprice,
+    required String outprice,
+    required String unit,
+    required String packageType,
+    required String companyName,
+  }) async {
+    final productdetails = PendingProductAddingModel(
+        docId: barcode,
+        barcodeNumber: barcode,
+        productname: productname,
+        categoryID: categoryID,
+        categoryName: categoryName,
+        inPrice: inprice,
+        outPrice: outprice,
+        quantityinStock: quantityinStock,
+        expiryDate: DateTime.now().toString(),
+        addDate: DateTime.now().toString(),
+        authuid: FirebaseAuth.instance.currentUser!.uid,
+        unit: unit,
+        packageType: packageType,
+        companyName: companyName,
+        time: DateTime.now().toString(),
+        returnType: '');
+    await FirebaseFirestore.instance
+        .collection('AllProduct')
+        .doc(barcode)
+        .set(productdetails.toMap())
+        .then((value) => showToast(msg: 'Product Added'));
+    Get.back();
   }
 }
