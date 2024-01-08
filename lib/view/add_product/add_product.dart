@@ -1,26 +1,30 @@
-import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
-import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
-import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
-import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
+import 'package:canteen_productadd_application/view/add_product/subcategory_dowpdown.dart';
+import 'package:canteen_productadd_application/view/add_product/unit_cateogry.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
-import '../widgets/textform feild Widget/textformfeildWidget.dart';
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
+import 'package:canteen_productadd_application/view/add_product/packagetype_setup.dart';
+import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
+import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:uuid/uuid.dart';
 
-class AddProduct extends StatefulWidget {
-  final String barcodeValue;
+class AddProductScreen extends StatelessWidget {
+  final String barcoodevalue;
+  AddProductScreen({
+    Key? key,
+    required this.barcoodevalue,
+  }) : super(key: key);
 
-  const AddProduct({super.key, required this.barcodeValue});
-
-  @override
-  State<AddProduct> createState() => _AddProductState();
-}
-
-class _AddProductState extends State<AddProduct> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final AddProductController addProductController =
@@ -40,7 +44,7 @@ class _AddProductState extends State<AddProduct> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GooglePoppinsWidgets(
-                    text: 'ADD PRODUCT',
+                    text: 'ADD PRODUCT ',
                     fontsize: 15,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
@@ -61,10 +65,10 @@ class _AddProductState extends State<AddProduct> {
                 child: Center(
                   child: SizedBox(
                     height: 60,
-                    width: 240,
+                    width: 300,
                     child: SfBarcodeGenerator(
                       symbology: Code128(),
-                      value: widget.barcodeValue,
+                      value: barcoodevalue,
                       showValue: true,
                     ),
                   ),
@@ -132,14 +136,51 @@ class _AddProductState extends State<AddProduct> {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: SubCategoryDropDownWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: PackageSetUpWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 0,
+                  right: 10,
+                  left: 10,
+                ),
+                child: UnitCatDropDownWidget(),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
                 child: TextFormFiledContainerWidget(
-                  hintText: 'Enter price',
-                  title: 'Price',
+                  hintText: 'Enter Out Price',
+                  title: 'Out Price',
                   width: 380,
                   validator: checkFieldEmpty,
-                  controller: addProductController.productpriceController,
+                  controller: addProductController.outpriceController,
                   keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: TextFormFiledContainerWidget(
+                  hintText: 'Enter In price',
+                  title: 'In Price',
+                  width: 380,
+                  validator: checkFieldEmpty,
+                  controller: addProductController.inpriceController,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: TextFormFiledContainerWidget(
+                  hintText: 'Enter Brand Name',
+                  title: 'Brand Name',
+                  width: 380,
+                  validator: checkFieldEmpty,
+                  controller: addProductController.brandnameController,
                 ),
               ),
               Padding(
@@ -172,12 +213,20 @@ class _AddProductState extends State<AddProduct> {
                   height: 50,
                   fontSize: 18,
                   onTap: () async {
-                    // final _formKey=key;
+                    final uuid = const Uuid().v1();
+                    String a =
+                        addProductController.productnameController.text.trim();
+                    // list.join()
+                    String s = a.substring(0, 4);
+                    log(s);
+                    getRandomInt(4);
+
                     if (_formKey.currentState!.validate()) {
                       await addProductController.addProduct(
-                        widget.barcodeValue,
-                        context,
-                      );
+                          '${addProductController.productnameController.text.trim()}$uuid',
+                          int.parse(barcoodevalue),
+                          '$s${getRandomInt(4)}',
+                          context);
                     }
                   },
                 ),

@@ -7,6 +7,7 @@ import 'package:canteen_productadd_application/view/login/widgets/containerwidge
 import 'package:canteen_productadd_application/view/login/widgets/loginbutton.dart';
 
 import 'package:canteen_productadd_application/view/signup/signup.dart';
+import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -123,14 +124,16 @@ class LoginScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 25),
                         child: GestureDetector(
                             onTap: () async {
-                              if (formKey.currentState!.validate()) {
-                                await userlogincontroller.userLogin();
-                              } else {}
+                              await userlogincontroller.userLogin(context);
                             },
-                            child: loginButtonWidget(
-                              height: 50,
-                              width: 240,
-                              text: 'Login',
+                            child: Obx(
+                              () => userlogincontroller.isLoading.value
+                                  ? circularProgressIndicatotWidget
+                                  : loginButtonWidget(
+                                      height: 50,
+                                      width: 240,
+                                      text: 'Login'.tr,
+                                    ),
                             )),
                       ),
                       Padding(

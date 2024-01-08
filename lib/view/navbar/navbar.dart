@@ -1,9 +1,8 @@
-import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/employee_profile/employee_profile_home.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
-import 'package:canteen_productadd_application/view/request/request_page.dart';
+import 'package:canteen_productadd_application/view/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -20,15 +19,15 @@ class NavigationBarPageState extends State<NavigationBarPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    const EmployeeProfileHomePage(),
+    EmployeeProfileHomePage(),
     //ProductList(),
-    const RequestListingHistoryPage(),
-    const EmployeeHomeScreen(),
+    const DeliveryHistoryPage(),
+    const Scaffold()
     // Text(
     //   'Delivery',
     //   style: optionStyle,
     // ),
-     ProductList(),
+    //  ProductList(),
   ];
 
   @override
@@ -77,17 +76,17 @@ class NavigationBarPageState extends State<NavigationBarPage> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: LineIcons.boxes,
-                  text: 'Request',
-                ),
-                GButton(
                   icon: LineIcons.shoppingCart,
                   text: 'Delivery',
                 ),
-                GButton(
-                  icon: LineIcons.user,
-                  text: 'Profile',
-                ),
+                // GButton(
+                //   icon: LineIcons.shoppingCart,
+                //   text: 'Delivery',
+                // ),
+                // GButton(
+                //   icon: LineIcons.user,
+                //   text: 'Profile',
+                // ),
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {

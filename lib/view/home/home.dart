@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/navbar/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,13 +21,33 @@ class HomeScreen extends StatelessWidget {
               if (snap.data!.data()!['activate'] == true) {
                 return const NavigationBarPage();
               } else {
-                return Center(
-                  child: LottieBuilder.asset('images/NO ACCESS.json'),
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                        height: 400,
+                        child: LottieBuilder.asset('images/NO ACCESS.json')),
+                    GoogleMonstserratWidgets(
+                      text: "Waiting for Admin Approval",
+                      fontsize: 16,
+                      fontWeight: FontWeight.bold,
+                    )
+                  ],
                 );
               }
             } else {
-              return Center(
-                child: LottieBuilder.asset('images/NO ACCESS.json'),
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                      height: 400,
+                      child: LottieBuilder.asset('images/NO ACCESS.json')),
+                  GoogleMonstserratWidgets(
+                    text: "Waiting for Admin Approval",
+                    fontsize: 16,
+                    fontWeight: FontWeight.bold,
+                  )
+                ],
               );
             }
           }),

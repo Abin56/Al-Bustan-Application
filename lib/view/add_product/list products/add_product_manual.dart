@@ -1,19 +1,29 @@
-import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
-import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
-import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
-import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
-import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
+import 'package:canteen_productadd_application/view/add_product/subcategory_dowpdown.dart';
+import 'package:canteen_productadd_application/view/add_product/unit_cateogry.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
+import 'package:canteen_productadd_application/model/product_category_model/product_category_model.dart';
+import 'package:canteen_productadd_application/view/add_product/packagetype_setup.dart';
+import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
+import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
+import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
+import 'package:uuid/uuid.dart';
+
 class AddProductManual extends StatelessWidget {
+  final String barcoodevalue;
   AddProductManual({
-    super.key,
-  });
+    Key? key,
+    required this.barcoodevalue,
+  }) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -22,7 +32,6 @@ class AddProductManual extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String barcoodevalue = getRandomString(20);
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -127,14 +136,51 @@ class AddProductManual extends StatelessWidget {
                 ),
               ),
               Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: SubCategoryDropDownWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, right: 10),
+                child: PackageSetUpWidget(),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 0,
+                  right: 10,
+                  left: 10,
+                ),
+                child: UnitCatDropDownWidget(),
+              ),
+              Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
                 child: TextFormFiledContainerWidget(
-                  hintText: 'Enter price',
-                  title: 'Price',
+                  hintText: 'Enter Out Price',
+                  title: 'Out Price',
                   width: 380,
                   validator: checkFieldEmpty,
-                  controller: addProductController.productpriceController,
+                  controller: addProductController.outpriceController,
                   keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: TextFormFiledContainerWidget(
+                  hintText: 'Enter In price',
+                  title: 'In Price',
+                  width: 380,
+                  validator: checkFieldEmpty,
+                  controller: addProductController.inpriceController,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: TextFormFiledContainerWidget(
+                  hintText: 'Enter Brand Name',
+                  title: 'Brand Name',
+                  width: 380,
+                  validator: checkFieldEmpty,
+                  controller: addProductController.brandnameController,
                 ),
               ),
               Padding(
@@ -167,10 +213,20 @@ class AddProductManual extends StatelessWidget {
                   height: 50,
                   fontSize: 18,
                   onTap: () async {
-                    // final _formKey=key;
+                    final uuid = const Uuid().v1();
+                    String a =
+                        addProductController.productnameController.text.trim();
+                    // list.join()
+                    String s = a.substring(0, 4);
+                    log(s);
+                    getRandomInt(4);
+
                     if (_formKey.currentState!.validate()) {
                       await addProductController.addProduct(
-                          barcoodevalue, context);
+                          '${addProductController.productnameController.text.trim()}$uuid',
+                          int.parse(barcoodevalue),
+                          '$s${getRandomInt(4)}',
+                          context);
                     }
                   },
                 ),

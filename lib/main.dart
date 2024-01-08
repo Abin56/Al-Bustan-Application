@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:canteen_productadd_application/firebase_options.dart';
-import 'package:canteen_productadd_application/view/login/loginScreen.dart';
-import 'package:canteen_productadd_application/view/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/shared_pref/shared_pref_helper.dart';
+import 'package:canteen_productadd_application/view/splash_screen/splash_screeen.dart';
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +13,21 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await FirebaseAppCheck.instance
+      .activate(
+    androidProvider: AndroidProvider.debug,
+  )
+      .catchError((e) {
+    log(e.toString());
+  });
+
+  await FirebaseAppCheck.instance.getToken().catchError((e) {
+    log(e.toString());
+  });
+  await SharedPreferencesHelper.initPrefs();
   runApp(const MyApp());
+  // log("result....................... $result");
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +35,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       // home: NavigationBarPage(),
-      home: LoginScreen(),
+      home: SplashScreen(),
     );
   }
 }

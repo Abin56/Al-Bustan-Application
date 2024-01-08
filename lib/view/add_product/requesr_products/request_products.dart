@@ -1,7 +1,6 @@
-import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
-import 'package:canteen_productadd_application/view/constant/const.dart';
+import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_deliveryProducts.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -82,52 +81,24 @@ class RequestProductOrders extends StatelessWidget {
                           ),
                         ),
                         const Spacer(),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 235, 26, 11)
-                                .withOpacity(0.5),
-                            borderRadius: const BorderRadius.horizontal(),
-                          ),
-                          width: 80,
-                          child: Center(
-                            child: GooglePoppinsWidgets(
-                              textAlign: TextAlign.center,
-                              color: cWhite,
-                              fontWeight: FontWeight.bold,
-                              text: "Pending",
-                              fontsize: 12,
+                        GestureDetector(
+                          onTap: () {
+                            // viewDeliveyProducts(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 235, 26, 11)
+                                  .withOpacity(0.5),
+                              borderRadius: const BorderRadius.horizontal(),
                             ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: GestureDetector(
-                            onTap: () async {
-                              String docid = data['productId'];
-                              await BarcodeScanner.scan().then((value) {
-                                if (docid == value.rawContent) {
-                                  addProductController.checkProductAreSame(
-                                      docid, context, data['docId']);
-                                } else {
-                                  showToast(msg: 'Product MissMatch');
-                                }
-                              });
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 7, 226, 25)
-                                    .withOpacity(0.5),
-                                borderRadius: const BorderRadius.horizontal(),
-                              ),
-                              width: 80,
-                              child: Center(
-                                child: GooglePoppinsWidgets(
-                                  textAlign: TextAlign.center,
-                                  color: cBlack,
-                                  fontWeight: FontWeight.bold,
-                                  text: "Add Product",
-                                  fontsize: 10,
-                                ),
+                            width: 80,
+                            child: Center(
+                              child: GooglePoppinsWidgets(
+                                textAlign: TextAlign.center,
+                                color: cWhite,
+                                fontWeight: FontWeight.bold,
+                                text: "Pending",
+                                fontsize: 12,
                               ),
                             ),
                           ),

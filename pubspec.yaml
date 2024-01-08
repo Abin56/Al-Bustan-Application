@@ -53,9 +53,13 @@ dependencies:
   get:
   fluttertoast:
   intl: 
-  barcode_scan2: 
   syncfusion_flutter_barcodes: ^24.1.43
-  flutter_launcher_icons: 
+  flutter_launcher_icons:
+  firebase_app_check:
+  firestore_cache:
+  barcode_scanner: ^3.6.2
+  simple_barcode_scanner: ^0.0.8
+  syncfusion_flutter_signaturepad: ^24.1.44 
 flutter_icons:
   android: true
   ios: true

@@ -1,25 +1,29 @@
 // ignore_for_file: use_build_context_synchronously
-
 import 'dart:developer';
-
-import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
-import 'package:canteen_productadd_application/model/pending_product_model/pending_productModel.dart';
-import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
+import 'package:canteen_productadd_application/controller/barcode_controller/barcode_controller.dart';
+import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
+import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:canteen_productadd_application/view/widgets/custom_showDilog/custom_showdilog.dart';
+import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_barcode_scanner/enum.dart';
+import 'package:simple_barcode_scanner/screens/io_device.dart';
 import 'package:syncfusion_flutter_barcodes/barcodes.dart';
 
 class ProductList extends StatelessWidget {
+  final BarcodeController barcodeController = Get.put(BarcodeController());
+
   final AddProductController addProductController =
       Get.put(AddProductController());
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   // final AddProductController productListController =Get.find<AddProductController>();
 
   ProductList({super.key});
@@ -28,38 +32,9 @@ class ProductList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // actions: [
-        //   Padding(
-        //     padding: const EdgeInsets.only(top: 20),
-        //     child: GestureDetector(
-        //       onTap: () {
-        //         Get.to(() => AddProductManual());
-        //       },
-        //       child: Container(
-        //         color: themeColorBlue.withOpacity(0.2),
-        //         height: 40,
-        //         width: 200,
-        //         child: Center(
-        //           child: GooglePoppinsWidgets(
-        //             text: "ADD PRODUCT MANUAL",
-        //             fontsize: 13,
-        //             color: cBlack,
-        //             fontWeight: FontWeight.bold,
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ],
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            // Container(
-            //  height: 200,
-            //   decoration: const BoxDecoration(
-            //       image: DecorationImage(
-            //           image: AssetImage("assets/images/albustanblack.png"))),
-            // ),
             Padding(
               padding: const EdgeInsets.only(left: 5),
               child: Column(
@@ -95,7 +70,7 @@ class ProductList extends StatelessWidget {
             if (snapshot.hasData) {
               return ListView.separated(
                   itemBuilder: (BuildContext context, int index) {
-                    final data = PendingProductAddingModel.fromMap(
+                    final data = AllProductDetailModel.fromMap(
                         snapshot.data!.docs[index].data());
                     return Card(
                       shape: RoundedRectangleBorder(
@@ -123,7 +98,7 @@ class ProductList extends StatelessWidget {
                               GooglePoppinsWidgets(
                                   text: 'Barcode :  ', fontsize: 12),
                               GooglePoppinsWidgets(
-                                text: data.barcodeNumber,
+                                text: data.barcodeNumber.toString(),
                                 fontsize: 14,
                                 fontWeight: FontWeight.bold,
                               ),
@@ -159,126 +134,259 @@ class ProductList extends StatelessWidget {
           height: 40,
           fontSize: 12,
           onTap: () async {
-            await BarcodeScanner.scan().then((value) async {
-              final firebase = await FirebaseFirestore.instance
-                  .collection('pendingProducts')
-                  .doc(value.rawContent)
-                  .get();
-              log("${value.rawContent}}");
 
-              if (firebase.data() == null) {
-                showToast(msg: 'No Product Found');
-              } else {
-                log("else condition");
-                await customShowDilogBox(
-                    context: context,
-                    title: 'Product Details',
-                    children: [
-                      SizedBox(
-                        height: 300,
-                        width: double.infinity,
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 295,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 10, bottom: 10),
-                                    child: Center(
-                                      child: Container(
-                                        color: Colors.amber.withOpacity(0.4),
-                                        height: 60,
-                                        width: 290,
-                                        child: Center(
-                                          child: SfBarcodeGenerator(
-                                            symbology: Code128(),
-                                            value: value.rawContent,
-                                            showValue: true,
+            Get.to(() => BarcodeScanner(
+                  lineColor: '#ff6666',
+                  cancelButtonText: "Cancel",
+                  isShowFlashIcon: false,
+                  scanType: ScanType.barcode,
+                  appBarTitle: '',
+                  centerTitle: true,
+                  onScanned: (res) async {
+                    Navigator.pop(context, res);
+                    barcodeController.barcodevalue.value = res;
+                    try {
+                      barcodeController.barcodevalue.value = res;
+                      await barcodeController
+                          .barcodescanResult(res)
+                          .then((value) async {
+                        if (addProductController.allproductList
+                            .any((element) => element.barcodeNumber == res)) {
+                          final result = Get.find<AddProductController>()
+                              .allproductList
+                              .where((element) =>
+                                  element.barcodeNumber.contains(res))
+                              .toList();
+                          final dataList = result[0];
+
+                          await customShowDilogBox(
+                              context: context,
+                              title: 'Product Details',
+                              children: [
+                                Form(
+                                  key: _formKey,
+                                  child: SizedBox(
+                                    height: 350,
+                                    width: double.infinity,
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 295,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 10, bottom: 10),
+                                                child: Center(
+                                                  child: Container(
+                                                    color: Colors.amber
+                                                        .withOpacity(0.4),
+                                                    height: 60,
+                                                    width: 290,
+                                                    child: Center(
+                                                      child: SfBarcodeGenerator(
+                                                        symbology: Code128(),
+                                                        value: res,
+                                                        showValue: true,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              sh10,
+                                              const Text(
+                                                "Product Name",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              GooglePoppinsWidgets(
+                                                text: dataList.productname,
+                                                fontsize: 12,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              sh10,
+                                              const Text(
+                                                "Stock",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  GooglePoppinsWidgets(
+                                                    text: dataList
+                                                        .quantityinStock
+                                                        .toString(),
+                                                    fontsize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                  IconButton(
+                                                    onPressed: () {
+                                                      addProductController
+                                                          .editexpirydate
+                                                          .value = true;
+                                                    },
+                                                    icon:
+                                                        const Icon(Icons.edit),
+                                                    color: Colors.green,
+                                                  ),
+                                                  Obx(() => addProductController
+                                                              .editexpirydate
+                                                              .value ==
+                                                          true
+                                                      ? Row(
+                                                          children: [
+                                                            TextFormFiledContainerWidget(
+                                                                keyboardType:
+                                                                    TextInputType
+                                                                        .number,
+                                                                controller:
+                                                                    addProductController
+                                                                        .editqtyController,
+                                                                validator:
+                                                                    checkFieldEmpty,
+                                                                hintText:
+                                                                    'Stock',
+                                                                title:
+                                                                    "Add Stock",
+                                                                width: 100),
+                                                            Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                        .only(
+                                                                        left:
+                                                                            10,
+                                                                        top:
+                                                                            30),
+                                                                child: Row(
+                                                                  children: [
+                                                                    GestureDetector(
+                                                                      onTap:
+                                                                          () {
+                                                                        addProductController
+                                                                            .editexpirydate
+                                                                            .value = false;
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        color: Colors
+                                                                            .red,
+                                                                        height:
+                                                                            30,
+                                                                        width:
+                                                                            30,
+                                                                        child:
+                                                                            const Center(
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.close,
+                                                                            color:
+                                                                                cWhite,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                    const SizedBox(
+                                                                      width: 10,
+                                                                    ),
+                                                                    GestureDetector(
+                                                                      onTap:
+                                                                          () async {
+                                                                        if (_formKey
+                                                                            .currentState!
+                                                                            .validate()) {
+                                                                          addProductController
+                                                                              .isloading
+                                                                              .value = true;
+                                                                          await addProductController.updateStock(
+                                                                              dataList.docId,
+                                                                              dataList.quantityinStock,
+                                                                              int.parse(addProductController.editqtyController.text.trim()));
+                                                                        }
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        color: Colors
+                                                                            .green,
+                                                                        height:
+                                                                            30,
+                                                                        width:
+                                                                            30,
+                                                                        child:
+                                                                            const Center(
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.check,
+                                                                            color:
+                                                                                cWhite,
+                                                                          ),
+                                                                        ),
+                                                                      ),
+                                                                    ),
+                                                                  ],
+                                                                ))
+                                                          ],
+                                                        )
+                                                      : addProductController
+                                                                  .isloading
+                                                                  .value ==
+                                                              true
+                                                          ? circularPIndicator
+                                                          : const Text('')),
+                                                ],
+                                              ),
+                                              sh10,
+                                              const Text(
+                                                "Category",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              GooglePoppinsWidgets(
+                                                text: dataList.categoryName,
+                                                fontsize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              sh10,
+                                              const Text(
+                                                "Package Type",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              GooglePoppinsWidgets(
+                                                text: dataList.packageType,
+                                                fontsize: 14,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              sh10,
+                                              const Text(
+                                                "ExpiryDate",
+                                                style: TextStyle(fontSize: 10),
+                                              ),
+                                              GooglePoppinsWidgets(
+                                                text: dateConveter(
+                                                    DateTime.parse(
+                                                        dataList.expiryDate)),
+                                                fontsize: 12,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ],
                                           ),
-                                        ),
-                                      ),
+                                        )
+                                      ],
                                     ),
                                   ),
-                                  sh10,
-                                  const Text(
-                                    "Product Name",
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                  GooglePoppinsWidgets(
-                                    text: firebase.data()!['productname'],
-                                    fontsize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  sh10,
-                                  const Text(
-                                    "Stock",
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                  GooglePoppinsWidgets(
-                                    text:
-                                        "${firebase.data()!['quantityinStock']}",
-                                    fontsize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  sh10,
-                                  const Text(
-                                    "Category",
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                  GooglePoppinsWidgets(
-                                    text: "${firebase.data()!['categoryName']}",
-                                    fontsize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  sh10,
-                                  const Text(
-                                    "Package Type",
-                                    style: TextStyle(fontSize: 10),
-                                  ),
-                                  GooglePoppinsWidgets(
-                                    text: "${firebase.data()!['packageType']}",
-                                    fontsize: 14,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  sh10,
-                                  // const Text(
-                                  //   "ExpiryDate",
-                                  //   style: TextStyle(fontSize: 10),
-                                  // ),
-                                  // GooglePoppinsWidgets(
-                                  //   text: dateConveter(
-                                  //       DateTime.parse(data.expiryDate)),
-                                  //   fontsize: 12,
-                                  //   fontWeight: FontWeight.bold,
-                                  // ),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                    actiononTapfuction: () async {
-                      await addProductController.addCheckAutomaticProduct(
-                        barcode: value.rawContent,
-                        categoryID: firebase['categoryID'],
-                        categoryName: firebase['categoryName'],
-                        productname: firebase['productname'],
-                        quantityinStock: firebase['quantityinStock'],
-                        outprice: firebase['outPrice'],
-                        inprice: firebase['inPrice'],
-                        companyName: firebase['companyName'],
-                        packageType: firebase['packageType'],
-                        unit: firebase['unit'],
-                      );
-                    },
-                    actiontext: 'Add Product',
-                    doyouwantActionButton: true);
-              }
-            });
+                                )
+                              ],
+
+                              // actiontext: 'Add Product',
+                              doyouwantActionButton: false);
+                        } else {
+                          showToast(msg: 'No Product Found');
+                        }
+                      });
+                    } catch (e) {
+                      log(e.toString());
+                      showToast(msg: 'Error fetching data');
+                    }
+                  },
+                ));
           }),
     );
   }

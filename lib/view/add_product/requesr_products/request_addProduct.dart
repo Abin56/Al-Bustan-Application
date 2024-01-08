@@ -134,7 +134,7 @@ class RequestAddProduct extends StatelessWidget {
                   title: 'Price',
                   width: 380,
                   validator: checkFieldEmpty,
-                  controller: addProductController.productpriceController,
+                  controller: addProductController.outpriceController,
                   keyboardType: TextInputType.number,
                 ),
               ),

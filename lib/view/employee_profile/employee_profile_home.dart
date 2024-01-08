@@ -1,18 +1,24 @@
-import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
+import 'package:canteen_productadd_application/controller/barcode_controller/barcode_controller.dart';
+import 'package:canteen_productadd_application/view/add_product/add_product.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/add_product_manual.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
-import 'package:canteen_productadd_application/view/add_product/requesr_products/request_products.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_delivery_orders.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:simple_barcode_scanner/enum.dart';
+import 'package:simple_barcode_scanner/screens/io_device.dart';
+
 import 'package:text_scroll/text_scroll.dart';
 
 class EmployeeProfileHomePage extends StatelessWidget {
-  const EmployeeProfileHomePage({super.key});
+  final BarcodeController barcodeController = Get.put(BarcodeController());
+  EmployeeProfileHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -130,11 +136,12 @@ class EmployeeProfileHomePage extends StatelessWidget {
                       child: Row(
                         children: [
                           Expanded(
+                            flex: 1,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 7),
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.to(() =>  ProductList());
+                                  Get.to(() => ProductList());
                                 },
                                 child: Container(
                                   //  width: 200,
@@ -150,35 +157,73 @@ class EmployeeProfileHomePage extends StatelessWidget {
                               ),
                             ),
                           ),
-                          // Expanded(
-                          //   flex: 1,
-                          //   child: Padding(
-                          //     padding: const EdgeInsets.only(
-                          //       left: 7,
-                          //     ),
-                          //     child: GestureDetector(
-                          //       onTap: () {
-                          //         Get.to(() => AddProductManual());
-                          //       },
-                          //       child: Container(
-                          //         //  width: 200,
-                          //         height: 40,
-                          //         color:
-                          //             const Color.fromARGB(255, 25, 165, 152),
-                          //         child: Center(
-                          //             child: GoogleMonstserratWidgets(
-                          //           text: "Add New Product",
-                          //           fontsize: 12,
-                          //           fontWeight: FontWeight.bold,
-                          //         )),
-                          //       ),
-                          //     ),
-                          //   ),
-                          // )
+                          Expanded(
+                            flex: 1,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                left: 7,
+                              ),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  Navigator.push(context, MaterialPageRoute(
+                                    builder: (context) {
+                                      Future.delayed(
+                                          const Duration(seconds: 1));
+                                      Get.back();
+
+                                      return BarcodeScanner(
+                                          lineColor: '#ff6666',
+                                          cancelButtonText: "Cancel",
+                                          isShowFlashIcon: false,
+                                          scanType: ScanType.barcode,
+                                          appBarTitle: '',
+                                          centerTitle: true,
+                                          onScanned: (res) async {
+                                            barcodeController
+                                                .barcodevalue.value = res;
+                                            await barcodeController
+                                                .barcodescanResult(res)
+                                                .then((value) {
+                                              if (Get.find<BarcodeController>()
+                                                          .barcodevalue
+                                                          .value ==
+                                                      '' ||
+                                                  Get.find<BarcodeController>()
+                                                          .barcodevalue
+                                                          .value ==
+                                                      '-1') {
+                                                return Get.back();
+                                              } else {
+                                                Get.to(() => AddProductManual(
+                                                      barcoodevalue: Get.find<
+                                                              BarcodeController>()
+                                                          .barcodevalue
+                                                          .value,
+                                                    ));
+                                              }
+                                            });
+                                          });
+                                    },
+                                  ));
+                                },
+                                child: Container(
+                                  //  width: 200,
+                                  height: 40,
+                                  color:
+                                      const Color.fromARGB(255, 25, 165, 152),
+                                  child: Center(
+                                      child: GoogleMonstserratWidgets(
+                                    text: "Add New Product",
+                                    fontsize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
-
                     Padding(
                       padding: const EdgeInsets.only(top: 10),
                       child: Row(
@@ -187,17 +232,24 @@ class EmployeeProfileHomePage extends StatelessWidget {
                             flex: 1,
                             child: Padding(
                               padding: const EdgeInsets.only(left: 7),
-                              child: Container(
-                                // width: 200,
-                                height: 40,
-                                color: const Color.fromARGB(255, 2, 179, 89)
-                                    .withOpacity(0.7),
-                                child: Center(
-                                    child: GoogleMonstserratWidgets(
-                                  text: "Request",
-                                  fontsize: 12,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Get.to(() => AddProductScreen(
+                                        barcoodevalue: idGenerator(),
+                                      ));
+                                },
+                                child: Container(
+                                  // width: 200,
+                                  height: 40,
+                                  color: const Color.fromARGB(255, 2, 179, 89)
+                                      .withOpacity(0.7),
+                                  child: Center(
+                                      child: GoogleMonstserratWidgets(
+                                    text: "Add Manual Product",
+                                    fontsize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
                               ),
                             ),
                           ),
@@ -211,7 +263,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                 color: const Color.fromARGB(255, 105, 205, 208),
                                 child: Center(
                                     child: GoogleMonstserratWidgets(
-                                  text: "Approvals",
+                                  text: "Request",
                                   fontsize: 12,
                                   fontWeight: FontWeight.bold,
                                 )),
@@ -232,14 +284,14 @@ class EmployeeProfileHomePage extends StatelessWidget {
                             Tab(
                               //icon: const Icon(Icons.production_quantity_limits_rounded),
                               child: GooglePoppinsWidgets(
-                                text: "Product Orders",
+                                text: "Delivery Orders",
                                 fontsize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                             Tab(
                               child: GooglePoppinsWidgets(
-                                text: "Delivery Orders",
+                                text: "........",
                                 fontsize: 12,
                                 fontWeight: FontWeight.w500,
                               ),
@@ -251,13 +303,12 @@ class EmployeeProfileHomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     Expanded(
                       child: TabBarView(
                         children: [
                           // first tab bar view widget
 
-                          RequestProductOrders(),
+                          DeliveryOrdersWidget(),
                           // second tab bar viiew widget
                           ListView.separated(
                             itemBuilder: (context, index) {
@@ -299,27 +350,6 @@ class EmployeeProfileHomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    //  Padding(
-                    //    padding: const EdgeInsets.all(8.0),
-                    //    child: Row(
-                    //      children: [
-                    //     Expanded(
-                    //       flex: 1,
-                    //       child: Padding(
-                    //         padding: const EdgeInsets.only(left: 7),
-                    //         child:
-                    //       ),
-                    //     ),
-                    //      Expanded(
-                    //       flex: 1,
-                    //        child: Padding(
-                    //          padding: const EdgeInsets.only(left: 7),
-                    //          child:
-                    //        ),
-                    //      )
-                    //                ],
-                    //              ),
-                    //  ),
                   ],
                 ),
               );
