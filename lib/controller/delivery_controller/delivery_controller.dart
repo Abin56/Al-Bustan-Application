@@ -56,7 +56,7 @@ class DeliveryController extends GetxController {
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
-            .update({'deliveredtime': DateTime.now()});
+            .update({'deliveredtime': DateTime.now().toString()});
         await FirebaseFirestore.instance
             .collection('EmployeeProfile')
             .doc(FirebaseAuth.instance.currentUser?.uid)

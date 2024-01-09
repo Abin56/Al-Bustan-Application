@@ -1,6 +1,5 @@
 import 'package:canteen_productadd_application/controller/cart_controller/cart_controller.dart';
 import 'package:canteen_productadd_application/model/cart_model/cart_model.dart';
-import 'package:canteen_productadd_application/view/all_product_list/all_product_screen.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
