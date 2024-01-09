@@ -2,6 +2,7 @@ import 'package:canteen_productadd_application/controller/barcode_controller/bar
 import 'package:canteen_productadd_application/view/add_product/add_product.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/add_product_manual.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
+import 'package:canteen_productadd_application/view/all_product_list/all_product_screen.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_delivery_orders.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
@@ -255,18 +256,24 @@ class EmployeeProfileHomePage extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 7),
-                              child: Container(
-                                //  width: 200,
-                                height: 40,
-                                color: const Color.fromARGB(255, 105, 205, 208),
-                                child: Center(
-                                    child: GoogleMonstserratWidgets(
-                                  text: "Request",
-                                  fontsize: 12,
-                                  fontWeight: FontWeight.bold,
-                                )),
+                            child: GestureDetector(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AllProductScreen(),));
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 7),
+                                child: Container(
+                                  //  width: 200,
+                                  height: 40,
+                                  color:
+                                      const Color.fromARGB(255, 105, 205, 208),
+                                  child: Center(
+                                      child: GoogleMonstserratWidgets(
+                                    text: "Request",
+                                    fontsize: 12,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                                ),
                               ),
                             ),
                           )
