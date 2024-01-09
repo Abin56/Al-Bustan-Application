@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeliveryController extends GetxController {
+  RxBool signIsLoading = false.obs;
   Future<void> pickedItem(String deliverydocid, String itemdocid,
       DeliveryProductListModel deliveryProductListModel) async {
     await FirebaseFirestore.instance
@@ -66,6 +67,7 @@ class DeliveryController extends GetxController {
               .collection('deliveryAssignList')
               .doc(deliverydocid)
               .update({'isDelivered': true}).then((value) async {
+            signIsLoading.value = false;
             Get.back();
             showToast(msg: "Delivered");
             await generateInvoice(context);
