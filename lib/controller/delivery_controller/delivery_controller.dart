@@ -1,8 +1,10 @@
 import 'package:canteen_productadd_application/model/delivery/deliveryProduct_model/deliveryproduct_model.dart';
 import 'package:canteen_productadd_application/model/delivery/view_delivery_orders.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
+import 'package:canteen_productadd_application/view/invoice_pdf/get_invoice.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class DeliveryController extends GetxController {
@@ -33,7 +35,7 @@ class DeliveryController extends GetxController {
   }
 
   deliverdsign(String signUrl, String deliverydocid,
-      DeliveryOrdersModel deliveryOrdersModel) async {
+      DeliveryOrdersModel deliveryOrdersModel, BuildContext context) async {
     FirebaseFirestore.instance
         .collection('EmployeeProfile')
         .doc(FirebaseAuth.instance.currentUser?.uid)
@@ -53,16 +55,23 @@ class DeliveryController extends GetxController {
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
+            .update({'deliveredtime': DateTime.now()});
+        await FirebaseFirestore.instance
+            .collection('EmployeeProfile')
+            .doc(FirebaseAuth.instance.currentUser?.uid)
+            .collection("DeliveryHistory")
+            .doc(deliveryOrdersModel.orderId)
             .update({'signURl': signUrl}).then((value) async {
           await FirebaseFirestore.instance
               .collection('deliveryAssignList')
               .doc(deliverydocid)
-              .update({'isDelivered': true});
+              .update({'isDelivered': true}).then((value) async {
+            Get.back();
+            showToast(msg: "Delivered");
+            await generateInvoice(context);
+          });
         });
       });
-
-      Get.back();
-      showToast(msg: "Delivered");
     });
   }
 }
