@@ -2,7 +2,6 @@ import 'package:canteen_productadd_application/view/home/home.dart';
 import 'package:canteen_productadd_application/view/login/loginScreen.dart';
 import 'package:canteen_productadd_application/view/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/shared_pref/user_auth/user_credentials.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

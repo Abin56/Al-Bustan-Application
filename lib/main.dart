@@ -14,17 +14,17 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  await FirebaseAppCheck.instance
-      .activate(
-    androidProvider: AndroidProvider.debug,
-  )
-      .catchError((e) {
-    log(e.toString());
-  });
+  // await FirebaseAppCheck.instance
+  //     .activate(
+  //   androidProvider: AndroidProvider.debug,
+  // )
+  //     .catchError((e) {
+  //   log(e.toString());
+  // });
 
-  await FirebaseAppCheck.instance.getToken().catchError((e) {
-    log(e.toString());
-  });
+  // await FirebaseAppCheck.instance.getToken().catchError((e) {
+  //   print(e.toString());
+  // });
   await SharedPreferencesHelper.initPrefs();
   runApp(const MyApp());
   // log("result....................... $result");

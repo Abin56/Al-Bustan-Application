@@ -1,6 +1,5 @@
 import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
-import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_deliveryProducts.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

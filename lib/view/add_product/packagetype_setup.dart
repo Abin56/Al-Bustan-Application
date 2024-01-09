@@ -1,6 +1,5 @@
 import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
 import 'package:canteen_productadd_application/model/packagetype_model.dart';
-import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
