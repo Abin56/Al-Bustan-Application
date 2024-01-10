@@ -1,9 +1,7 @@
-import 'dart:developer';
-
 import 'package:canteen_productadd_application/firebase_options.dart';
 import 'package:canteen_productadd_application/view/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/splash_screen/splash_screeen.dart';
-import 'package:firebase_app_check/firebase_app_check.dart';
+// import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

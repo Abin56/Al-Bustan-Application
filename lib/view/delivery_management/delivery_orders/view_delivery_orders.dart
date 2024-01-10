@@ -5,7 +5,6 @@ import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_deliveryProducts.dart';
 import 'package:canteen_productadd_application/view/delivery_management/sign_pad/sign_pad.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -63,6 +62,8 @@ class DeliveryOrdersWidget extends StatelessWidget {
                                       SizedBox(
                                         width: 100,
                                         child: TextScroll(
+                                          velocity: const Velocity(
+                                              pixelsPerSecond: Offset(30, 0)),
                                           " ${data.orderId}",
                                           style: const TextStyle(
                                             color: cBlack,
@@ -126,46 +127,69 @@ class DeliveryOrdersWidget extends StatelessWidget {
                                             )
                                           : Row(
                                               children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10),
-                                                  child: ButtonContainerWidget(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      text: "SIGN",
-                                                      width: 100,
-                                                      height: 40,
-                                                      fontSize: 11,
-                                                      onTap: () async {
-                                                        Get.to(
-                                                            () => SignPadScreen(
-                                                                  deliverydocid:
-                                                                      data.orderId,
-                                                                  deliveryOrdersModel:
-                                                                      data,
-                                                                ));
-                                                      }),
-                                                ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: const Color.fromARGB(
-                                                            255, 19, 136, 4)
-                                                        .withOpacity(0.5),
-                                                    borderRadius:
-                                                        const BorderRadius
-                                                            .horizontal(),
-                                                  ),
-                                                  width: 80,
-                                                  child: Center(
-                                                    child: GooglePoppinsWidgets(
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      color: cWhite,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      text: "Pickuped",
-                                                      fontsize: 12,
+                                                IconButton(
+                                                    onPressed: () {},
+                                                    icon: const Icon(
+                                                      Icons.receipt_long,
+                                                      size: 30,
+                                                    )),
+                                                // Padding(
+                                                //   padding:
+                                                //       const EdgeInsets.only(
+                                                //           right: 10),
+                                                //   child: ButtonContainerWidget(
+                                                //       fontWeight:
+                                                //           FontWeight.bold,
+                                                //       text: "SIGN",
+                                                //       width: 100,
+                                                //       height: 40,
+                                                //       fontSize: 11,
+                                                //       onTap: () async {
+                                                //         Get.to(
+                                                //             () => SignPadScreen(
+                                                //                   deliverydocid:
+                                                //                       data.orderId,
+                                                //                   deliveryOrdersModel:
+                                                //                       data,
+                                                //                 ));
+                                                //       }),
+                                                // ),
+                                                GestureDetector(
+                                                  onTap: () {
+                                                    Get.to(() => SignPadScreen(
+                                                          docid: data.orderId,
+                                                          deliverydocid:
+                                                              data.orderId,
+                                                          deliveryOrdersModel:
+                                                              data,
+                                                        ));
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          const Color.fromARGB(
+                                                                  255,
+                                                                  19,
+                                                                  136,
+                                                                  4)
+                                                              .withOpacity(0.5),
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .horizontal(),
+                                                    ),
+                                                    width: 100,
+                                                    child: Center(
+                                                      child:
+                                                          GooglePoppinsWidgets(
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        // color: cWhite,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        text:
+                                                            "Ready to Deliver",
+                                                        fontsize: 10,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),

@@ -7,12 +7,14 @@ class DeliveryOrdersModel {
   String status;
   String time;
   String signURl;
+  String deliveredtime;
   DeliveryOrdersModel({
     required this.orderId,
     required this.orderCount,
     required this.status,
     required this.time,
     required this.signURl,
+    required this.deliveredtime,
   });
 
   DeliveryOrdersModel copyWith({
@@ -21,6 +23,7 @@ class DeliveryOrdersModel {
     String? status,
     String? time,
     String? signURl,
+    String? deliveredtime,
   }) {
     return DeliveryOrdersModel(
       orderId: orderId ?? this.orderId,
@@ -28,6 +31,7 @@ class DeliveryOrdersModel {
       status: status ?? this.status,
       time: time ?? this.time,
       signURl: signURl ?? this.signURl,
+      deliveredtime: deliveredtime ?? this.deliveredtime,
     );
   }
 
@@ -38,6 +42,7 @@ class DeliveryOrdersModel {
       'status': status,
       'time': time,
       'signURl': signURl,
+      'deliveredtime': deliveredtime,
     };
   }
 
@@ -48,6 +53,7 @@ class DeliveryOrdersModel {
       status: map['status'] ?? '',
       time: map['time'] ?? '',
       signURl: map['signURl'] ?? '',
+      deliveredtime: map['deliveredtime'] ?? '',
     );
   }
 
@@ -58,7 +64,7 @@ class DeliveryOrdersModel {
 
   @override
   String toString() {
-    return 'DeliveryOrdersModel(orderId: $orderId, orderCount: $orderCount, status: $status, time: $time, signURl: $signURl)';
+    return 'DeliveryOrdersModel(orderId: $orderId, orderCount: $orderCount, status: $status, time: $time, signURl: $signURl, deliveredtime: $deliveredtime)';
   }
 
   @override
@@ -69,7 +75,8 @@ class DeliveryOrdersModel {
         other.orderCount == orderCount &&
         other.status == status &&
         other.time == time &&
-        other.signURl == signURl;
+        other.signURl == signURl &&
+        other.deliveredtime == deliveredtime;
   }
 
   @override
@@ -78,6 +85,7 @@ class DeliveryOrdersModel {
         orderCount.hashCode ^
         status.hashCode ^
         time.hashCode ^
-        signURl.hashCode;
+        signURl.hashCode ^
+        deliveredtime.hashCode;
   }
 }

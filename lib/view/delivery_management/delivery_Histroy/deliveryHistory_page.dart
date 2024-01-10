@@ -1,6 +1,6 @@
 import 'package:canteen_productadd_application/model/delivery/view_delivery_orders.dart';
-import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
+import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -39,21 +39,26 @@ class DeliveryHistoryPage extends StatelessWidget {
                               children: [
                                 Container(
                                   height: 30,
-                                  width: 60,
+                                  width: 100,
                                   color: Colors.blue,
                                   child: Center(
                                       child: GooglePoppinsWidgets(
-                                          text: "Date", fontsize: 12)),
+                                          fontWeight: FontWeight.bold,
+                                          text: dateConveter(
+                                              DateTime.parse(data.time)),
+                                          fontsize: 10)),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GooglePoppinsWidgets(
-                                      text: data.orderId, fontsize: 14),
+                                    text: data.orderId,
+                                    fontsize: 10,
+                                  ),
                                 )
                               ],
                             ),
                             Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 GooglePoppinsWidgets(
                                   text: "Task Time",
@@ -61,16 +66,18 @@ class DeliveryHistoryPage extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                                 GooglePoppinsWidgets(
-                                    text: "10:00", fontsize: 12),
-                                GooglePoppinsWidgets(
-                                  text: "Target Time :",
-                                  fontsize: 11,
-                                  fontWeight: FontWeight.bold,
-                                )
+                                    text:
+                                        timeConveter(DateTime.parse(data.time)),
+                                    fontsize: 12),
+                                // GooglePoppinsWidgets(
+                                //   text: "Target Time :",
+                                //   fontsize: 11,
+                                //   fontWeight: FontWeight.bold,
+                                // )
                               ],
                             ),
                             Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 GooglePoppinsWidgets(
                                   text: "Completed Time",
@@ -78,22 +85,24 @@ class DeliveryHistoryPage extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                                 GooglePoppinsWidgets(
-                                    text: "10:00", fontsize: 12),
-                                GooglePoppinsWidgets(
-                                  text: " 3 hrs",
-                                  fontsize: 11,
-                                  fontWeight: FontWeight.bold,
-                                )
+                                    text: timeConveter(
+                                        DateTime.parse(data.deliveredtime)),
+                                    fontsize: 12),
+                                // GooglePoppinsWidgets(
+                                //   text: " 3 hrs",
+                                //   fontsize: 11,
+                                //   fontWeight: FontWeight.bold,
+                                // )
                               ],
                             ),
                             Container(
                               width: 60,
                               height: double.infinity,
-                              color: cGreen,
+                              color: const Color.fromARGB(255, 120, 211, 123),
                               child: Center(
                                   child: GooglePoppinsWidgets(
-                                text: "Status",
-                                fontsize: 13,
+                                text: "Delivered",
+                                fontsize: 10,
                                 fontWeight: FontWeight.bold,
                               )),
                             )
@@ -102,7 +111,9 @@ class DeliveryHistoryPage extends StatelessWidget {
                   );
                 },
                 separatorBuilder: (context, index) {
-                  return const Divider();
+                  return const SizedBox(
+                    height: 01,
+                  );
                 },
                 itemCount: snaps.data!.docs.length,
               );

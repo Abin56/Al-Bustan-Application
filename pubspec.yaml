@@ -55,7 +55,11 @@ dependencies:
   syncfusion_flutter_barcodes: ^24.1.43
   flutter_launcher_icons:
   firebase_app_check:
+  screenshot:
+  syncfusion_flutter_pdf: 
   firestore_cache:
+  open_file:
+  share_plus:
   barcode_scanner: ^3.6.2
   simple_barcode_scanner: ^0.0.8
   syncfusion_flutter_signaturepad: ^24.1.44

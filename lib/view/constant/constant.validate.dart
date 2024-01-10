@@ -167,6 +167,11 @@ dateConveter(DateTime date) {
   return formattedDate;
 }
 
+timeConveter(DateTime date) {
+  String formattedDate = DateFormat('hh:mm:a').format(date);
+  return formattedDate;
+}
+
 const _int = '1234567890';
 
 Random _rndd = Random();

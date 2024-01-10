@@ -150,7 +150,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                   color: const Color.fromARGB(255, 2, 179, 89),
                                   child: Center(
                                       child: GoogleMonstserratWidgets(
-                                    text: "Scan Product",
+                                    text: "Add Stock",
                                     fontsize: 12,
                                     fontWeight: FontWeight.bold,
                                   )),
@@ -246,7 +246,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                       .withOpacity(0.7),
                                   child: Center(
                                       child: GoogleMonstserratWidgets(
-                                    text: "Add Manual Product",
+                                    text: "Add Product Manually",
                                     fontsize: 12,
                                     fontWeight: FontWeight.bold,
                                   )),
@@ -256,12 +256,12 @@ class EmployeeProfileHomePage extends StatelessWidget {
                           ),
                           Expanded(
                             flex: 1,
-                            child: GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AllProductScreen(),));
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(left: 7),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 7),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  Get.to(() => const AllProductScreen());
+                                },
                                 child: Container(
                                   //  width: 200,
                                   height: 40,
@@ -269,7 +269,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                       const Color.fromARGB(255, 105, 205, 208),
                                   child: Center(
                                       child: GoogleMonstserratWidgets(
-                                    text: "Request",
+                                    text: "Delivery Request",
                                     fontsize: 12,
                                     fontWeight: FontWeight.bold,
                                   )),
