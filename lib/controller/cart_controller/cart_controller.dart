@@ -1,6 +1,5 @@
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
 import 'package:canteen_productadd_application/model/cart_model/cart_model.dart';
-import 'package:canteen_productadd_application/model/user_model/user_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
