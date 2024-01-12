@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/add_product_controller/add_product_controller.dart';
 import 'package:canteen_productadd_application/controller/barcode_controller/barcode_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
@@ -17,6 +18,8 @@ import 'package:simple_barcode_scanner/screens/io_device.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class EmployeeProfileHomePage extends StatelessWidget {
+  final AddProductController addProductController =
+      Get.put(AddProductController());
   final BarcodeController barcodeController = Get.put(BarcodeController());
   EmployeeProfileHomePage({super.key});
 

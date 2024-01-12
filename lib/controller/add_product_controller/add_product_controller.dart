@@ -14,6 +14,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddProductController extends GetxController {
+  RxBool addnewproductisLoading = false.obs;
   RxString listfetchedDocid = ''.obs;
   RxBool editqty = false.obs;
   RxBool isloading = false.obs;
