@@ -214,7 +214,7 @@ class CartController extends GetxController {
       final productList = await getEmployeeCartProductDetailsList();
 
       for (int i = 0; i < productList.length; i++) {
-        firestore
+        await firestore
             .collection('EmployeeDeliveryRequest')
             .doc(requestId)
             .collection('RequestProductDetails')
@@ -236,7 +236,7 @@ class CartController extends GetxController {
         "employeeId": auth.currentUser!.uid
       };
 
-      firestore
+      await firestore
           .collection("EmployeeDeliveryRequest")
           .doc(requestId)
           .set(requestData)
