@@ -195,7 +195,7 @@ class AddProductScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
                 child: TextFormFiledContainerWidget(
-                  hintText: 'Enter expiry Date',
+                  hintText: 'Enter in days eg 1,50,100..',
                   title: 'Expiry Date',
                   width: 380,
                   validator: checkFieldEmpty,

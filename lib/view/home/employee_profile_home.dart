@@ -143,8 +143,12 @@ class EmployeeProfileHomePage extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(left: 7),
                               child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => AddStockScanPage());
+                                onTap: () async {
+                                  addProductController
+                                      .fetchAllProducts()
+                                      .then((value) async {
+                                    Get.to(() => AddStockScanPage());
+                                  });
                                 },
                                 child: Container(
                                   //  width: 200,

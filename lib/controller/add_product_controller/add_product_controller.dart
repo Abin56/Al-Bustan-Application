@@ -110,6 +110,7 @@ class AddProductController extends GetxController {
   }
 
   Future<List<ProductCategoryModel>> fetchProductCategory() async {
+    productCatList.clear();
     final firebase =
         await FirebaseFirestore.instance.collection('ProductCategory').get();
 
@@ -190,6 +191,7 @@ class AddProductController extends GetxController {
   }
 
   Future<List<PackageTypeModel>> fetchPackagetypeModel() async {
+    packageTypeModel.clear();
     final firebase = await FirebaseFirestore.instance
         .collection('PackageTypeCollection')
         .get();
@@ -203,6 +205,7 @@ class AddProductController extends GetxController {
   }
 
   Future<List<SubCategoryModel>> fetchSubCategorytypeModel() async {
+    subCategoryModel.clear();
     final firebase =
         await FirebaseFirestore.instance.collection('Subcategory').get();
 
@@ -215,6 +218,7 @@ class AddProductController extends GetxController {
   }
 
   Future<List<UnitCatModel>> fetchUnitCategorytypeModel() async {
+    unitCategoryModel.clear();
     final firebase =
         await FirebaseFirestore.instance.collection('UnitCategory').get();
 
@@ -239,7 +243,6 @@ class AddProductController extends GetxController {
       editqtyController.clear();
       showToast(msg: 'Stock updated');
       Get.back();
-      await fetchAllProducts();
     });
   }
 

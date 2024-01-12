@@ -58,7 +58,7 @@ class DeliveryOrdersWidget extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     children: [
                                       GooglePoppinsWidgets(
-                                          text: "Item  :", fontsize: 12),
+                                          text: "Order ID  :", fontsize: 12),
                                       SizedBox(
                                         width: 100,
                                         child: TextScroll(
@@ -77,7 +77,7 @@ class DeliveryOrdersWidget extends StatelessWidget {
                                   Row(
                                     children: [
                                       GooglePoppinsWidgets(
-                                          text: "QTY  ", fontsize: 12),
+                                          text: "Item count ", fontsize: 12),
                                       GooglePoppinsWidgets(
                                         text: data.orderCount.toString(),
                                         fontsize: 12,

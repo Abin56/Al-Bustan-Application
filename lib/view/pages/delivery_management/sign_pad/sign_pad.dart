@@ -133,7 +133,7 @@ class SignPadScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 10),
                     child: Center(
                       child: ButtonContainerWidget(
-                          text: 'CONFORM',
+                          text: 'CONFIRM',
                           width: 200,
                           height: 50,
                           fontWeight: FontWeight.bold,
