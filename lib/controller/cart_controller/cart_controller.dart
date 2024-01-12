@@ -12,7 +12,7 @@ class CartController extends GetxController {
   final firestore = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
 
-  addToEmployeeCart({required AllProductDetailModel data}) {
+  addToEmployeeCart({required AllProductDetailModel data}) async {
     final uuid = Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
@@ -25,7 +25,7 @@ class CartController extends GetxController {
       "totalAmount": 0,
       "docId": uuid
     };
-    firestore
+    await firestore
         .collection('EmployeeProfile')
         .doc(auth.currentUser!.uid)
         .collection("cart")
@@ -35,7 +35,7 @@ class CartController extends GetxController {
       showToast(msg: 'Prodect Added to Cart');
     });
     //product added to single employee list for getting all product details//
-    firestore
+    await firestore
         .collection('EmployeeProfile')
         .doc(auth.currentUser!.uid)
         .collection("EmployeeCartProductDetails")
@@ -43,7 +43,7 @@ class CartController extends GetxController {
         .set(data.toMap());
 
     //product quantity set zero//
-    firestore
+    await firestore
         .collection('EmployeeProfile')
         .doc(auth.currentUser!.uid)
         .collection("EmployeeCartProductDetails")
