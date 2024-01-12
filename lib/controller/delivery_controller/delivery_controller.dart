@@ -1,7 +1,7 @@
 import 'package:canteen_productadd_application/model/delivery/deliveryProduct_model/deliveryproduct_model.dart';
 import 'package:canteen_productadd_application/model/delivery/view_delivery_orders.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
-import 'package:canteen_productadd_application/view/invoice_pdf/get_invoice.dart';
+import 'package:canteen_productadd_application/view/pages/invoice_pdf/get_invoice.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

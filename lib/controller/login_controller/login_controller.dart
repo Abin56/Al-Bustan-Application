@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/home/home.dart';
-import 'package:canteen_productadd_application/view/shared_pref/shared_pref_helper.dart';
+import 'package:canteen_productadd_application/view/core/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';

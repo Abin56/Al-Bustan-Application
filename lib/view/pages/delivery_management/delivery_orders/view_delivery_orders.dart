@@ -2,9 +2,9 @@ import 'package:canteen_productadd_application/controller/add_product_controller
 import 'package:canteen_productadd_application/model/delivery/view_delivery_orders.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
-import 'package:canteen_productadd_application/view/delivery_management/delivery_orders/view_deliveryProducts.dart';
-import 'package:canteen_productadd_application/view/delivery_management/sign_pad/sign_pad.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/pages/delivery_management/delivery_orders/view_deliveryProducts.dart';
+import 'package:canteen_productadd_application/view/pages/delivery_management/sign_pad/sign_pad.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

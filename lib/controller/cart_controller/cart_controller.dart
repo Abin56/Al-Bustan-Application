@@ -12,7 +12,7 @@ class CartController extends GetxController {
   final auth = FirebaseAuth.instance;
 
   addToEmployeeCart({required AllProductDetailModel data}) {
-    final uuid = Uuid().v1();
+    final uuid = const Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
       "barcodeNumber": data.barcodeNumber,
@@ -137,7 +137,7 @@ class CartController extends GetxController {
     if (singleEmployeeCartList.docs.isNotEmpty) {
       int amount = 0;
       String id = idGenerator();
-      final orderid = '#' + id;
+      final orderid = '#$id';
       final employeescartProductSList =
           await getEmployeeCartProductDetailsList();
 
@@ -204,7 +204,7 @@ class CartController extends GetxController {
       int amount = 0;
       String id = idGenerator();
       String time = DateTime.now().toString();
-      final requestId = 'RQ' + id;
+      final requestId = 'RQ$id';
 
       for (var element in singleEmployeeCartList) {
         amount = amount + element.totalAmount;
