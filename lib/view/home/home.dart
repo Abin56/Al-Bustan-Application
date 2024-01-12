@@ -1,5 +1,5 @@
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
-import 'package:canteen_productadd_application/view/pages/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/navbar/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

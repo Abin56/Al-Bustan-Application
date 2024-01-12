@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/home/home.dart';
-import 'package:canteen_productadd_application/view/model/employe_createProfile/employe_createprofile_model.dart';
+import 'package:canteen_productadd_application/model/employe_createProfile/employe_createprofile_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';

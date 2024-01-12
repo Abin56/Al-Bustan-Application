@@ -2,7 +2,7 @@ import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
-import 'package:canteen_productadd_application/view/pages/employee_profile/employee_profile_home.dart';
+import 'package:canteen_productadd_application/view/home/employee_profile_home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
