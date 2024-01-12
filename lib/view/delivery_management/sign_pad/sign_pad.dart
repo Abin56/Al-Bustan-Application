@@ -56,7 +56,7 @@ class SignPadScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: SizedBox(
-                height: 400,
+                height: 200,
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
                         .collection('EmployeeProfile')
