@@ -205,7 +205,8 @@ class CartWidget extends StatelessWidget {
         surfaceTintColor: cWhite,
         child: GestureDetector(
           onTap: () {
-            cartCtr.cartToRequestDeliveryOrder();
+            cartCtr.addEmployeeRequest();
+            // cartCtr.cartToRequestDeliveryOrder();
           },
           child: Container(
             width: double.infinity,

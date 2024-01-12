@@ -86,7 +86,7 @@ class AllProductScreen extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: 10,
-            color: cGreen,
+            color: cGreen, 
             child: Center(
                 child: GooglePoppinsWidgets(
               text: "Go To Cart",

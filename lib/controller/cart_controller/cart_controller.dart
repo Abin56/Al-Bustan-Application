@@ -1,5 +1,6 @@
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
 import 'package:canteen_productadd_application/model/cart_model/cart_model.dart';
+import 'package:canteen_productadd_application/model/user_model/user_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -125,7 +126,10 @@ class CartController extends GetxController {
     }
   }
 
+  //cartToRequestDeliveryOrder() not using //
+
   cartToRequestDeliveryOrder() async {
+    //for getting single employee cart item count //
     final singleEmployeeCartList = await firestore
         .collection('EmployeeProfile')
         .doc(auth.currentUser!.uid)
@@ -194,6 +198,71 @@ class CartController extends GetxController {
     }
   }
 
+  addEmployeeRequest() async {
+    //for getting single employee cart item count //
+    final singleEmployeeCartList = await getEmployeeCartList();
+    if (singleEmployeeCartList.isNotEmpty) {
+      int amount = 0;
+      String id = idGenerator();
+      String time = DateTime.now().toString();
+      final requestId = 'RQ' + id;
+
+      for (var element in singleEmployeeCartList) {
+        amount = amount + element.totalAmount;
+      }
+
+      final productList = await getEmployeeCartProductDetailsList();
+
+      for (int i = 0; i < productList.length; i++) {
+        await firestore
+            .collection('EmployeeDeliveryRequest')
+            .doc(requestId)
+            .collection('RequestProductDetails')
+            .doc(productList[i].docId)
+            .set(
+              productList[i].toMap(),
+            );
+      }
+
+      String employeeName = await getCurrentEmplyeeName();
+
+      final requestData = {
+        "docid": requestId,
+        "time": time,
+        "orderCount": singleEmployeeCartList.length,
+        "amount": amount,
+        "requestId": requestId,
+        "employeeName": employeeName,
+        "employeeId": auth.currentUser!.uid
+      };
+
+      await firestore
+          .collection("EmployeeDeliveryRequest")
+          .doc(requestId)
+          .set(requestData)
+          .then((value) {
+        showToast(msg: "Delivery Request added");
+        Get.back();
+        for (int i = 0; i < singleEmployeeCartList.length; i++) {
+          firestore
+              .collection('EmployeeProfile')
+              .doc(auth.currentUser!.uid)
+              .collection('cart')
+              .doc(singleEmployeeCartList[i].docId)
+              .delete();
+          firestore
+              .collection('EmployeeProfile')
+              .doc(auth.currentUser!.uid)
+              .collection('EmployeeCartProductDetails')
+              .doc(singleEmployeeCartList[i].productDetailsDocId)
+              .delete();
+        }
+      });
+    } else {
+      showToast(msg: "Please add product");
+    }
+  }
+
   Future<List<CartModel>> getEmployeeCartList() async {
     final data = await firestore
         .collection('EmployeeProfile')
@@ -208,10 +277,19 @@ class CartController extends GetxController {
     final data = await firestore
         .collection('EmployeeProfile')
         .doc(auth.currentUser!.uid)
-        .collection('cart')
+        .collection('EmployeeCartProductDetails')
         .get();
     return data.docs
         .map((e) => AllProductDetailModel.fromMap(e.data()))
         .toList();
+  }
+
+  Future<String> getCurrentEmplyeeName() async {
+    final data = await firestore
+        .collection('EmployeeProfile')
+        .doc(auth.currentUser!.uid)
+        .get();
+    String name = data["name"];
+    return name;
   }
 }
