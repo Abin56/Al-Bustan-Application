@@ -52,6 +52,9 @@ dependencies:
   intl: 
   barcode_scan2: 
   syncfusion_flutter_barcodes: ^24.1.43
+  share_plus:
+  file_selector:
+  image_preview:  
 
 dev_dependencies:
   flutter_test:
