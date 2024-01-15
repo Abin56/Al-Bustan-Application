@@ -1,6 +1,5 @@
 import 'package:canteen_productadd_application/firebase_options.dart';
 import 'package:canteen_productadd_application/view/login/loginScreen.dart';
-import 'package:canteen_productadd_application/view/navbar/navbar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
