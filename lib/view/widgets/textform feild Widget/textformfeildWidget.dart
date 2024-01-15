@@ -9,9 +9,7 @@ class TextFormFiledContainerWidget extends StatelessWidget {
   final String title;
   final String hintText;
   final double width;
-  
-  
- 
+
   Function(String)? onChanged;
   Iterable<String>? autofillHints;
   FocusNode? focusNode;
@@ -20,11 +18,9 @@ class TextFormFiledContainerWidget extends StatelessWidget {
   TextInputType? keyboardType;
   bool? enabled;
   TextFormFiledContainerWidget({
-
     required this.hintText,
     required this.title,
     required this.width,
-    
     this.keyboardType,
     this.controller,
     this.autofillHints,
@@ -45,13 +41,16 @@ class TextFormFiledContainerWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GooglePoppinsWidgets(text: title, fontsize: 12,),
+          GooglePoppinsWidgets(
+            text: title,
+            fontsize: 12,
+          ),
           SizedBox(
             height: 45,
             width: width,
             child: TextFormField(
               enabled: enabled,
-            focusNode: focusNode,
+              focusNode: focusNode,
               style: GoogleFonts.poppins(fontSize: 12),
               onChanged: onChanged,
               autofillHints: autofillHints,
