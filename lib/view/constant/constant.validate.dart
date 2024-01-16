@@ -166,3 +166,15 @@ dateConveter(DateTime date) {
   String formattedDate = DateFormat('dd-MM-yyyy').format(date);
   return formattedDate;
 }
+
+timeConveter(DateTime date) {
+  String formattedDate = DateFormat('hh:mm:a').format(date);
+  return formattedDate;
+}
+
+const _int = '1234567890';
+
+Random _rndd = Random();
+
+String getRandomInt(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _int.codeUnitAt(_rndd.nextInt(_int.length))));
