@@ -1,11 +1,11 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/pages/add_product/list%20products/product_list.dart';
-import 'package:canteen_productadd_application/view/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
-import 'package:canteen_productadd_application/view/home/employee_profile_home.dart';
+import 'package:canteen_productadd_application/view/home/store_admin_request_page/store_admin_req_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+
 
 class NavigationBarPage extends StatefulWidget {
   const NavigationBarPage({super.key});
@@ -19,14 +19,12 @@ class NavigationBarPageState extends State<NavigationBarPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    EmployeeProfileHomePage(),
+  //  EmployeeProfileHomePage(),
     //ProductList(),
-    const DeliveryHistoryPage(),
-    ProductList()
-    // Text(
-    //   'Delivery',
-    //   style: optionStyle,
-    // ),
+   // const DeliveryHistoryPage(),
+  //  ProductList(),
+Text('Delivery'),
+ const StoreAdminRequest()
     //  ProductList(),
   ];
 
@@ -103,6 +101,82 @@ class NavigationBarPageState extends State<NavigationBarPage> {
           ),
         ),
       ),
+      drawer: Drawer(
+
+  child: ListView(
+    
+    padding: EdgeInsets.zero,
+    children: [
+       DrawerHeader(
+        decoration: const BoxDecoration(
+         
+        ),
+        child: Column(
+          children: [
+            GooglePoppinsWidgets(text: 'ALBUSTAN', fontsize: 20,fontWeight: FontWeight.w500,),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            Container(
+                    height: 100,
+                    width: 100,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("images/albustanblack.png"))),
+                  ),
+            
+            
+            ],),
+          ],
+        )
+      ),
+      
+      ExpansionTile(
+         
+          title: Container(color: cWhite,
+            child: GooglePoppinsWidgets(
+              fontsize: 18, text: 'Request Access',
+            ),
+          ),
+          children: <Widget>[
+          GestureDetector(
+            onTap: (){
+              
+              Get.to(StoreAdminRequest);
+            },
+            child: ListTile(leading: const Icon(Icons.circle,size: 10,),
+                    title: GooglePoppinsWidgets(text: 'Store Admin', fontsize: 16),
+                    onTap: () {
+                    Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => const StoreAdminRequest()),
+  );
+                    },
+                  ),
+          ),
+            ListTile(leading: const Icon(Icons.circle,size: 10,),
+        title: GooglePoppinsWidgets(text: 'Delivery Admin', fontsize: 16),
+        onTap: () {
+      
+        },
+      ),
+         ListTile(leading: const Icon(Icons.circle,size: 10,),
+
+        title: GooglePoppinsWidgets(text: 'Warehouse Admin', fontsize: 16),
+        onTap: () {
+          
+        },
+      ),
+      
+          
+          ],
+        ),
+     
+     
+    ],
+  ),
+  
+),
     );
   }
 }
+
