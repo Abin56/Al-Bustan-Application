@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/model/admin_model/admin_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,20 @@ void handleFirebaseError(FirebaseAuthException error) {
       break;
   }
 }
+
 const circularProgressIndicatotWidget = Center(
   child: CircularProgressIndicator(),
 );
 
 String idGenerator() {
-                                    final now = DateTime.now();
-                                    return now.microsecondsSinceEpoch
-                                        .toString();
-                   }
+  final now = DateTime.now();
+  return now.microsecondsSinceEpoch.toString();
+}
+
+class UserCredentialsController {
+  static AdminModel? adminmodel;
+
+  static void clearUserCredentials() {
+    adminmodel = null;
+  }
+}

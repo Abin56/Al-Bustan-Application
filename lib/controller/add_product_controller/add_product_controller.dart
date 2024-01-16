@@ -7,7 +7,7 @@ import 'package:canteen_productadd_application/model/produt_adding_model/product
 import 'package:canteen_productadd_application/model/sub_category_model.dart';
 import 'package:canteen_productadd_application/model/unit_cate_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
-import 'package:canteen_productadd_application/view/pages/add_product/requesr_products/request_addProduct.dart';
+import 'package:canteen_productadd_application/view/home/employee/pages/add_product/requesr_products/request_addProduct.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
