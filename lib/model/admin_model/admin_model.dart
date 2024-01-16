@@ -1,37 +1,49 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:convert';
 
-class UserAuthModel {
+class AdminModel {
   String docid;
   String email;
   bool activate;
   String imageURl;
   String phoneNo;
   String name;
-  UserAuthModel({
+  String password;
+  String userrole;
+  bool assignpower;
+  AdminModel({
     required this.docid,
     required this.email,
     required this.activate,
     required this.imageURl,
     required this.phoneNo,
     required this.name,
+    required this.password,
+    required this.userrole,
+    required this.assignpower,
   });
 
-  UserAuthModel copyWith({
+  AdminModel copyWith({
     String? docid,
     String? email,
     bool? activate,
     String? imageURl,
     String? phoneNo,
     String? name,
+    String? password,
+    String? userrole,
+    bool? assignpower,
   }) {
-    return UserAuthModel(
+    return AdminModel(
       docid: docid ?? this.docid,
       email: email ?? this.email,
       activate: activate ?? this.activate,
       imageURl: imageURl ?? this.imageURl,
       phoneNo: phoneNo ?? this.phoneNo,
       name: name ?? this.name,
+      password: password ?? this.password,
+      userrole: userrole ?? this.userrole,
+      assignpower: assignpower ?? this.assignpower,
     );
   }
 
@@ -43,31 +55,38 @@ class UserAuthModel {
       'imageURl': imageURl,
       'phoneNo': phoneNo,
       'name': name,
+      'password': password,
+      'userrole': userrole,
+      'assignpower': assignpower,
     };
   }
 
-  factory UserAuthModel.fromMap(Map<String, dynamic> map) {
-    return UserAuthModel(
+  factory AdminModel.fromMap(Map<String, dynamic> map) {
+    return AdminModel(
       docid: map['docid'] ??'',
       email: map['email'] ??'',
       activate: map['activate'] ?? false,
       imageURl: map['imageURl'] ??'',
       phoneNo: map['phoneNo'] ??'',
       name: map['name'] ??'',
+      password: map['password'] ??'',
+      userrole: map['userrole'] ??'',
+      assignpower: map['assignpower'] ?? false,
     );
   }
 
   String toJson() => json.encode(toMap());
 
-  factory UserAuthModel.fromJson(String source) => UserAuthModel.fromMap(json.decode(source) as Map<String, dynamic>);
+  factory AdminModel.fromJson(String source) =>
+      AdminModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
   @override
   String toString() {
-    return 'UserAuthModel(docid: $docid, email: $email, activate: $activate, imageURl: $imageURl, phoneNo: $phoneNo, name: $name)';
+    return 'AdminModel(docid: $docid, email: $email, activate: $activate, imageURl: $imageURl, phoneNo: $phoneNo, name: $name, password: $password, userrole: $userrole, assignpower: $assignpower)';
   }
 
   @override
-  bool operator ==(covariant UserAuthModel other) {
+  bool operator ==(covariant AdminModel other) {
     if (identical(this, other)) return true;
   
     return 
@@ -76,7 +95,10 @@ class UserAuthModel {
       other.activate == activate &&
       other.imageURl == imageURl &&
       other.phoneNo == phoneNo &&
-      other.name == name;
+      other.name == name &&
+      other.password == password &&
+      other.userrole == userrole &&
+      other.assignpower == assignpower;
   }
 
   @override
@@ -86,6 +108,9 @@ class UserAuthModel {
       activate.hashCode ^
       imageURl.hashCode ^
       phoneNo.hashCode ^
-      name.hashCode;
+      name.hashCode ^
+      password.hashCode ^
+      userrole.hashCode ^
+      assignpower.hashCode;
   }
 }
