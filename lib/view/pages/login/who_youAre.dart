@@ -1,5 +1,5 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
-import 'package:canteen_productadd_application/view/home/pages/login/widgets/user_avathar_widget.dart';
+import 'package:canteen_productadd_application/view/pages/login/widgets/user_avathar_widget.dart';
 import 'package:canteen_productadd_application/view/widgets/button_container_widget/button_container_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
