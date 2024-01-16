@@ -1,10 +1,10 @@
 
 import 'package:canteen_productadd_application/controller/cart_controller/cart_controller.dart';
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
-import 'package:canteen_productadd_application/view/pages/cart/cart.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/home/employee/pages/cart/cart.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

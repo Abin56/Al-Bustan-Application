@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
-import 'package:canteen_productadd_application/view/pages/add_product/packagetype_setup.dart';
-import 'package:canteen_productadd_application/view/pages/add_product/subcategory_dowpdown.dart';
-import 'package:canteen_productadd_application/view/pages/add_product/unit_cateogry.dart';
+import 'package:canteen_productadd_application/view/home/employee/pages/add_product/packagetype_setup.dart';
+import 'package:canteen_productadd_application/view/home/employee/pages/add_product/subcategory_dowpdown.dart';
+import 'package:canteen_productadd_application/view/home/employee/pages/add_product/unit_cateogry.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,9 +16,9 @@ import 'package:canteen_productadd_application/view/widgets/button_container_wid
 import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:uuid/uuid.dart';
 
-class AddProductManual extends StatelessWidget {
+class AddProductScreen extends StatelessWidget {
   final String barcoodevalue;
-  AddProductManual({
+  AddProductScreen({
     Key? key,
     required this.barcoodevalue,
   }) : super(key: key);
@@ -42,7 +42,7 @@ class AddProductManual extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GooglePoppinsWidgets(
-                    text: 'ADD PRODUCT MANUAL',
+                    text: 'ADD PRODUCT ',
                     fontsize: 15,
                     textAlign: TextAlign.center,
                     fontWeight: FontWeight.w600,
