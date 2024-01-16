@@ -1,26 +1,26 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/home/employee/employee_profile_home.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
-
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/warhouse.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
-class NavigationBarPage extends StatefulWidget {
-  const NavigationBarPage({super.key});
+class WareHouseAdminNavBar extends StatefulWidget {
+  const WareHouseAdminNavBar({super.key});
 
   @override
-  NavigationBarPageState createState() => NavigationBarPageState();
+  State<WareHouseAdminNavBar> createState() => _WareHouseAdminNavBarState();
 }
 
-class NavigationBarPageState extends State<NavigationBarPage> {
-  int _selectedIndex = 0;
+class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
+    int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    EmployeeProfileHomePage(),
+   WareHouseHomePage(),
   
     //ProductList(),
     const DeliveryHistoryPage(),
@@ -31,11 +31,9 @@ class NavigationBarPageState extends State<NavigationBarPage> {
     // ),
     //  ProductList(),
   ];
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
+    return Scaffold( backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
         backgroundColor: themeColorBlue,
@@ -105,6 +103,6 @@ class NavigationBarPageState extends State<NavigationBarPage> {
           ),
         ),
       ),
-    );
+      );
   }
 }
