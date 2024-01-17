@@ -1,6 +1,6 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/home/store_admin_request_page/store_admin_req_page.dart';
+import 'package:canteen_productadd_application/view/home/storeadmin/store_admin_request_page/store_admin_req_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';

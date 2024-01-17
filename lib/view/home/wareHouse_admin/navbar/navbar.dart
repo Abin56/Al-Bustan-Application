@@ -16,24 +16,20 @@ class WareHouseAdminNavBar extends StatefulWidget {
 }
 
 class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
-    int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+  int _selectedIndex = 0;
+  final TextStyle optionStyle =
+      const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-   WareHouseHomePage(),
-  
-    //ProductList(),
+    const WareHouseHomePage(),
+
     const DeliveryHistoryPage(),
     ProductList()
-    // Text(
-    //   'Delivery',
-    //   style: optionStyle,
-    // ),
-    //  ProductList(),
+
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold( backgroundColor: Colors.white,
+    return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
         backgroundColor: themeColorBlue,
@@ -103,6 +99,6 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
           ),
         ),
       ),
-      );
+    );
   }
 }

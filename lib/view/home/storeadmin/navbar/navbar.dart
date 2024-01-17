@@ -17,10 +17,10 @@ class StoreAdminNavBar extends StatefulWidget {
 
 class _StoreAdminNavBarState extends State<StoreAdminNavBar> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+  final TextStyle optionStyle =
+      const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    StoreAdminHome(),
+    const StoreAdminHome(),
 
     //ProductList(),
     const DeliveryHistoryPage(),
@@ -104,7 +104,6 @@ class _StoreAdminNavBarState extends State<StoreAdminNavBar> {
           ),
         ),
       ),
-      
     );
   }
 }

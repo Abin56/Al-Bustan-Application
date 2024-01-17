@@ -16,11 +16,11 @@ class DeliveryAdminNavBar extends StatefulWidget {
 }
 
 class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
-   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+  int _selectedIndex = 0;
+  final TextStyle optionStyle =
+      const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-   DeliveryAdminHomePage(),
+    const DeliveryAdminHomePage(),
 
     //ProductList(),
     const DeliveryHistoryPage(),
@@ -34,7 +34,7 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 20,
         backgroundColor: themeColorBlue,
