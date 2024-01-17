@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/add_product_manual.dart';
 import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
@@ -7,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class EmployeeProfileHomePage extends StatelessWidget {
-  const EmployeeProfileHomePage({super.key});
+    final UserAuthDetailController userProfileController = Get.find<UserAuthDetailController>();
+  EmployeeProfileHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
                     child: Column(
                       children: [
                         GooglePoppinsWidgets(
-                          text: "Name",
+                          text: userProfileController.userName.toString(),
                           fontsize: 17,
                           fontWeight: FontWeight.bold,
                         ),

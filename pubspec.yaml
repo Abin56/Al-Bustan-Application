@@ -53,7 +53,7 @@ dependencies:
   fluttertoast:
   intl: 
   barcode_scan2: 
-  syncfusion_flutter_barcodes: ^24.1.43
+  syncfusion_flutter_barcodes: 
   flutter_launcher_icons: 
 flutter_icons:
   android: true

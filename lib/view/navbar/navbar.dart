@@ -1,4 +1,3 @@
-import 'package:canteen_productadd_application/view/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/employee_profile/employee_profile_home.dart';
 import 'package:canteen_productadd_application/view/homescreen/homescreen.dart';
 import 'package:canteen_productadd_application/view/request/request_page.dart';
@@ -19,7 +18,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    const EmployeeProfileHomePage(),
+    EmployeeProfileHomePage(),
     //ProductList(),
     const RequestListingHistoryPage(),
     const EmployeeHomeScreen(),
@@ -27,7 +26,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
     //   'Delivery',
     //   style: optionStyle,
     // ),
-    const UserProfileDetails(),
+   UserProfileDetails(),
   ];
 
   @override
