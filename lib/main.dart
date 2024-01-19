@@ -1,4 +1,5 @@
 import 'package:canteen_productadd_application/firebase_options.dart';
+import 'package:canteen_productadd_application/view/returns/return_product.dart';
 import 'package:canteen_productadd_application/view/splashscreen/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      home: SplashScreen(),
+      // home: SplashScreen(),
+      home: Returns(),
     );
   }
 }
