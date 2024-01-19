@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class EmployeHomeScreen extends StatelessWidget {
+  const EmployeHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

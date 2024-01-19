@@ -10,7 +10,6 @@ Future<void> whoAreYou(context) async {
       backgroundColor: cWhite,
       context: context,
       builder: (builder) {
-        print("object");
         return SizedBox(
           height: 350,
           child: Column(
@@ -45,7 +44,10 @@ Future<void> whoAreYou(context) async {
                       width: 150,
                       height: 40,
                       fontSize: 12,
-                      onTap: () {})
+                      onTap: () async {
+                        await Get.find<UserLoginController>()
+                            .employeeLogin(context);
+                      })
                 ],
               ),
               Row(

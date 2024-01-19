@@ -162,6 +162,19 @@ class AddProductController extends GetxController {
         .doc(docid);
 
     final productdetails = ProductAddingModel(
+      companyName: '',
+      companyNameID: '',
+      inPrice: 0,
+      isavailable: true,
+      itemcode: '',
+      outofstock: false,
+      packageType: '',
+      packageTypeID: '',
+      returnType: '',
+      subcategoryID: '',
+      subcategoryName: '',
+      unitcategoryID: '',
+      unitcategoryName: '',
       categoryID: Get.find<AddProductController>().recCatDocID.value,
       categoryName: Get.find<AddProductController>().recCatName.value,
       authuid: FirebaseAuth.instance.currentUser!.uid,
@@ -169,11 +182,11 @@ class AddProductController extends GetxController {
       barcodeNumber: barcodeNumber,
       productname: productnameController.text,
       quantityinStock: int.parse(quantityController.text.trim()),
-      price: int.parse(outpriceController.text.trim()),
+      outPrice: int.parse(outpriceController.text.trim()),
       expiryDate: DateTime.now()
           .add(Duration(days: int.parse(expirydateController.text)))
           .toString(),
-      addDate: DateTime.now().toString(),
+      addedDate: DateTime.now().toString(),
     );
     await FirebaseFirestore.instance
         .collection('AllProduct')
