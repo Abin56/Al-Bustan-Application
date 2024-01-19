@@ -57,7 +57,10 @@ class CreateProfileController extends GetxController {
             email: emailController.text.trim(),
             password: passwordController.text.trim())
         .then((value) async {
-      final userDetails = EmployeeProfileCreateModel(
+      final userDetails = AdminModel(
+          password: passwordController.text.trim(),
+          assignpower: false,
+          userrole: '',
           activate: false,
           docid: value.user!.uid,
           name: nameController.text,
@@ -66,7 +69,7 @@ class CreateProfileController extends GetxController {
           imageURl: downloadURL);
 
       await firebase
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(value.user!.uid)
           .set(userDetails.toMap())
           .then((value) async {
@@ -94,7 +97,7 @@ class CreateProfileController extends GetxController {
       final userDetails = AdminModel(
           password: passwordController.text.trim(),
           assignpower: false,
-          userrole: 'deliveryadmin',
+          userrole: '',
           activate: false,
           docid: value.user!.uid,
           name: nameController.text,
@@ -103,7 +106,7 @@ class CreateProfileController extends GetxController {
           imageURl: downloadURL);
 
       await firebase
-          .collection('DeliveryAdmin')
+          .collection('AllUsersCollection')
           .doc(value.user!.uid)
           .set(userDetails.toMap())
           .then((value) async {
@@ -129,7 +132,7 @@ class CreateProfileController extends GetxController {
       final userDetails = AdminModel(
           password: passwordController.text.trim(),
           assignpower: false,
-          userrole: 'storeadmin',
+          userrole: '',
           activate: false,
           docid: value.user!.uid,
           name: nameController.text,
@@ -138,7 +141,7 @@ class CreateProfileController extends GetxController {
           imageURl: downloadURL);
 
       await firebase
-          .collection('StoreAdmin')
+          .collection('AllUsersCollection')
           .doc(value.user!.uid)
           .set(userDetails.toMap())
           .then((value) async {
@@ -164,7 +167,7 @@ class CreateProfileController extends GetxController {
       final userDetails = AdminModel(
           password: passwordController.text.trim(),
           assignpower: false,
-          userrole: 'warehouseadmin',
+          userrole: '',
           activate: false,
           docid: value.user!.uid,
           name: nameController.text,
@@ -173,7 +176,7 @@ class CreateProfileController extends GetxController {
           imageURl: downloadURL);
 
       await firebase
-          .collection('WarehouseAdmin')
+          .collection('AllUsersCollection')
           .doc(value.user!.uid)
           .set(userDetails.toMap())
           .then((value) async {

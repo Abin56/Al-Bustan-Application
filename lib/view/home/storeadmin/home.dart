@@ -1,12 +1,13 @@
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
-import 'package:canteen_productadd_application/view/home/employee/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/storeadmin/navbar/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-class EmployeHomeScreen extends StatelessWidget {
-  const EmployeHomeScreen({super.key});
+class StoreAdminHomeScreen extends StatelessWidget {
+  const StoreAdminHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class EmployeHomeScreen extends StatelessWidget {
           builder: (context, snap) {
             if (snap.hasData) {
               if (snap.data!.data()!['activate'] == true) {
-                return const NavigationBarPage();
+                return const StoreAdminNavBar();
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

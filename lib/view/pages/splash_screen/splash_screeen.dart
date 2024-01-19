@@ -1,11 +1,15 @@
 import 'package:canteen_productadd_application/model/admin_model/admin_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/home.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/navbar/navbar.dart';
 import 'package:canteen_productadd_application/view/home/employee/home.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
+import 'package:canteen_productadd_application/view/home/storeadmin/home.dart';
 import 'package:canteen_productadd_application/view/home/storeadmin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/super_admin/home.dart';
 import 'package:canteen_productadd_application/view/home/super_admin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/home.dart';
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/navbar/navbar.dart';
 import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -98,7 +102,7 @@ Future<void> checkSuperAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const SuperAdminNavBar());
+    Get.offAll(() => const SuperAdminHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -114,7 +118,7 @@ Future<void> checkDeliveryAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const DeliveryAdminNavBar());
+    Get.offAll(() => const DeliveryHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -130,7 +134,7 @@ Future<void> checkStoreAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const StoreAdminNavBar());
+    Get.offAll(() => const StoreAdminHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -146,7 +150,7 @@ Future<void> checkWhereHouseAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => WareHouseAdminNavBar());
+    Get.offAll(() => const WareHouseHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());

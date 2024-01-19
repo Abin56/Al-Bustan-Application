@@ -29,7 +29,7 @@ class UserLoginController extends GetxController {
               password: passwordcontroller.text.trim())
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -64,7 +64,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('StoreAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -105,7 +105,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('DeliveryAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -147,7 +147,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('WarehouseAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
