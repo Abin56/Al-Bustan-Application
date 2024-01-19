@@ -166,6 +166,9 @@ class CartController extends GetxController {
         "orderId": orderid,
         "assignStatus": false,
         "isDelivered": false,
+        "pendingStatus": false,
+        "pickedupstatus": false,
+        "statusMessage": "",
         "price": amount,
         "employeeName": '',
         "employeeId": ''
