@@ -137,7 +137,7 @@ class CartController extends GetxController {
     if (singleEmployeeCartList.docs.isNotEmpty) {
       int amount = 0;
       String id = idGenerator();
-      final orderid = '#' + id;
+      final orderid = '#$id';
       final employeescartProductSList =
           await getEmployeeCartProductDetailsList();
 
@@ -207,7 +207,7 @@ class CartController extends GetxController {
       int amount = 0;
       String id = idGenerator();
       String time = DateTime.now().toString();
-      final requestId = 'RQ' + id;
+      final requestId = 'RQ$id';
 
       for (var element in singleEmployeeCartList) {
         amount = amount + element.totalAmount;

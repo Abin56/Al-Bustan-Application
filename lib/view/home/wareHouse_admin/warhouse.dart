@@ -4,7 +4,6 @@ import 'package:canteen_productadd_application/controller/search_product_control
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/functions/add_stock.dart';
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/pages/search_product/search_product.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -106,9 +105,8 @@ class WareHouseHomePage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async {
                       showSearch(
-                          context: context, delegate: AllTempProductSearch(
-                            navvalue: 'manual'
-                          ));
+                          context: context,
+                          delegate: AllTempProductSearch(navvalue: 'manual'));
                     },
                     child: Container(
                       //  width: 200,
@@ -133,9 +131,8 @@ class WareHouseHomePage extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () async {
                       showSearch(
-                          context: context, delegate: AllTempProductSearch(
-                            navvalue: 'add'
-                          ));
+                          context: context,
+                          delegate: AllTempProductSearch(navvalue: 'add'));
                       // Navigator.push(context, MaterialPageRoute(
                       //   builder: (context) {
                       //     Future.delayed(const Duration(seconds: 1));

@@ -5,7 +5,6 @@ import 'package:canteen_productadd_application/controller/user_getDetails_contro
 import 'package:canteen_productadd_application/model/admin_model/admin_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/home/employee/home.dart';
-import 'package:canteen_productadd_application/model/employe_createProfile/employe_createprofile_model.dart';
 import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -58,6 +57,7 @@ class CreateProfileController extends GetxController {
             password: passwordController.text.trim())
         .then((value) async {
       final userDetails = AdminModel(
+           joindate: DateTime.now().toString(),
           password: passwordController.text.trim(),
           assignpower: false,
           userrole: '',
@@ -95,6 +95,7 @@ class CreateProfileController extends GetxController {
             password: passwordController.text.trim())
         .then((value) async {
       final userDetails = AdminModel(
+           joindate: DateTime.now().toString(),
           password: passwordController.text.trim(),
           assignpower: false,
           userrole: '',
@@ -130,6 +131,7 @@ class CreateProfileController extends GetxController {
             password: passwordController.text.trim())
         .then((value) async {
       final userDetails = AdminModel(
+           joindate: DateTime.now().toString(),
           password: passwordController.text.trim(),
           assignpower: false,
           userrole: '',
@@ -165,6 +167,7 @@ class CreateProfileController extends GetxController {
             password: passwordController.text.trim())
         .then((value) async {
       final userDetails = AdminModel(
+        joindate: DateTime.now().toString(),
           password: passwordController.text.trim(),
           assignpower: false,
           userrole: '',

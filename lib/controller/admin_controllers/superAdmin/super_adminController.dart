@@ -18,6 +18,7 @@ class SuperAdminController extends GetxController {
               email: userdata.email, password: userdata.password)
           .then((value) async {
         final AdminModel userDetail = AdminModel(
+            joindate: DateTime.now().toString(),
             userrole: userRole,
             docid: value.user!.uid,
             email: userdata.email,

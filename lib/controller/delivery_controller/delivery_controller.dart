@@ -14,7 +14,7 @@ class DeliveryController extends GetxController {
   Future<void> pickedItem(String deliverydocid, String itemdocid,
       DeliveryProductListModel deliveryProductListModel) async {
     await FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('DeliveryRequest')
         .doc(deliverydocid)
@@ -23,7 +23,7 @@ class DeliveryController extends GetxController {
         .delete()
         .then((value) async {
       await FirebaseFirestore.instance
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection('DeliveryHistory')
           .doc(deliverydocid)
@@ -40,27 +40,27 @@ class DeliveryController extends GetxController {
   deliverdsign(String signUrl, String deliverydocid,
       DeliveryOrdersModel deliveryOrdersModel, BuildContext context) async {
     FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('DeliveryRequest')
         .doc(deliverydocid)
         .delete()
         .then((value) async {
       await FirebaseFirestore.instance
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection("DeliveryHistory")
           .doc(deliveryOrdersModel.orderId)
           .set(deliveryOrdersModel.toMap(), SetOptions(merge: true))
           .then((value) async {
         await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
             .update({'deliveredtime': DateTime.now().toString()});
         await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
