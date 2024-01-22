@@ -84,27 +84,27 @@ class DeliveryController extends GetxController {
   deliverdsign2(String signUrl, String deliverydocid,
       DeliveryOrdersModel deliveryOrdersModel, BuildContext context) async {
     FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('DeliveryRequest')
         .doc(deliverydocid)
         .delete()
         .then((value) async {
       await FirebaseFirestore.instance
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection("DeliveryHistory")
           .doc(deliveryOrdersModel.orderId)
           .set(deliveryOrdersModel.toMap(), SetOptions(merge: true))
           .then((value) async {
         await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
             .update({'deliveredtime': DateTime.now().toString()});
         await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser?.uid)
             .collection("DeliveryHistory")
             .doc(deliveryOrdersModel.orderId)
@@ -175,7 +175,7 @@ class DeliveryController extends GetxController {
   Future<void> pickedItem2(String deliverydocid, String itemdocid,
       DeliveryProductListModel deliveryProductListModel) async {
     await FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(FirebaseAuth.instance.currentUser?.uid)
         .collection('DeliveryRequest')
         .doc(deliverydocid)
@@ -184,7 +184,7 @@ class DeliveryController extends GetxController {
         .delete()
         .then((value) async {
       await FirebaseFirestore.instance
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection('DeliveryHistory')
           .doc(deliverydocid)
@@ -198,7 +198,7 @@ class DeliveryController extends GetxController {
 
 // checking product details avail or not if avail still pending otherwise the order become picked up//
       final checkData = await dataserver
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(FirebaseAuth.instance.currentUser?.uid)
           .collection('DeliveryRequest')
           .doc(deliverydocid)

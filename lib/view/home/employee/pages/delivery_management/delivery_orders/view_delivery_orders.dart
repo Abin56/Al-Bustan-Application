@@ -20,7 +20,7 @@ class DeliveryOrdersWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('DeliveryRequest')
             .orderBy('time', descending: false)
@@ -95,7 +95,7 @@ class DeliveryOrdersWidget extends StatelessWidget {
                                 viewDeliveyProducts(context, data.orderId),
                             child: StreamBuilder(
                                 stream: FirebaseFirestore.instance
-                                    .collection('EmployeeProfile')
+                                    .collection('AllUsersCollection')
                                     .doc(FirebaseAuth.instance.currentUser!.uid)
                                     .collection('DeliveryRequest')
                                     .doc(data.orderId)

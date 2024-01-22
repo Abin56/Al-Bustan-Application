@@ -18,7 +18,7 @@ viewDeliveyProducts(BuildContext context, String docid) async {
         color: Colors.white,
         child: StreamBuilder(
             stream: FirebaseFirestore.instance
-                .collection('EmployeeProfile')
+                .collection('AllUsersCollection')
                 .doc(FirebaseAuth.instance.currentUser!.uid)
                 .collection('DeliveryRequest')
                 .doc(docid)

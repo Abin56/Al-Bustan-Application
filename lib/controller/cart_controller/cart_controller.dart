@@ -25,7 +25,7 @@ class CartController extends GetxController {
       "docId": uuid
     };
     await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection("cart")
         .doc(uuid)
@@ -35,7 +35,7 @@ class CartController extends GetxController {
     });
     //product added to single employee list for getting all product details//
     await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection("EmployeeCartProductDetails")
         .doc(data.docId)
@@ -43,7 +43,7 @@ class CartController extends GetxController {
 
     //product quantity set zero//
     await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection("EmployeeCartProductDetails")
         .doc(data.docId)
@@ -59,13 +59,13 @@ class CartController extends GetxController {
         'quantity': qty,
       };
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("cart")
           .doc(data.docId)
           .update(qtydata);
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("EmployeeCartProductDetails")
           .doc(data.productDetailsDocId)
@@ -84,13 +84,13 @@ class CartController extends GetxController {
         'quantity': qty,
       };
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("cart")
           .doc(data.docId)
           .update(qtydata);
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("EmployeeCartProductDetails")
           .doc(data.productDetailsDocId)
@@ -109,13 +109,13 @@ class CartController extends GetxController {
         'quantity': qty,
       };
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("cart")
           .doc(data.docId)
           .update(qtydata);
       firestore
-          .collection('EmployeeProfile')
+          .collection('AllUsersCollection')
           .doc(auth.currentUser!.uid)
           .collection("EmployeeCartProductDetails")
           .doc(data.productDetailsDocId)
@@ -130,7 +130,7 @@ class CartController extends GetxController {
   cartToRequestDeliveryOrder() async {
     //for getting single employee cart item count //
     final singleEmployeeCartList = await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection('cart')
         .get();
@@ -181,13 +181,13 @@ class CartController extends GetxController {
 
           for (int i = 0; i < cartdetailsList.length; i++) {
             firestore
-                .collection('EmployeeProfile')
+                .collection('AllUsersCollection')
                 .doc(auth.currentUser!.uid)
                 .collection('cart')
                 .doc(cartdetailsList[i].docId)
                 .delete();
             firestore
-                .collection('EmployeeProfile')
+                .collection('AllUsersCollection')
                 .doc(auth.currentUser!.uid)
                 .collection('EmployeeCartProductDetails')
                 .doc(cartdetailsList[i].productDetailsDocId)
@@ -247,13 +247,13 @@ class CartController extends GetxController {
         Get.back();
         for (int i = 0; i < singleEmployeeCartList.length; i++) {
           firestore
-              .collection('EmployeeProfile')
+              .collection('AllUsersCollection')
               .doc(auth.currentUser!.uid)
               .collection('cart')
               .doc(singleEmployeeCartList[i].docId)
               .delete();
           firestore
-              .collection('EmployeeProfile')
+              .collection('AllUsersCollection')
               .doc(auth.currentUser!.uid)
               .collection('EmployeeCartProductDetails')
               .doc(singleEmployeeCartList[i].productDetailsDocId)
@@ -267,7 +267,7 @@ class CartController extends GetxController {
 
   Future<List<CartModel>> getEmployeeCartList() async {
     final data = await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection('cart')
         .get();
@@ -277,7 +277,7 @@ class CartController extends GetxController {
   Future<List<AllProductDetailModel>>
       getEmployeeCartProductDetailsList() async {
     final data = await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection('EmployeeCartProductDetails')
         .get();
@@ -288,7 +288,7 @@ class CartController extends GetxController {
 
   Future<String> getCurrentEmplyeeName() async {
     final data = await firestore
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .get();
     String name = data["name"];
