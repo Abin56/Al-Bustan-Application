@@ -11,7 +11,7 @@ class UserAuthDetailController extends GetxController {
 
   Future<void> fetchUserDetails() async {
     final firebaseCollection = await FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(firebaseAuth!.uid)
         .get();
 

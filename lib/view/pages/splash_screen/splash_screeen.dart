@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:canteen_productadd_application/model/admin_model/admin_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/home.dart';
@@ -51,10 +53,12 @@ class _SplashScreenState extends State<SplashScreen> {
 }
 
 Future<void> nextpage() async {
+
   FirebaseAuth auth = FirebaseAuth.instance;
   UserCredentialsController.userRole =
       SharedPreferencesHelper.getString(SharedPreferencesHelper.userRoleKey);
   await Future.delayed(const Duration(seconds: 2));
+    log("message   .... ${UserCredentialsController.userRole}");
   if (auth.currentUser == null) {
     Get.offAll(() => LoginScreen());
   } else {
@@ -76,7 +80,7 @@ Future<void> nextpage() async {
 
 Future<void> checkEmployee(FirebaseAuth auth) async {
   final employedata = await FirebaseFirestore.instance
-      .collection('EmployeeProfile')
+      .collection('AllUsersCollection')
       .doc(auth.currentUser?.uid)
       .get();
 
@@ -92,7 +96,7 @@ Future<void> checkEmployee(FirebaseAuth auth) async {
 
 Future<void> checkSuperAdmin(FirebaseAuth auth) async {
   final employedata = await FirebaseFirestore.instance
-      .collection('EmployeeProfile')
+      .collection('AllUsersCollection')
       .doc(auth.currentUser?.uid)
       .get();
 
@@ -108,7 +112,7 @@ Future<void> checkSuperAdmin(FirebaseAuth auth) async {
 
 Future<void> checkDeliveryAdmin(FirebaseAuth auth) async {
   final employedata = await FirebaseFirestore.instance
-      .collection('DeliveryAdmin')
+      .collection('AllUsersCollection')
       .doc(auth.currentUser?.uid)
       .get();
 
@@ -124,7 +128,7 @@ Future<void> checkDeliveryAdmin(FirebaseAuth auth) async {
 
 Future<void> checkStoreAdmin(FirebaseAuth auth) async {
   final employedata = await FirebaseFirestore.instance
-      .collection('StoreAdmin')
+      .collection('AllUsersCollection')
       .doc(auth.currentUser?.uid)
       .get();
 
@@ -140,7 +144,7 @@ Future<void> checkStoreAdmin(FirebaseAuth auth) async {
 
 Future<void> checkWhereHouseAdmin(FirebaseAuth auth) async {
   final employedata = await FirebaseFirestore.instance
-      .collection('WarehouseAdmin')
+      .collection('AllUsersCollection')
       .doc(auth.currentUser?.uid)
       .get();
 

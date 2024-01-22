@@ -156,7 +156,7 @@ class AddProductController extends GetxController {
     BuildContext context,
   ) async {
     final firebasecollection = FirebaseFirestore.instance
-        .collection('EmployeeProfile')
+        .collection('AllUsersCollection')
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection('storeRequest')
         .doc(docid);

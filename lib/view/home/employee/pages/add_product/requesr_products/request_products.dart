@@ -16,7 +16,7 @@ class RequestProductOrders extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
         stream: FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(FirebaseAuth.instance.currentUser!.uid)
             .collection('storeRequest')
             .where('pending', isEqualTo: true)
