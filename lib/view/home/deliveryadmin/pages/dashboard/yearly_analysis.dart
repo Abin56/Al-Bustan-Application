@@ -1,7 +1,7 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_fira_sans.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/deliveryadmin.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/graph/delivery_graph.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/graph/delivery_graph.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryAdminYearlyAnalysisConatiner extends StatelessWidget {

@@ -1,9 +1,9 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/cateen.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/delivery_overview.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/product_details.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/stock_overview.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/dashboard/yearly_analysis.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/cateen.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/delivery_overview.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/product_details.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/stock_overview.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/dashboard/yearly_analysis.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryAdminHomePage extends StatelessWidget {
