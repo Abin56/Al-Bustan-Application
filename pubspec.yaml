@@ -52,7 +52,7 @@ dependencies:
   get:
   fluttertoast:
   intl:
-  syncfusion_flutter_barcodes: ^24.1.43
+  syncfusion_flutter_barcodes: 
   flutter_launcher_icons:
   firebase_app_check:
   screenshot:
@@ -60,9 +60,10 @@ dependencies:
   firestore_cache:
   open_file:
   share_plus:
-  barcode_scanner: ^3.6.2
-  simple_barcode_scanner: ^0.0.8
-  syncfusion_flutter_signaturepad: ^24.1.44
+  barcode_scanner:
+  simple_barcode_scanner: 
+  syncfusion_flutter_signaturepad: 
+  syncfusion_flutter_charts: 
 flutter_icons:
   android: true
   ios: true
