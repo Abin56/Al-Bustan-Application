@@ -6,6 +6,7 @@ import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:canteen_productadd_application/view/pages/login/widgets/loginbutton.dart';
 import 'package:canteen_productadd_application/view/pages/signup/circle_avatar_widget.dart';
+import 'package:canteen_productadd_application/view/pages/signup/who_youAre.dart';
 import 'package:canteen_productadd_application/view/widgets/isLoadin_showDilogue/isaLoading_diloguebox.dart';
 import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';
@@ -145,8 +146,7 @@ class SignUpPage extends StatelessWidget {
                                               createProfileController
                                                   .employeeImagePath.value!)
                                           .then((value) async {
-                                        await createProfileController
-                                            .addEmployeeDetailsToServer();
+                                        whoAreYouSignUp(context);
                                       });
                                     } else {
                                       return showToast(

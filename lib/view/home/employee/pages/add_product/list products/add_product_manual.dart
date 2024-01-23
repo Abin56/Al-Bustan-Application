@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
+import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/packagetype_setup.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/subcategory_dowpdown.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/unit_cateogry.dart';
@@ -17,10 +18,11 @@ import 'package:canteen_productadd_application/view/widgets/textform%20feild%20W
 import 'package:uuid/uuid.dart';
 
 class AddProductManual extends StatelessWidget {
+  final ProductAddingModel resultData;
   final String barcoodevalue;
   AddProductManual({
     Key? key,
-    required this.barcoodevalue,
+    required this.barcoodevalue, required this.resultData,
   }) : super(key: key);
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();

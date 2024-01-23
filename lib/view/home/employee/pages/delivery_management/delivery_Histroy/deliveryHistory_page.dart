@@ -14,7 +14,7 @@ class DeliveryHistoryPage extends StatelessWidget {
     return Scaffold(
       body: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection('EmployeeProfile')
+              .collection('AllUsersCollection')
               .doc(FirebaseAuth.instance.currentUser!.uid)
               .collection('DeliveryHistory')
               .snapshots(),

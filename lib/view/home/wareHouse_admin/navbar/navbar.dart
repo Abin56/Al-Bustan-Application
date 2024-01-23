@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/search_product_controller/search_product_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
@@ -5,11 +6,15 @@ import 'package:canteen_productadd_application/view/home/employee/pages/delivery
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/warhouse.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class WareHouseAdminNavBar extends StatefulWidget {
-  const WareHouseAdminNavBar({super.key});
+  final SearchProductController searchProductController =
+      Get.put(SearchProductController());
+
+  WareHouseAdminNavBar({super.key});
 
   @override
   State<WareHouseAdminNavBar> createState() => _WareHouseAdminNavBarState();
@@ -20,11 +25,9 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
   final TextStyle optionStyle =
       const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    const WareHouseHomePage(),
-
+    WareHouseHomePage(),
     const DeliveryHistoryPage(),
     ProductList()
-
   ];
   @override
   Widget build(BuildContext context) {

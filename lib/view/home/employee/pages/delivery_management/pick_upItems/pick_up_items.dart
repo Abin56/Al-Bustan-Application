@@ -114,7 +114,7 @@ class PickItemsScreen extends StatelessWidget {
                         onTap: () async {
                           if (productcount ==
                               int.parse(itemcountController.text.trim())) {
-                            deliveryController.pickedItem(
+                            deliveryController.pickedItem2(
                                 deliverydocid, docid, deliveryProductListModel);
                           } else {
                             showToast(msg: 'Count Mismatch');

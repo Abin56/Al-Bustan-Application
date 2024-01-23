@@ -201,12 +201,12 @@ class EmployeeProfileHomePage extends StatelessWidget {
                                                       '-1') {
                                                 return Get.back();
                                               } else {
-                                                Get.to(() => AddProductManual(
-                                                      barcoodevalue: Get.find<
-                                                              BarcodeController>()
-                                                          .barcodevalue
-                                                          .value,
-                                                    ));
+                                                // Get.to(() => AddProductManual(
+                                                //       barcoodevalue: Get.find<
+                                                //               BarcodeController>()
+                                                //           .barcodevalue
+                                                //           .value,
+                                                //     ));
                                               }
                                             });
                                           });

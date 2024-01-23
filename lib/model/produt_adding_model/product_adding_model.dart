@@ -7,11 +7,24 @@ class ProductAddingModel {
   String productname;
   String categoryID;
   String categoryName;
-  int price;
+  String subcategoryID;
+  String subcategoryName;
+  int inPrice;
+  int outPrice;
   int quantityinStock;
   String expiryDate;
-  String addDate;
+  String addedDate;
   String authuid;
+  String unitcategoryID;
+  String unitcategoryName;
+  String packageType;
+  String packageTypeID;
+  String companyName;
+  String companyNameID;
+  String returnType;
+  String itemcode;
+  bool outofstock;
+  bool isavailable;
 
   ProductAddingModel({
     required this.docId,
@@ -19,11 +32,24 @@ class ProductAddingModel {
     required this.productname,
     required this.categoryID,
     required this.categoryName,
-    required this.price,
+    required this.subcategoryID,
+    required this.subcategoryName,
+    required this.inPrice,
+    required this.outPrice,
     required this.quantityinStock,
     required this.expiryDate,
-    required this.addDate,
+    required this.addedDate,
     required this.authuid,
+    required this.unitcategoryID,
+    required this.unitcategoryName,
+    required this.packageType,
+    required this.packageTypeID,
+    required this.companyName,
+    required this.companyNameID,
+    required this.returnType,
+    required this.itemcode,
+    required this.outofstock,
+    required this.isavailable,
   });
 
   ProductAddingModel copyWith({
@@ -32,11 +58,24 @@ class ProductAddingModel {
     String? productname,
     String? categoryID,
     String? categoryName,
-    int? price,
+    String? subcategoryID,
+    String? subcategoryName,
+    int? inPrice,
+    int? outPrice,
     int? quantityinStock,
     String? expiryDate,
-    String? addDate,
+    String? addedDate,
     String? authuid,
+    String? unitcategoryID,
+    String? unitcategoryName,
+    String? packageType,
+    String? packageTypeID,
+    String? companyName,
+    String? companyNameID,
+    String? returnType,
+    String? itemcode,
+    bool? outofstock,
+    bool? isavailable,
   }) {
     return ProductAddingModel(
       docId: docId ?? this.docId,
@@ -44,11 +83,24 @@ class ProductAddingModel {
       productname: productname ?? this.productname,
       categoryID: categoryID ?? this.categoryID,
       categoryName: categoryName ?? this.categoryName,
-      price: price ?? this.price,
+      subcategoryID: subcategoryID ?? this.subcategoryID,
+      subcategoryName: subcategoryName ?? this.subcategoryName,
+      inPrice: inPrice ?? this.inPrice,
+      outPrice: outPrice ?? this.outPrice,
       quantityinStock: quantityinStock ?? this.quantityinStock,
       expiryDate: expiryDate ?? this.expiryDate,
-      addDate: addDate ?? this.addDate,
+      addedDate: addedDate ?? this.addedDate,
       authuid: authuid ?? this.authuid,
+      unitcategoryID: unitcategoryID ?? this.unitcategoryID,
+      unitcategoryName: unitcategoryName ?? this.unitcategoryName,
+      packageType: packageType ?? this.packageType,
+      packageTypeID: packageTypeID ?? this.packageTypeID,
+      companyName: companyName ?? this.companyName,
+      companyNameID: companyNameID ?? this.companyNameID,
+      returnType: returnType ?? this.returnType,
+      itemcode: itemcode ?? this.itemcode,
+      outofstock: outofstock ?? this.outofstock,
+      isavailable: isavailable ?? this.isavailable,
     );
   }
 
@@ -59,26 +111,52 @@ class ProductAddingModel {
       'productname': productname,
       'categoryID': categoryID,
       'categoryName': categoryName,
-      'price': price,
+      'subcategoryID': subcategoryID,
+      'subcategoryName': subcategoryName,
+      'inPrice': inPrice,
+      'outPrice': outPrice,
       'quantityinStock': quantityinStock,
       'expiryDate': expiryDate,
-      'addDate': addDate,
+      'addedDate': addedDate,
       'authuid': authuid,
+      'unitcategoryID': unitcategoryID,
+      'unitcategoryName': unitcategoryName,
+      'packageType': packageType,
+      'packageTypeID': packageTypeID,
+      'companyName': companyName,
+      'companyNameID': companyNameID,
+      'returnType': returnType,
+      'itemcode': itemcode,
+      'outofstock': outofstock,
+      'isavailable': isavailable,
     };
   }
 
   factory ProductAddingModel.fromMap(Map<String, dynamic> map) {
     return ProductAddingModel(
-      docId: map['docId'] ?? '',
-      barcodeNumber: map['barcodeNumber'] ?? '',
-      productname: map['productname'] ?? '',
-      categoryID: map['categoryID'] ?? '',
-      categoryName: map['categoryName'] ?? '',
-      price: map['price'] as int,
-      quantityinStock: map['quantityinStock'] ?? 0,
-      expiryDate: map['expiryDate'] ?? '',
-      addDate: map['addDate'] ?? '',
-      authuid: map['authuid'] ?? '',
+      docId: map['docId'] ??'',
+      barcodeNumber: map['barcodeNumber'] ??'',
+      productname: map['productname'] ??'',
+      categoryID: map['categoryID'] ??'',
+      categoryName: map['categoryName'] ??'',
+      subcategoryID: map['subcategoryID'] ??'',
+      subcategoryName: map['subcategoryName'] ??'',
+      inPrice: map['inPrice'] ??0,
+      outPrice: map['outPrice'] ??0,
+      quantityinStock: map['quantityinStock'] ??0,
+      expiryDate: map['expiryDate'] ??'',
+      addedDate: map['addedDate'] ??'',
+      authuid: map['authuid'] ??'',
+      unitcategoryID: map['unitcategoryID'] ??'',
+      unitcategoryName: map['unitcategoryName'] ??'',
+      packageType: map['packageType'] ??'',
+      packageTypeID: map['packageTypeID'] ??'',
+      companyName: map['companyName'] ??'',
+      companyNameID: map['companyNameID'] ??'',
+      returnType: map['returnType'] ??'',
+      itemcode: map['itemcode'] ??'',
+      outofstock: map['outofstock'] ?? false,
+      isavailable: map['isavailable'] ?? true,
     );
   }
 
@@ -89,36 +167,63 @@ class ProductAddingModel {
 
   @override
   String toString() {
-    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, price: $price, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addDate: $addDate, authuid: $authuid)';
+    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, packageTypeID: $packageTypeID, companyName: $companyName, companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable)';
   }
 
   @override
   bool operator ==(covariant ProductAddingModel other) {
     if (identical(this, other)) return true;
-
-    return other.docId == docId &&
-        other.barcodeNumber == barcodeNumber &&
-        other.productname == productname &&
-        other.categoryID == categoryID &&
-        other.categoryName == categoryName &&
-        other.price == price &&
-        other.quantityinStock == quantityinStock &&
-        other.expiryDate == expiryDate &&
-        other.addDate == addDate &&
-        other.authuid == authuid;
+  
+    return 
+      other.docId == docId &&
+      other.barcodeNumber == barcodeNumber &&
+      other.productname == productname &&
+      other.categoryID == categoryID &&
+      other.categoryName == categoryName &&
+      other.subcategoryID == subcategoryID &&
+      other.subcategoryName == subcategoryName &&
+      other.inPrice == inPrice &&
+      other.outPrice == outPrice &&
+      other.quantityinStock == quantityinStock &&
+      other.expiryDate == expiryDate &&
+      other.addedDate == addedDate &&
+      other.authuid == authuid &&
+      other.unitcategoryID == unitcategoryID &&
+      other.unitcategoryName == unitcategoryName &&
+      other.packageType == packageType &&
+      other.packageTypeID == packageTypeID &&
+      other.companyName == companyName &&
+      other.companyNameID == companyNameID &&
+      other.returnType == returnType &&
+      other.itemcode == itemcode &&
+      other.outofstock == outofstock &&
+      other.isavailable == isavailable;
   }
 
   @override
   int get hashCode {
     return docId.hashCode ^
-        barcodeNumber.hashCode ^
-        productname.hashCode ^
-        categoryID.hashCode ^
-        categoryName.hashCode ^
-        price.hashCode ^
-        quantityinStock.hashCode ^
-        expiryDate.hashCode ^
-        addDate.hashCode ^
-        authuid.hashCode;
+      barcodeNumber.hashCode ^
+      productname.hashCode ^
+      categoryID.hashCode ^
+      categoryName.hashCode ^
+      subcategoryID.hashCode ^
+      subcategoryName.hashCode ^
+      inPrice.hashCode ^
+      outPrice.hashCode ^
+      quantityinStock.hashCode ^
+      expiryDate.hashCode ^
+      addedDate.hashCode ^
+      authuid.hashCode ^
+      unitcategoryID.hashCode ^
+      unitcategoryName.hashCode ^
+      packageType.hashCode ^
+      packageTypeID.hashCode ^
+      companyName.hashCode ^
+      companyNameID.hashCode ^
+      returnType.hashCode ^
+      itemcode.hashCode ^
+      outofstock.hashCode ^
+      isavailable.hashCode;
   }
 }
