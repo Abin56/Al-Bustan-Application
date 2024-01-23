@@ -29,7 +29,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
       length: 2,
       child: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection("EmployeeProfile")
+              .collection("AllUsersCollection")
               .doc(FirebaseAuth.instance.currentUser!.uid)
               .snapshots(),
           builder: (context, snap) {
