@@ -42,7 +42,7 @@ goToCartFunction(BuildContext context){
                       height: 45,
                       child: Row(
                         children: [ 
-                       const AlBustanTableViewApp(text:  '1',flex: 1,color: Color.fromARGB(255, 241, 232, 232)),
+                        AlBustanTableViewApp(text:  '${index+1}',flex: 1,color: const Color.fromARGB(255, 241, 232, 232)),
                        const AlBustanTableViewApp(text:  "THI51685326589",flex: 3,color: Color.fromARGB(255, 241, 232, 232)),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,

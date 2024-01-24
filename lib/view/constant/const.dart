@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 
 const circularPIndicator = Center(
   child: CircularProgressIndicator(),
@@ -21,4 +22,9 @@ void showToast({required String msg}) {
 printLog(String msg) {
   return
   log(msg);
+}
+
+dateConveter(DateTime date) {
+  String formattedDate = DateFormat('dd-MM-yyyy').format(date);
+  return formattedDate;
 }

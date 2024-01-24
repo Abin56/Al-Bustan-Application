@@ -162,10 +162,7 @@ void getUserUid() async {
   print('UID: $uid');
 }
 
-dateConveter(DateTime date) {
-  String formattedDate = DateFormat('dd-MM-yyyy').format(date);
-  return formattedDate;
-}
+
 
 timeConveter(DateTime date) {
   String formattedDate = DateFormat('hh:mm:a').format(date);

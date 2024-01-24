@@ -1,6 +1,9 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:canteen_productadd_application/view/fonts/google_fira_sans.dart';
 import 'package:canteen_productadd_application/view/fonts/google_lora.dart';
 import 'package:canteen_productadd_application/view/widgets/delivery_list/delivery_list_show.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryAdminDeliveryRequestPage extends StatelessWidget {
@@ -38,27 +41,39 @@ class DeliveryAdminDeliveryRequestPage extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: ListView.separated(
-                  itemBuilder: (context, index) {
-                    return  const SizedBox(
-                      width: 870,
-                      height: 45,
-                      child: Row(
-                                      children: [ 
-                       DeliveryAdminListContainers(text:  '1',flex: 1),
-                       DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
-                       DeliveryAdminListContainers(text:  "Testing",flex: 2,),
-                       DeliveryAdminListContainers(text:  "10:00",flex: 1,),
-                       DeliveryAdminListContainers(text:  "40 Kg",flex: 1,),
-                       DeliveryAdminListContainers(text:  "5000",flex: 2,),
-                       DeliveryAdminListContainers(text:  "Action",flex: 2,),
-                      
-                                      ],
-                                    ),
-                    );
-                  },
-                   separatorBuilder: (context, index) => const SizedBox(height: 1,), 
-                   itemCount: 7),
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                  .collection("collectionPath")
+                  .snapshots(),
+                  builder: (context, snapshot) {
+                    if(snapshot.hasData){
+                    return ListView.separated(
+                      itemBuilder: (context, index) {
+                        final data = snapshot.data!.docs[index];
+                        return   SizedBox(
+                          width: 870,
+                          height: 45,
+                          child: Row(
+                                          children: [ 
+                           DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
+                           DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
+                           DeliveryAdminListContainers(text:  "Testing",flex: 2,),
+                           DeliveryAdminListContainers(text:  "10:00",flex: 1,),
+                           DeliveryAdminListContainers(text:  "40 Kg",flex: 1,),
+                           DeliveryAdminListContainers(text:  "5000",flex: 2,),
+                           DeliveryAdminListContainers(text:  "Action",flex: 2,),
+                          
+                                          ],
+                                        ),
+                        );
+                      },
+                       separatorBuilder: (context, index) => const SizedBox(height: 1,), 
+                       itemCount: snapshot.data!.docs.length);
+                  }else{
+                    return GoogleFirasansWidgets(text: "No Data", fontsize: 13);
+                  }
+                  }
+                ),
               ),
               
             ],

@@ -44,17 +44,17 @@ class DeliveryAdminCreateOrderPage extends StatelessWidget {
               Expanded(
                 child: ListView.separated(
                   itemBuilder: (context, index) {
-                    return  const SizedBox(
+                    return   SizedBox(
                       width: 870,
                       height: 45,
                       child: Row(
                         children: [ 
-                       DeliveryAdminListContainers(text:  '1',flex: 1),
-                       DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
-                       DeliveryAdminListContainers(text:  "40 Kg",flex: 2,),
-                       DeliveryAdminListContainers(text:  "5001",flex: 2,),
-                       DeliveryAdminListContainers(text:  "5000",flex: 2,),
-                       DeliveryAdminListContainers(text:  "🛒",flex: 1,),
+                       DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
+                       const DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
+                       const DeliveryAdminListContainers(text:  "40 Kg",flex: 2,),
+                       const DeliveryAdminListContainers(text:  "5001",flex: 2,),
+                       const DeliveryAdminListContainers(text:  "5000",flex: 2,),
+                       const DeliveryAdminListContainers(text:  "🛒",flex: 1,),
                       ],
                       ),
                     );
