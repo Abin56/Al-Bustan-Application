@@ -1,5 +1,7 @@
+import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,12 @@ class WareHouseHomeScreen extends StatelessWidget {
           builder: (context, snap) {
             if (snap.hasData) {
               if (snap.data!.data()!['activate'] == true) {
-                return WareHouseAdminNavBar();
+                if (snap.data!.data()!['userrole'] == '') {
+                  logoutUser();
+                  return LoginScreen();
+                } else {
+                  return WareHouseAdminNavBar();
+                }
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

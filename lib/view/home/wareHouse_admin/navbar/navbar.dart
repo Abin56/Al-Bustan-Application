@@ -1,9 +1,11 @@
 import 'package:canteen_productadd_application/controller/search_product_controller/search_product_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/warhouse.dart';
+import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -42,6 +44,17 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
           fontWeight: FontWeight.bold,
           color: cWhite,
         ),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                Get.offAll(() => LoginScreen());
+                await logoutUser();
+              },
+              icon: const Icon(
+                Icons.power_settings_new_rounded,
+                color: cWhite,
+              ))
+        ],
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
