@@ -1,9 +1,11 @@
 import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/home/employee/employee_profile_home.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
 import 'package:canteen_productadd_application/view/home/storeadmin/store_admin_request_page/store_admin_req_page.dart';
+import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -44,6 +46,17 @@ class NavigationBarPageState extends State<NavigationBarPage> {
           fontWeight: FontWeight.bold,
           color: cWhite,
         ),
+                    actions: [
+          IconButton(
+              onPressed: () async {
+                Get.offAll(() async {
+                  await logoutUser();
+                  return LoginScreen();
+                });
+              },
+              icon: const Icon(Icons.power_settings_new_rounded))
+        ],
+        
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

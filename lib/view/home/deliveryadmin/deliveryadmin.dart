@@ -7,9 +7,8 @@ class DeliveryAdminHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Center(
-        child: Text("delivery admin"),
-      ),
-    );
+        body: Column(
+      children: [],
+    ));
   }
 }

@@ -46,7 +46,7 @@ class AddProductController extends GetxController {
 
   Future fetchAllProducts() async {
     final firebase =
-        await FirebaseFirestore.instance.collection('AllProduct').get();
+        await FirebaseFirestore.instance.collection('AllProductStockCollection').get();
 
     allproductList = firebase.docs
         .map((e) => AllProductDetailModel.fromMap(e.data()))
@@ -247,7 +247,7 @@ class AddProductController extends GetxController {
     int result = currentvalue + newvalue;
 
     FirebaseFirestore.instance
-        .collection('AllProduct')
+        .collection('AllProductStockCollection')
         .doc(docid)
         .update({'quantityinStock': result}).then((value) async {
       allproductList.clear();
