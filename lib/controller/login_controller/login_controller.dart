@@ -130,7 +130,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const DeliveryHomeScreen());
+          Get.offAll(() => const DeliveryHomeScreen());
         } else {
           showToast(msg: "You are not a DeliveryAdmin");
           isLoading.value = false;
@@ -173,7 +173,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const WareHouseHomeScreen());
+          Get.offAll(() => const WareHouseHomeScreen());
         } else {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
