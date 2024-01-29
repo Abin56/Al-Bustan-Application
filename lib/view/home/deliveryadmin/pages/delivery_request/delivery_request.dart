@@ -3,7 +3,6 @@ import 'package:canteen_productadd_application/view/fonts/google_fira_sans.dart'
 import 'package:canteen_productadd_application/view/fonts/google_lora.dart';
 import 'package:canteen_productadd_application/view/widgets/delivery_list/delivery_list_show.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class DeliveryAdminDeliveryRequestPage extends StatelessWidget {
@@ -18,7 +17,7 @@ class DeliveryAdminDeliveryRequestPage extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back)),
+          child: const Icon(Icons.arrow_back,color: cWhite,)),
           title: GoogleLoraWidgets(text: "Delivery Request",fontsize: 19,color: cWhite,fontWeight: FontWeight.bold,),
       ),
       body:    SingleChildScrollView(
@@ -54,17 +53,17 @@ class DeliveryAdminDeliveryRequestPage extends StatelessWidget {
                           width: 870,
                           height: 45,
                           child: Row(
-                                          children: [ 
+                           children: [ 
                            DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
-                           DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
-                           DeliveryAdminListContainers(text:  "Testing",flex: 2,),
-                           DeliveryAdminListContainers(text:  "10:00",flex: 1,),
-                           DeliveryAdminListContainers(text:  "40 Kg",flex: 1,),
-                           DeliveryAdminListContainers(text:  "5000",flex: 2,),
-                           DeliveryAdminListContainers(text:  "Action",flex: 2,),
+                           const DeliveryAdminListContainers(text:  "THI51685326589",flex: 3,),
+                           const DeliveryAdminListContainers(text:  "Testing",flex: 2,),
+                           const DeliveryAdminListContainers(text:  "10:00",flex: 1,),
+                           const DeliveryAdminListContainers(text:  "40 Kg",flex: 1,),
+                           const DeliveryAdminListContainers(text:  "5000",flex: 2,),
+                           const DeliveryAdminListContainers(text:  "Action",flex: 2,),
                           
-                                          ],
-                                        ),
+                           ],
+                          ),
                         );
                       },
                        separatorBuilder: (context, index) => const SizedBox(height: 1,), 

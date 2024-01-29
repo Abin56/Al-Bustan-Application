@@ -19,7 +19,7 @@ class DeliveryAdminDeliveryOrderPage extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back)),
+          child: const Icon(Icons.arrow_back,color: cWhite,)),
           title: GoogleLoraWidgets(text: "Delivered Orders",fontsize: 19,color: cWhite,fontWeight: FontWeight.bold,),
       ),
       body:   SingleChildScrollView(
@@ -64,7 +64,10 @@ class DeliveryAdminDeliveryOrderPage extends StatelessWidget {
                            DeliveryAdminListContainers(text:  data['statusMessage'],flex: 2,),
                            DeliveryAdminListContainers(text:  timeConveter(DateTime.parse(data['time'])),flex: 2,),
                            DeliveryAdminListContainers(text:  data['price'].toString(),flex: 2,),
-                           const DeliveryAdminListContainers(text:  "Action",flex: 2,),
+                          const Padding(
+                            padding: EdgeInsets.only(right: 5),
+                            child: TableButton(width: 110,text: "Print"),
+                          )
                           
                                           ],
                                         ),

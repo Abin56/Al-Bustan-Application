@@ -2,10 +2,10 @@ import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_lora.dart';
 import 'package:canteen_productadd_application/view/fonts/google_philosopher.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/deliveryadmin.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/create_order/create_order.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/delivery_order/delivery_orders.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/delivery_request/delivery_request.dart';
-import 'package:canteen_productadd_application/view/home/deliveryadmin/deliveryadmin.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/final_orders/final_orders.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/pending_order/pending_order.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/pages/picked_order/picked_order.dart';
@@ -51,8 +51,7 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
           decoration: const BoxDecoration(
           color: themeColorBlue,
          ),
-         child: Center(child: GoogleLoraWidgets(text: "DELIVERY ADMIN",fontsize: 18,color: cWhite,fontWeight: FontWeight.bold,)
-         ),
+         child: Center(child: GoogleLoraWidgets(text: "DELIVERY ADMIN",fontsize: 18,color: cWhite,fontWeight: FontWeight.bold,)),
         ),
        ListTile(
         title: SizedBox(
@@ -77,8 +76,8 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
         onTap: () {
         // Get.to(const DeliveryAdminHomePage())  ;
         },
-      ),
-      ListTile(
+       ),
+       ListTile(
         
         title:  SizedBox(
           height: 45,
@@ -98,10 +97,10 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
             ),
           )),
         onTap: () {
-          Get.to(const DeliveryAdminCreateOrderPage());
+          Get.to( ()=> const DeliveryAdminCreateOrderPage());
         },
-      ),
-      ListTile(
+       ),
+       ListTile(
         title:SizedBox(
           height: 45,
           width: double.infinity,
@@ -120,9 +119,9 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
             ),
           )), 
         onTap: () {
-         Get.to(const DeliveryAdminFinalOrderPage());
+         Get.to(()=> const DeliveryAdminFinalOrderPage());
         },
-      ),
+       ),
        ListTile(
         title:SizedBox(
           height: 45,
@@ -142,9 +141,9 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
             ),
           )),  
         onTap: () {
-          Get.to(const DeliveryAdminDeliveryRequestPage());
+          Get.to(()=> const DeliveryAdminDeliveryRequestPage());
         },
-      ),
+       ),
        ListTile(
         title:SizedBox(
           height: 45,
@@ -164,9 +163,9 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
             ),
           )),   
         onTap: () {
-          Get.to(const DeliveryAdminPickedOrderPage());
+          Get.to( ()=> const DeliveryAdminPickedOrderPage());
         },
-      ),
+       ),
        ListTile(
         title: SizedBox(
           height: 45,
@@ -186,11 +185,11 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
             ),
           )), 
         onTap: () {
-          Get.to(const DeliveryAdminDeliveryOrderPage());
+          Get.to(()=> const DeliveryAdminDeliveryOrderPage());
         },
-      ),
+       ),
        ListTile(
-        title:SizedBox(
+         title:SizedBox(
           height: 45,
           width: double.infinity,
           //decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: cGrey))),
@@ -207,15 +206,15 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
               ],
             ),
           )),   
-        onTap: () {
-          Get.to(const DeliveryAdminPendingOrderPage());
-        },
-      ),
-      
-    ],
-  ),
+         onTap: () {
+          Get.to(()=> const DeliveryAdminPendingOrderPage());
+          },
+        ),
+        ],
+       ),
       ),
       appBar: AppBar(
+        foregroundColor: cWhite,
         elevation: 20,
         backgroundColor: themeColorBlue,
         title: GooglePoppinsWidgets(
@@ -225,9 +224,7 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
           color: cWhite,
         ),
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex),),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,

@@ -19,7 +19,7 @@ class DeliveryAdminPendingOrderPage extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back)),
+          child: const Icon(Icons.arrow_back,color: cWhite,)),
           title: GoogleLoraWidgets(text: "Pending Orders",fontsize: 19,color: cWhite,fontWeight: FontWeight.bold,),
       ),
       body:  SingleChildScrollView(
@@ -42,7 +42,6 @@ class DeliveryAdminPendingOrderPage extends StatelessWidget {
                 ],
               ),
               Expanded(
-                
                 child: StreamBuilder(
                   stream: FirebaseFirestore.instance
                   .collection("DeliveryPendingList")
@@ -62,21 +61,24 @@ class DeliveryAdminPendingOrderPage extends StatelessWidget {
                         );
                       } else {
                     return ListView.separated(
-                      itemBuilder: (context, index) {
+                       itemBuilder: (context, index) {
                          final data = snapshot.data!.docs[index];
                         return   SizedBox(
                           width: 900,
                           height: 45,
                           child: Row(
                             children: [ 
-                           DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
+                            DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
                             DeliveryAdminListContainers(text:  data['orderId'].toString(),flex: 3,),
                             DeliveryAdminListContainers(text: dateConveter(DateTime.parse(data['time'])) ,flex: 2,),
                             DeliveryAdminListContainers(text:  data['statusMessage'],flex: 2,),
                             DeliveryAdminListContainers(text:  timeConveter(DateTime.parse(data['time'])),flex: 2,),
                             DeliveryAdminListContainers(text:  data['price'].toString(),flex: 2,),
-                           const DeliveryAdminListContainers(text:  "Action",flex: 2,),
-                          
+                           // const DeliveryAdminListContainers(text:  "Action",flex: 2,),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 8,),
+                              child: TableButton(width: 120,text: "Print"),
+                            )
                             ],
                           ),
                         );
@@ -94,3 +96,4 @@ class DeliveryAdminPendingOrderPage extends StatelessWidget {
     );
   }
 }
+

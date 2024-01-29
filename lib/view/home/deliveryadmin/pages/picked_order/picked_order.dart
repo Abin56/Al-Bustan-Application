@@ -18,7 +18,7 @@ class DeliveryAdminPickedOrderPage extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          child: const Icon(Icons.arrow_back)),
+          child: const Icon(Icons.arrow_back,color: cWhite,)),
           title: GoogleLoraWidgets(text: "Picked Orders",fontsize: 19,color: cWhite,fontWeight: FontWeight.bold,),
       ),
       body : SingleChildScrollView(
@@ -37,8 +37,7 @@ class DeliveryAdminPickedOrderPage extends StatelessWidget {
                    HeaderOfDeliveryAdmin(text: "Order Status",flex: 2),
                    HeaderOfDeliveryAdmin(text: "Order Time",flex: 2),
                    HeaderOfDeliveryAdmin(text: "Price",flex: 2),
-                 //  HeaderOfDeliveryAdmin(text:  "Print",flex: 2)
-                  
+                 //  HeaderOfDeliveryAdmin(text:  "Print",flex: 2) 
                 ],
               ),
               Expanded(
@@ -55,18 +54,17 @@ class DeliveryAdminPickedOrderPage extends StatelessWidget {
                           width: 900,
                           height: 45,
                           child: Row(
-                                          children: [ 
-                           DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
+                            children: [ 
+                            DeliveryAdminListContainers(text:  '${index+1}',flex: 1),
                             DeliveryAdminListContainers(text:  data['orderId'],flex: 3,),
-                           DeliveryAdminListContainers(text:  data['orderCount'].toString() ,flex: 2,),
+                            DeliveryAdminListContainers(text:  data['orderCount'].toString() ,flex: 2,),
                             DeliveryAdminListContainers(text:  dateConveter(DateTime.parse(data['time'])),flex: 2,),
                             DeliveryAdminListContainers(text:  data['assignStatus'],flex: 2,),
                             DeliveryAdminListContainers(text:  timeConveter(DateTime.parse(data['time'])),flex: 2,),
                             DeliveryAdminListContainers(text:  data['price'],flex: 2,),
-                         //  const DeliveryAdminListContainers(text:  "Action",flex: 2,),
-                          
-                                          ],
-                                        ),
+                           //  const DeliveryAdminListContainers(text:  "Action",flex: 2,),
+                            ],
+                          ),
                         );
                       },
                        separatorBuilder: (context, index) => const SizedBox(height: 1,), 
@@ -76,8 +74,7 @@ class DeliveryAdminPickedOrderPage extends StatelessWidget {
                   }
                   }
                 ),
-              ),
-              
+              ), 
             ],
           )),
       ),
