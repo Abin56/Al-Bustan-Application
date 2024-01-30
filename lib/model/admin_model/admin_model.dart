@@ -59,7 +59,7 @@ class AdminModel {
       'activate': activate,
       'imageURl': imageURl,
       'phoneNo': phoneNo,
-      'name': name,
+      'name': name, 
       'password': password,
       'userrole': userrole,
       'assignpower': assignpower,
