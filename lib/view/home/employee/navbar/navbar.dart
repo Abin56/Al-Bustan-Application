@@ -46,17 +46,13 @@ class NavigationBarPageState extends State<NavigationBarPage> {
           fontWeight: FontWeight.bold,
           color: cWhite,
         ),
-                    actions: [
+        actions: [
           IconButton(
               onPressed: () async {
-                Get.offAll(() async {
-                  await logoutUser();
-                  return LoginScreen();
-                });
+                logoutUser();
               },
               icon: const Icon(Icons.power_settings_new_rounded))
         ],
-        
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),

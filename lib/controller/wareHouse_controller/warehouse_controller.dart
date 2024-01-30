@@ -55,22 +55,25 @@ class WareHouseController extends GetxController {
           .set(productdetails.toMap())
           .then((value) async {
         await dataserver
+            .collection("AvailableProducts")
+            .doc(docid)
+            .set(productdetails.toMap());
+      }).then((value) async {
+        await dataserver
             .collection('TemporaryStockList')
             .doc(data.docId)
             .delete();
       }).then((value) async {
-      Get.find<SearchProductController>().alltempProducts.clear();
+        Get.find<SearchProductController>().alltempProducts.clear();
 
-      productuploading.value = false;
-        Get.offAll(() =>  WareHouseAdminNavBar());
+        productuploading.value = false;
+        Get.offAll(() => WareHouseAdminNavBar());
 
         outpriceController.clear();
         quantityController.clear();
         expirydateController.clear();
       });
       //     .then((value) => showToast(msg: 'Product Added'));
-
-
     } catch (e) {
       productuploading.value = false;
     }
