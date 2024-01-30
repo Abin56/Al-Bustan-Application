@@ -59,7 +59,7 @@ class SignPadScreen extends StatelessWidget {
                 height: 200,
                 child: StreamBuilder(
                     stream: FirebaseFirestore.instance
-                        .collection('EmployeeProfile')
+                        .collection('AllUsersCollection')
                         .doc(FirebaseAuth.instance.currentUser!.uid)
                         .collection('DeliveryHistory')
                         .doc(docid)
@@ -173,7 +173,7 @@ class SignPadScreen extends StatelessWidget {
       await storeRef.putData(imagepath).whenComplete(() async {
         await storeRef.getDownloadURL().then((value) async {
           log("url >>>>>>>>>>>>>>>$value");
-          await deliveryController.deliverdsign(
+          await deliveryController.deliverdsign2(
               value, deliverydocid, deliveryOrdersModel, context);
         });
       });

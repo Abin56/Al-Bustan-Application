@@ -4,7 +4,6 @@ import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/add_product.dart';
-import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/add_product_manual.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/functions/add_stock.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/all_product_list/all_product_screen.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_orders/view_delivery_orders.dart';
@@ -29,7 +28,7 @@ class EmployeeProfileHomePage extends StatelessWidget {
       length: 2,
       child: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection("EmployeeProfile")
+              .collection("AllUsersCollection")
               .doc(FirebaseAuth.instance.currentUser!.uid)
               .snapshots(),
           builder: (context, snap) {
@@ -167,102 +166,6 @@ class EmployeeProfileHomePage extends StatelessWidget {
                           Expanded(
                             flex: 1,
                             child: Padding(
-                              padding: const EdgeInsets.only(
-                                left: 7,
-                              ),
-                              child: GestureDetector(
-                                onTap: () async {
-                                  Navigator.push(context, MaterialPageRoute(
-                                    builder: (context) {
-                                      Future.delayed(
-                                          const Duration(seconds: 1));
-                                      Get.back();
-
-                                      return BarcodeScanner(
-                                          lineColor: '#ff6666',
-                                          cancelButtonText: "Cancel",
-                                          isShowFlashIcon: false,
-                                          scanType: ScanType.barcode,
-                                          appBarTitle: '',
-                                          centerTitle: true,
-                                          onScanned: (res) async {
-                                            barcodeController
-                                                .barcodevalue.value = res;
-                                            await barcodeController
-                                                .barcodescanResult(res)
-                                                .then((value) {
-                                              if (Get.find<BarcodeController>()
-                                                          .barcodevalue
-                                                          .value ==
-                                                      '' ||
-                                                  Get.find<BarcodeController>()
-                                                          .barcodevalue
-                                                          .value ==
-                                                      '-1') {
-                                                return Get.back();
-                                              } else {
-                                                Get.to(() => AddProductManual(
-                                                      barcoodevalue: Get.find<
-                                                              BarcodeController>()
-                                                          .barcodevalue
-                                                          .value,
-                                                    ));
-                                              }
-                                            });
-                                          });
-                                    },
-                                  ));
-                                },
-                                child: Container(
-                                  //  width: 200,
-                                  height: 40,
-                                  color:
-                                      const Color.fromARGB(255, 25, 165, 152),
-                                  child: Center(
-                                      child: GoogleMonstserratWidgets(
-                                    text: "Add New Product",
-                                    fontsize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                                ),
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 7),
-                              child: GestureDetector(
-                                onTap: () {
-                                  Get.to(() => AddProductScreen(
-                                        barcoodevalue: idGenerator(),
-                                      ));
-                                },
-                                child: Container(
-                                  // width: 200,
-                                  height: 40,
-                                  color: const Color.fromARGB(255, 2, 179, 89)
-                                      .withOpacity(0.7),
-                                  child: Center(
-                                      child: GoogleMonstserratWidgets(
-                                    text: "Add Product Manually",
-                                    fontsize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: Padding(
                               padding: const EdgeInsets.only(left: 7),
                               child: GestureDetector(
                                 onTap: () async {
@@ -283,9 +186,128 @@ class EmployeeProfileHomePage extends StatelessWidget {
                               ),
                             ),
                           )
+                          // Expanded(
+                          //   flex: 1,
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.only(
+                          //       left: 7,
+                          //     ),
+                          //     child: GestureDetector(
+                          //       onTap: () async {
+                          //         Navigator.push(context, MaterialPageRoute(
+                          //           builder: (context) {
+                          //             Future.delayed(
+                          //                 const Duration(seconds: 1));
+                          //             Get.back();
+
+                          //             return BarcodeScanner(
+                          //                 lineColor: '#ff6666',
+                          //                 cancelButtonText: "Cancel",
+                          //                 isShowFlashIcon: false,
+                          //                 scanType: ScanType.barcode,
+                          //                 appBarTitle: '',
+                          //                 centerTitle: true,
+                          //                 onScanned: (res) async {
+                          //                   barcodeController
+                          //                       .barcodevalue.value = res;
+                          //                   await barcodeController
+                          //                       .barcodescanResult(res)
+                          //                       .then((value) {
+                          //                     if (Get.find<BarcodeController>()
+                          //                                 .barcodevalue
+                          //                                 .value ==
+                          //                             '' ||
+                          //                         Get.find<BarcodeController>()
+                          //                                 .barcodevalue
+                          //                                 .value ==
+                          //                             '-1') {
+                          //                       return Get.back();
+                          //                     } else {
+                          //                       // Get.to(() => AddProductManual(
+                          //                       //       barcoodevalue: Get.find<
+                          //                       //               BarcodeController>()
+                          //                       //           .barcodevalue
+                          //                       //           .value,
+                          //                       //     ));
+                          //                     }
+                          //                   });
+                          //                 });
+                          //           },
+                          //         ));
+                          //       },
+                          //       child: Container(
+                          //         //  width: 200,
+                          //         height: 40,
+                          //         color:
+                          //             const Color.fromARGB(255, 25, 165, 152),
+                          //         child: Center(
+                          //             child: GoogleMonstserratWidgets(
+                          //           text: "Add New Product",
+                          //           fontsize: 12,
+                          //           fontWeight: FontWeight.bold,
+                          //         )),
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                     ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(top: 10),
+                    //   child: Row(
+                    //     children: [
+                    //       Expanded(
+                    //         flex: 1,
+                    //         child: Padding(
+                    //           padding: const EdgeInsets.only(left: 7),
+                    //           child: GestureDetector(
+                    //             onTap: () {
+                    //               Get.to(() => AddProductScreen(
+                    //                     barcoodevalue: idGenerator(),
+                    //                   ));
+                    //             },
+                    //             child: Container(
+                    //               // width: 200,
+                    //               height: 40,
+                    //               color: const Color.fromARGB(255, 2, 179, 89)
+                    //                   .withOpacity(0.7),
+                    //               child: Center(
+                    //                   child: GoogleMonstserratWidgets(
+                    //                 text: "Add Product Manually",
+                    //                 fontsize: 12,
+                    //                 fontWeight: FontWeight.bold,
+                    //               )),
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //       // Expanded(
+                    //       //   flex: 1,
+                    //       //   child: Padding(
+                    //       //     padding: const EdgeInsets.only(left: 7),
+                    //       //     child: GestureDetector(
+                    //       //       onTap: () async {
+                    //       //         Get.to(() => const AllProductScreen());
+                    //       //       },
+                    //       //       child: Container(
+                    //       //         //  width: 200,
+                    //       //         height: 40,
+                    //       //         color:
+                    //       //             const Color.fromARGB(255, 105, 205, 208),
+                    //       //         child: Center(
+                    //       //             child: GoogleMonstserratWidgets(
+                    //       //           text: "Delivery Request",
+                    //       //           fontsize: 12,
+                    //       //           fontWeight: FontWeight.bold,
+                    //       //         )),
+                    //       //       ),
+                    //       //     ),
+                    //       //   ),
+                    //       // )
+                    //     ],
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 50,
                       child: AppBar(

@@ -1,4 +1,3 @@
-
 import 'package:canteen_productadd_application/controller/cart_controller/cart_controller.dart';
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
@@ -37,7 +36,7 @@ class AllProductScreen extends StatelessWidget {
             Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('AllProduct')
+                    .collection('AllProductStockCollection')
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
@@ -86,7 +85,7 @@ class AllProductScreen extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: 10,
-            color: cGreen, 
+            color: cGreen,
             child: Center(
                 child: GooglePoppinsWidgets(
               text: "Go To Cart",

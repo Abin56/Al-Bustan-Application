@@ -3,8 +3,14 @@ import 'dart:developer';
 import 'package:canteen_productadd_application/controller/user_getDetails_controller.dart/user_auth_controller.dart';
 import 'package:canteen_productadd_application/model/admin_model/admin_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
-import 'package:canteen_productadd_application/view/home/home.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/home.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/employee/home.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/shared_pref_helper.dart';
+import 'package:canteen_productadd_application/view/home/storeadmin/home.dart';
+import 'package:canteen_productadd_application/view/home/storeadmin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/home.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/navbar/navbar.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,36 +23,42 @@ class UserLoginController extends GetxController {
       Get.put(UserAuthDetailController());
   TextEditingController emailcontroller = TextEditingController();
   TextEditingController passwordcontroller = TextEditingController();
-  Future<void> userLogin(BuildContext context) async {
+  Future<void> employeeLogin(BuildContext context) async {
     try {
-      isLoading.value = true;
       await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-              email: emailcontroller.text.trim(),
-              password: passwordcontroller.text.trim())
+        email: emailcontroller.text.trim(),
+        password: passwordcontroller.text.trim(),
+      )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('EmployeeProfile')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
+          final datsa = UserCredentialsController.adminmodel =
+              AdminModel.fromMap(user.data()!);
+          log("adminmodel$datsa");
+        }
+        if (UserCredentialsController.adminmodel?.userrole == "employee") {
           await SharedPreferencesHelper.setString(
               SharedPreferencesHelper.userRoleKey, 'employee');
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const HomeScreen());
+          Get.offAll(() => const EmployeHomeScreen());
+        } else {
+          showToast(msg: "You are not a Employe");
+          isLoading.value = false;
         }
       }).catchError((error) {
         if (error is FirebaseAuthException) {
           isLoading.value = false;
           handleFirebaseError(error);
-          log("firebase Eror$error");
         }
       });
     } catch (e) {
       isLoading.value = false;
-      log(e.toString());
       // showToast(msg: e.toString());
       showToast(msg: "Sign in failed");
     }
@@ -61,7 +73,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('StoreAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -70,12 +82,14 @@ class UserLoginController extends GetxController {
           log("adminmodel$datsa");
         }
         if (UserCredentialsController.adminmodel?.userrole == "storeadmin") {
+          log("firebase user value ${UserCredentialsController.adminmodel?.userrole}");
+
           await SharedPreferencesHelper.setString(
               SharedPreferencesHelper.userRoleKey, 'storeadmin');
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const HomeScreen());
+          Get.offAll(() => const StoreAdminHomeScreen());
         } else {
           showToast(msg: "You are not a StoreAdmin");
           isLoading.value = false;
@@ -102,7 +116,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('DeliveryAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -116,12 +130,13 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const HomeScreen());
+          Get.offAll(() => const DeliveryHomeScreen());
         } else {
           showToast(msg: "You are not a DeliveryAdmin");
           isLoading.value = false;
         }
       }).catchError((error) {
+        log(error.toString());
         if (error is FirebaseAuthException) {
           isLoading.value = false;
           handleFirebaseError(error);
@@ -143,7 +158,7 @@ class UserLoginController extends GetxController {
       )
           .then((value) async {
         final user = await FirebaseFirestore.instance
-            .collection('WarehouseAdmin')
+            .collection('AllUsersCollection')
             .doc(value.user?.uid)
             .get();
         if (user.data() != null) {
@@ -158,7 +173,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.off(() => const HomeScreen());
+          Get.offAll(() => const WareHouseHomeScreen());
         } else {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
