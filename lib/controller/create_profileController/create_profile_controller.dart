@@ -83,7 +83,7 @@ class CreateProfileController extends GetxController {
         showToast(msg: "Profile created successfully");
         await userAuthController
             .fetchUserDetails()
-            .then((value) => Get.offAll(() => const EmployeHomeScreen()));
+            .then((value) => Get.offAll(() => EmployeHomeScreen()));
       });
     });
   }

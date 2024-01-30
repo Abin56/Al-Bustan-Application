@@ -87,7 +87,7 @@ Future<void> checkEmployee(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const EmployeHomeScreen());
+    Get.offAll(() =>EmployeHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -103,7 +103,7 @@ Future<void> checkSuperAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const SuperAdminHomeScreen());
+    Get.offAll(() =>  SuperAdminHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -119,7 +119,7 @@ Future<void> checkDeliveryAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const DeliveryHomeScreen());
+    Get.offAll(() => DeliveryHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -135,7 +135,7 @@ Future<void> checkStoreAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const StoreAdminHomeScreen());
+    Get.offAll(() =>  StoreAdminHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());
@@ -151,7 +151,7 @@ Future<void> checkWhereHouseAdmin(FirebaseAuth auth) async {
   if (employedata.data() != null) {
     UserCredentialsController.userModel =
         AdminModel.fromMap(employedata.data()!);
-    Get.offAll(() => const WareHouseHomeScreen());
+    Get.offAll(() =>  WareHouseHomeScreen());
   } else {
     showToast(msg: "Please login again");
     Get.offAll(() => LoginScreen());

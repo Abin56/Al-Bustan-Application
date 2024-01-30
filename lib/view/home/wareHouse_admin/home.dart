@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/home/wareHouse_admin/navbar/navbar.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class WareHouseHomeScreen extends StatelessWidget {
-  const WareHouseHomeScreen({super.key});
+  final PushNotificationController pushNotificationController=PushNotificationController();
+ WareHouseHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

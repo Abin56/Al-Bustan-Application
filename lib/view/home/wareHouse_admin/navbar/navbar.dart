@@ -36,7 +36,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
       const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
     WareHouseHomePage(),
-    const WareHouseHomePage(),
+     WareHouseHomePage(),
     const DeliveryHistoryPage(),
     ProductList()
   ];
