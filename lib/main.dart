@@ -1,6 +1,9 @@
 import 'package:canteen_productadd_application/firebase_options.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/AllProduct/allProduct.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/navbar/navbar.dart';
+import 'package:canteen_productadd_application/view/home/wareHouse_admin/warhouse.dart';
 // import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +38,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
      home:
-DeliveryAdminNavBar (),
-   //  SuperAdminNavBar(),
+ //WareHouseAdminAllProduct(),
+    WareHouseAdminNavBar (),
+   //WareHouseAdminAllProduct(),
      // NavigationBarPage(),
     //  home: SignUpScreen(),
     );
