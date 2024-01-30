@@ -1,4 +1,5 @@
 import 'package:canteen_productadd_application/controller/create_profileController/create_profile_controller.dart';
+import 'package:canteen_productadd_application/controller/notification_list_Controller/notification_list_Controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
@@ -6,7 +7,7 @@ import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:canteen_productadd_application/view/pages/login/widgets/loginbutton.dart';
 import 'package:canteen_productadd_application/view/pages/signup/circle_avatar_widget.dart';
-import 'package:canteen_productadd_application/view/pages/signup/who_youAre.dart';
+// import 'package:canteen_productadd_application/view/pages/signup/who_youAre.dart';
 import 'package:canteen_productadd_application/view/widgets/isLoadin_showDilogue/isaLoading_diloguebox.dart';
 import 'package:canteen_productadd_application/view/widgets/textform%20feild%20Widget/textformfeildWidget.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,8 @@ import 'package:google_fonts/google_fonts.dart';
 class SignUpPage extends StatelessWidget {
   final CreateProfileController createProfileController =
       Get.put(CreateProfileController());
+  final NotificationListController notificationListController =
+      Get.put(NotificationListController());
   SignUpPage({super.key});
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -146,7 +149,13 @@ class SignUpPage extends StatelessWidget {
                                               createProfileController
                                                   .employeeImagePath.value!)
                                           .then((value) async {
-                                        whoAreYouSignUp(context);
+                                        createProfileController
+                                            .addNewUser()
+                                            .then((value) async {
+                                          notificationListController
+                                              .newUserSentNotification();
+                                        });
+                                        // whoAreYouSignUp(context);
                                       });
                                     } else {
                                       return showToast(
