@@ -1,6 +1,7 @@
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
 import 'package:canteen_productadd_application/model/delivery/deliveryProduct_model/deliveryproduct_model.dart';
 import 'package:canteen_productadd_application/model/delivery/view_delivery_orders.dart';
+import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/core/core.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/invoice_pdf/get_invoice.dart';
@@ -195,6 +196,22 @@ class DeliveryController extends GetxController {
       Get.back();
       Get.back();
       showToast(msg: 'item picked');
+
+      // after picked up the product count deducted from the available product //
+
+      final availStockdetails = await dataserver
+          .collection('AvailableProducts')
+          .doc(deliveryProductListModel.docId)
+          .get();
+      final availStockModel =
+          ProductAddingModel.fromMap(availStockdetails.data()!);
+      final availablQty = availStockModel.quantityinStock -
+          deliveryProductListModel.quantityinStock;
+
+      dataserver
+          .collection('AvailableProducts')
+          .doc(deliveryProductListModel.docId)
+          .update({'quantityinStock': availablQty});
 
 // checking product details avail or not if avail still pending otherwise the order become picked up//
       final checkData = await dataserver
