@@ -13,7 +13,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class DeliveryAdminNavBar extends StatefulWidget {
-   final PushNotificationController pushNotificationController=PushNotificationController();
+   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
   DeliveryAdminNavBar({super.key});
 
   @override

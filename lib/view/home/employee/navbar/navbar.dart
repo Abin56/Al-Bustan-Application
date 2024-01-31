@@ -6,14 +6,13 @@ import 'package:canteen_productadd_application/view/home/employee/employee_profi
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
 import 'package:canteen_productadd_application/view/home/storeadmin/store_admin_request_page/store_admin_req_page.dart';
-import 'package:canteen_productadd_application/view/pages/login/loginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class NavigationBarPage extends StatefulWidget {
-   final PushNotificationController pushNotificationController=PushNotificationController();
+   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
  NavigationBarPage({super.key});
 
   @override
@@ -21,6 +20,7 @@ class NavigationBarPage extends StatefulWidget {
 }
 
 class NavigationBarPageState extends State<NavigationBarPage> {
+
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
@@ -37,6 +37,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
 
   @override
   Widget build(BuildContext context) {
+    widget.pushNotificationController.sendPushMessage('Welcome', "Al Bustan");
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
