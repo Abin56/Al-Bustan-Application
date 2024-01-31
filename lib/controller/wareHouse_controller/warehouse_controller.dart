@@ -12,6 +12,7 @@ class WareHouseController extends GetxController {
   TextEditingController inpriceController = TextEditingController();
   TextEditingController outpriceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
+  TextEditingController productlimitController = TextEditingController();
   TextEditingController expirydateController = TextEditingController();
 
   Future<void> addProduct(
@@ -22,7 +23,10 @@ class WareHouseController extends GetxController {
     BuildContext context,
   ) async {
     try {
-      final productdetails = ProductAddingModel(
+      final 
+       productdetails = ProductAddingModel(
+        isEdit: false,
+        limit: int.parse(productlimitController.text.trim()),
         productname: data.productname,
         companyNameID: data.categoryName,
         packageTypeID: data.packageTypeID,

@@ -2,7 +2,7 @@
 import 'dart:convert';
 
 class ProductAddingModel {
-  String docId;
+   String docId;
   String barcodeNumber;
   String productname;
   String categoryID;
@@ -25,6 +25,9 @@ class ProductAddingModel {
   String itemcode;
   bool outofstock;
   bool isavailable;
+  bool isEdit;
+  int limit;
+
 
   ProductAddingModel({
     required this.docId,
@@ -50,6 +53,8 @@ class ProductAddingModel {
     required this.itemcode,
     required this.outofstock,
     required this.isavailable,
+    required this.isEdit,
+    required this.limit,
   });
 
   ProductAddingModel copyWith({
@@ -76,6 +81,8 @@ class ProductAddingModel {
     String? itemcode,
     bool? outofstock,
     bool? isavailable,
+    bool? isEdit,
+    int? limit,
   }) {
     return ProductAddingModel(
       docId: docId ?? this.docId,
@@ -101,6 +108,8 @@ class ProductAddingModel {
       itemcode: itemcode ?? this.itemcode,
       outofstock: outofstock ?? this.outofstock,
       isavailable: isavailable ?? this.isavailable,
+      isEdit: isEdit ?? this.isEdit,
+      limit: limit ?? this.limit,
     );
   }
 
@@ -129,34 +138,38 @@ class ProductAddingModel {
       'itemcode': itemcode,
       'outofstock': outofstock,
       'isavailable': isavailable,
+      'isEdit': isEdit,
+      'limit': limit,
     };
   }
 
   factory ProductAddingModel.fromMap(Map<String, dynamic> map) {
     return ProductAddingModel(
-      docId: map['docId'] ??'',
-      barcodeNumber: map['barcodeNumber'] ??'',
-      productname: map['productname'] ??'',
-      categoryID: map['categoryID'] ??'',
-      categoryName: map['categoryName'] ??'',
-      subcategoryID: map['subcategoryID'] ??'',
-      subcategoryName: map['subcategoryName'] ??'',
+      docId: map['docId'] ??"",
+      barcodeNumber: map['barcodeNumber'] ??"",
+      productname: map['productname'] ??"",
+      categoryID: map['categoryID'] ??"",
+      categoryName: map['categoryName'] ??"",
+      subcategoryID: map['subcategoryID'] ??"",
+      subcategoryName: map['subcategoryName'] ??"",
       inPrice: map['inPrice'] ??0,
       outPrice: map['outPrice'] ??0,
       quantityinStock: map['quantityinStock'] ??0,
-      expiryDate: map['expiryDate'] ??'',
-      addedDate: map['addedDate'] ??'',
-      authuid: map['authuid'] ??'',
-      unitcategoryID: map['unitcategoryID'] ??'',
-      unitcategoryName: map['unitcategoryName'] ??'',
-      packageType: map['packageType'] ??'',
-      packageTypeID: map['packageTypeID'] ??'',
-      companyName: map['companyName'] ??'',
-      companyNameID: map['companyNameID'] ??'',
-      returnType: map['returnType'] ??'',
-      itemcode: map['itemcode'] ??'',
-      outofstock: map['outofstock'] ?? false,
-      isavailable: map['isavailable'] ?? true,
+      expiryDate: map['expiryDate'] ??"",
+      addedDate: map['addedDate'] ??"",
+      authuid: map['authuid'] ??"",
+      unitcategoryID: map['unitcategoryID'] ??"",
+      unitcategoryName: map['unitcategoryName'] ??"",
+      packageType: map['packageType'] ??"",
+      packageTypeID: map['packageTypeID'] ??"",
+      companyName: map['companyName'] ??"",
+      companyNameID: map['companyNameID'] ??"",
+      returnType: map['returnType'] ??"",
+      itemcode: map['itemcode'] ??"",
+      outofstock: map['outofstock'] ??true,
+      isavailable: map['isavailable'] ??true,
+      isEdit: map['isEdit'] ??false,
+      limit: map['limit'] ??0,
     );
   }
 
@@ -167,7 +180,7 @@ class ProductAddingModel {
 
   @override
   String toString() {
-    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, packageTypeID: $packageTypeID, companyName: $companyName, companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable)';
+    return 'ProductAddingModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, packageTypeID: $packageTypeID, companyName: $companyName, companyNameID: $companyNameID, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable, isEdit: $isEdit, limit: $limit)';
   }
 
   @override
@@ -197,7 +210,9 @@ class ProductAddingModel {
       other.returnType == returnType &&
       other.itemcode == itemcode &&
       other.outofstock == outofstock &&
-      other.isavailable == isavailable;
+      other.isavailable == isavailable &&
+      other.isEdit == isEdit &&
+      other.limit == limit;
   }
 
   @override
@@ -224,6 +239,8 @@ class ProductAddingModel {
       returnType.hashCode ^
       itemcode.hashCode ^
       outofstock.hashCode ^
-      isavailable.hashCode;
+      isavailable.hashCode ^
+      isEdit.hashCode ^
+      limit.hashCode;
   }
 }
