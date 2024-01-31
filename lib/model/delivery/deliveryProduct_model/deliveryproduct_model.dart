@@ -24,6 +24,7 @@ class DeliveryProductListModel {
   bool outofstock;
   bool isavailable;
   bool picked;
+   int limit;
   DeliveryProductListModel({
     required this.docId,
     required this.barcodeNumber,
@@ -47,6 +48,7 @@ class DeliveryProductListModel {
     required this.outofstock,
     required this.isavailable,
     required this.picked,
+    required this.limit,
   });
 
   DeliveryProductListModel copyWith({
@@ -72,6 +74,7 @@ class DeliveryProductListModel {
     bool? outofstock,
     bool? isavailable,
     bool? picked,
+    int? limit,
   }) {
     return DeliveryProductListModel(
       docId: docId ?? this.docId,
@@ -96,6 +99,7 @@ class DeliveryProductListModel {
       outofstock: outofstock ?? this.outofstock,
       isavailable: isavailable ?? this.isavailable,
       picked: picked ?? this.picked,
+      limit: limit ?? this.limit,
     );
   }
 
@@ -123,33 +127,35 @@ class DeliveryProductListModel {
       'outofstock': outofstock,
       'isavailable': isavailable,
       'picked': picked,
+      'limit': limit,
     };
   }
 
   factory DeliveryProductListModel.fromMap(Map<String, dynamic> map) {
     return DeliveryProductListModel(
-      docId: map['docId'] ??'',
-      barcodeNumber: map['barcodeNumber'] ??'',
-      productname: map['productname'] ??'',
-      categoryID: map['categoryID'] ??'',
-      categoryName: map['categoryName'] ??'',
-      subcategoryID: map['subcategoryID'] ??'',
-      subcategoryName: map['subcategoryName'] ??'',
-      inPrice: map['inPrice'] as int,
-      outPrice: map['outPrice'] as int,
-      quantityinStock: map['quantityinStock'] as int,
-      expiryDate: map['expiryDate'] ??'',
-      addedDate: map['addedDate'] ??'',
-      authuid: map['authuid'] ??'',
-      unitcategoryID: map['unitcategoryID'] ??'',
-      unitcategoryName: map['unitcategoryName'] ??'',
-      packageType: map['packageType'] ??'',
-      companyName: map['companyName'] ??'',
-      returnType: map['returnType'] ??'',
-      itemcode: map['itemcode'] ??'',
+      docId: map['docId']??'',
+      barcodeNumber: map['barcodeNumber']??'',
+      productname: map['productname']??'',
+      categoryID: map['categoryID']??'',
+      categoryName: map['categoryName']??'',
+      subcategoryID: map['subcategoryID']??'',
+      subcategoryName: map['subcategoryName']??'',
+      inPrice: map['inPrice'] ??0,
+      outPrice: map['outPrice'] ??0,
+      quantityinStock: map['quantityinStock'] ??0,
+      expiryDate: map['expiryDate']??'',
+      addedDate: map['addedDate']??'',
+      authuid: map['authuid']??'',
+      unitcategoryID: map['unitcategoryID']??'',
+      unitcategoryName: map['unitcategoryName']??'',
+      packageType: map['packageType']??'',
+      companyName: map['companyName']??'',
+      returnType: map['returnType']??'',
+      itemcode: map['itemcode']??'',
       outofstock: map['outofstock'] ??false,
       isavailable: map['isavailable'] ??true,
       picked: map['picked'] ??false,
+      limit: map['limit'] ??0,
     );
   }
 
@@ -161,7 +167,7 @@ class DeliveryProductListModel {
 
   @override
   String toString() {
-    return 'DeliveryProductListModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, companyName: $companyName, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable, picked: $picked)';
+    return 'DeliveryProductListModel(docId: $docId, barcodeNumber: $barcodeNumber, productname: $productname, categoryID: $categoryID, categoryName: $categoryName, subcategoryID: $subcategoryID, subcategoryName: $subcategoryName, inPrice: $inPrice, outPrice: $outPrice, quantityinStock: $quantityinStock, expiryDate: $expiryDate, addedDate: $addedDate, authuid: $authuid, unitcategoryID: $unitcategoryID, unitcategoryName: $unitcategoryName, packageType: $packageType, companyName: $companyName, returnType: $returnType, itemcode: $itemcode, outofstock: $outofstock, isavailable: $isavailable, picked: $picked, limit: $limit)';
   }
 
   @override
@@ -190,7 +196,8 @@ class DeliveryProductListModel {
       other.itemcode == itemcode &&
       other.outofstock == outofstock &&
       other.isavailable == isavailable &&
-      other.picked == picked;
+      other.picked == picked &&
+      other.limit == limit;
   }
 
   @override
@@ -216,6 +223,7 @@ class DeliveryProductListModel {
       itemcode.hashCode ^
       outofstock.hashCode ^
       isavailable.hashCode ^
-      picked.hashCode;
+      picked.hashCode ^
+      limit.hashCode;
   }
 }
