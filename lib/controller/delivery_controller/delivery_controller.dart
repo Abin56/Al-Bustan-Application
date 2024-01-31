@@ -278,7 +278,26 @@ class DeliveryController extends GetxController {
     }
   }
 
-  // allProductAddToLowStockAlert() {
+  allProductAddToLowStockAlert() async {
+    final availableProductList = await getAvailableProductList();
 
-  // }
+    for (ProductAddingModel data in availableProductList) {
+      if (data.quantityinStock <= data.limit) {
+        dataserver
+            .collection('LowStockAlert')
+            .doc(data.docId)
+            .set(data.toMap());
+      }
+    }
+  }
+
+  Future<List<ProductAddingModel>> getAvailableProductList() async {
+    final avilableStockData =
+        await dataserver.collection('AvailableProducts').get();
+
+    final availableProdcutList = avilableStockData.docs
+        .map((e) => ProductAddingModel.fromMap(e.data()))
+        .toList();
+    return availableProdcutList;
+  }
 }
