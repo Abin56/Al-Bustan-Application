@@ -3,17 +3,13 @@ import 'package:canteen_productadd_application/controller/barcode_controller/bar
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
-import 'package:canteen_productadd_application/view/home/employee/pages/add_product/add_product.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/functions/add_stock.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/all_product_list/all_product_screen.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_orders/view_delivery_orders.dart';
-import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:simple_barcode_scanner/enum.dart';
-import 'package:simple_barcode_scanner/screens/io_device.dart';
 import 'package:text_scroll/text_scroll.dart';
 
 class EmployeeProfileHomePage extends StatelessWidget {

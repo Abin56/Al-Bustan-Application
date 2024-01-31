@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class SuperAdminHomeScreen extends StatelessWidget {
-  const SuperAdminHomeScreen({super.key});
+  
+   SuperAdminHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class SuperAdminHomeScreen extends StatelessWidget {
           builder: (context, snap) {
             if (snap.hasData) {
               if (snap.data!.data()!['activate'] == true) {
-                return const SuperAdminNavBar();
+                return  SuperAdminNavBar();
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

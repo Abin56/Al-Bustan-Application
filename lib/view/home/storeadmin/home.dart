@@ -8,7 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class StoreAdminHomeScreen extends StatelessWidget {
-  const StoreAdminHomeScreen({super.key});
+ 
+  
+  StoreAdminHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class StoreAdminHomeScreen extends StatelessWidget {
               logoutUser();
                   return LoginScreen();
                   } else {
-                    return const StoreAdminNavBar();
+                    return  StoreAdminNavBar();
                   }
               } else {
                 return Column(

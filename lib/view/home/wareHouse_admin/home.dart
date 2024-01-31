@@ -8,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class WareHouseHomeScreen extends StatelessWidget {
-  const WareHouseHomeScreen({super.key});
+
+ WareHouseHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

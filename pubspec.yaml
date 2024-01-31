@@ -63,10 +63,13 @@ dependencies:
   barcode_scanner: ^3.6.2
   simple_barcode_scanner: ^0.0.8
   syncfusion_flutter_signaturepad: ^24.1.44
+  flutter_local_notifications: 
+  firebase_messaging:
 flutter_icons:
   android: true
   ios: true
   image_path: "images/albustanblack.png"
+  
 
 dev_dependencies:
   flutter_test:
