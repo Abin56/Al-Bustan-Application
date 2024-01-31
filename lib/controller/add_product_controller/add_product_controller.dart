@@ -21,6 +21,7 @@ class AddProductController extends GetxController {
   TextEditingController editqtyController = TextEditingController();
   RxBool editexpirydate = false.obs;
   TextEditingController productnameController = TextEditingController();
+  TextEditingController productlimitController = TextEditingController();
   TextEditingController inpriceController = TextEditingController();
   TextEditingController outpriceController = TextEditingController();
   TextEditingController quantityController = TextEditingController();
@@ -45,8 +46,9 @@ class AddProductController extends GetxController {
   List<AllProductDetailModel> deliveryList = [];
 
   Future fetchAllProducts() async {
-    final firebase =
-        await FirebaseFirestore.instance.collection('AllProductStockCollection').get();
+    final firebase = await FirebaseFirestore.instance
+        .collection('AllProductStockCollection')
+        .get();
 
     allproductList = firebase.docs
         .map((e) => AllProductDetailModel.fromMap(e.data()))
@@ -162,6 +164,8 @@ class AddProductController extends GetxController {
         .doc(docid);
 
     final productdetails = ProductAddingModel(
+      isEdit: false,
+      limit: int.parse(productlimitController.text.trim()),
       companyName: '',
       companyNameID: '',
       inPrice: 0,
