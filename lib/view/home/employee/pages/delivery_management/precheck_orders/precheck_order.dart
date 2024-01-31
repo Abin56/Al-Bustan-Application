@@ -90,7 +90,7 @@ class PreCheckordersScreen extends StatelessWidget {
                                                 MainAxisAlignment.start,
                                             color: cWhite,
                                             // width: 150,
-                                            index: index,
+                                            index: index, 
                                             headerTitle: ' APPLE '),
                                       ),
                                       const SizedBox(

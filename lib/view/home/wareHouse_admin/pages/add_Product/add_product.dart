@@ -205,6 +205,17 @@ class AddProductWareHouseAdmin extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
                 child: TextFormFiledContainerWidget(
+                  hintText: 'Enter Alert limit eg 1,50,100..',
+                  title: 'Stock limit',
+                  width: 380,
+                  validator: checkFieldEmpty,
+                  controller: wareHouseController.productlimitController,
+                  keyboardType: TextInputType.number,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: TextFormFiledContainerWidget(
                   hintText: 'Enter in days eg 1,50,100..',
                   title: 'Expiry Date',
                   width: 380,
@@ -228,8 +239,10 @@ class AddProductWareHouseAdmin extends StatelessWidget {
                             wareHouseController.productuploading.value = true;
                             final uuid = const Uuid().v1();
                             String a = resultData.productname;
+
                             // list.join()
                             String s = a.substring(0, 4);
+                            String i = a.substring(0, 3);
                             log(s);
                             getRandomInt(4);
 
@@ -237,7 +250,7 @@ class AddProductWareHouseAdmin extends StatelessWidget {
                               await wareHouseController.addProduct(
                                   '${resultData.productname}$uuid', //docid, //docid
                                   int.parse(barcoodevalue), //barcode
-                                  getRandomInt(4), //ite,code,
+                                  "$i${getRandomInt(4)}", //ite,code,
                                   resultData,
                                   context);
                             }
