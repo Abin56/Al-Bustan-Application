@@ -266,4 +266,19 @@ class DeliveryController extends GetxController {
       }
     });
   }
+
+  singleproductAddToLowStockAlert(
+      int CurrentStockCount, int margin, ProductAddingModel product) {
+    //single product add to low stock alter collection //
+    if (CurrentStockCount <= margin) {
+      dataserver
+          .collection('LowStockAlert')
+          .doc(product.docId)
+          .set(product.toMap());
+    }
+  }
+
+  // allProductAddToLowStockAlert() {
+
+  // }
 }
