@@ -12,7 +12,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class NavigationBarPage extends StatefulWidget {
-   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
+    final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
  NavigationBarPage({super.key});
 
   @override
