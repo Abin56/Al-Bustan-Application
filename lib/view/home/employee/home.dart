@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/home/employee/navbar/navbar.dart';
@@ -8,7 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class EmployeHomeScreen extends StatelessWidget {
-  const EmployeHomeScreen({super.key});
+ 
+  EmployeHomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class EmployeHomeScreen extends StatelessWidget {
                     logoutUser();
                   return LoginScreen();
                 } else {
-                  return const NavigationBarPage();
+                  return  NavigationBarPage();
                 }
               } else {
                 return Column(

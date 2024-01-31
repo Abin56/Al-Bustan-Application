@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
@@ -12,7 +13,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class DeliveryAdminNavBar extends StatefulWidget {
-  const DeliveryAdminNavBar({super.key});
+   final PushNotificationController pushNotificationController=PushNotificationController();
+  DeliveryAdminNavBar({super.key});
 
   @override
   State<DeliveryAdminNavBar> createState() => _DeliveryAdminNavBarState();

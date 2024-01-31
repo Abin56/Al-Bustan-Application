@@ -46,7 +46,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(() => const EmployeHomeScreen());
+          Get.offAll(() =>  EmployeHomeScreen());
         } else {
           showToast(msg: "You are not a Employe");
           isLoading.value = false;
@@ -89,7 +89,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(() => const StoreAdminHomeScreen());
+          Get.offAll(() =>  StoreAdminHomeScreen());
         } else {
           showToast(msg: "You are not a StoreAdmin");
           isLoading.value = false;
@@ -130,7 +130,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(() => const DeliveryHomeScreen());
+          Get.offAll(() =>  DeliveryHomeScreen());
         } else {
           showToast(msg: "You are not a DeliveryAdmin");
           isLoading.value = false;
@@ -173,7 +173,7 @@ class UserLoginController extends GetxController {
           isLoading.value = false;
           emailcontroller.clear();
           passwordcontroller.clear();
-          Get.offAll(() => const WareHouseHomeScreen());
+          Get.offAll(() =>  WareHouseHomeScreen());
         } else {
           showToast(msg: "You are not a WarehouseAdmin");
           isLoading.value = false;
