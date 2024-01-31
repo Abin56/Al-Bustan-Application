@@ -71,7 +71,7 @@ Future<void> nextpage() async {
     } else if (UserCredentialsController.userRole == 'storeadmin') {
       await checkStoreAdmin(auth);
     } else if (UserCredentialsController.userRole == 'superadmin') {
-      Get.offAll(() => const SuperAdminNavBar());
+      Get.offAll(() =>  SuperAdminNavBar());
     } else {
       Get.offAll(() => LoginScreen());
     }

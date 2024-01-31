@@ -1,4 +1,3 @@
-import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/view/fonts/google_monstre.dart';
 import 'package:canteen_productadd_application/view/home/super_admin/navbar/navbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -7,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 class SuperAdminHomeScreen extends StatelessWidget {
-  final PushNotificationController pushNotificationController=PushNotificationController();
+  
    SuperAdminHomeScreen({super.key});
 
   @override
@@ -21,7 +20,7 @@ class SuperAdminHomeScreen extends StatelessWidget {
           builder: (context, snap) {
             if (snap.hasData) {
               if (snap.data!.data()!['activate'] == true) {
-                return const SuperAdminNavBar();
+                return  SuperAdminNavBar();
               } else {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,

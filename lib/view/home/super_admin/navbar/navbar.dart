@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
@@ -12,7 +13,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class SuperAdminNavBar extends StatefulWidget {
-  const SuperAdminNavBar({super.key});
+   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
+   SuperAdminNavBar({super.key});
 
   @override
   State<SuperAdminNavBar> createState() => _SuperAdminNavBarState();

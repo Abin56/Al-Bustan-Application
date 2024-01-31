@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/push_notification/push_notification.dart';
 import 'package:canteen_productadd_application/controller/search_product_controller/search_product_controller.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
@@ -21,6 +22,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class WareHouseAdminNavBar extends StatefulWidget {
+   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
   final SearchProductController searchProductController =
       Get.put(SearchProductController());
 
