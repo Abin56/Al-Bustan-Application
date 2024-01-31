@@ -1,5 +1,6 @@
 import 'package:canteen_productadd_application/controller/cart_controller/cart_controller.dart';
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
+import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/constant/constant.validate.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
@@ -54,7 +55,7 @@ class AllProductScreen extends StatelessWidget {
                   } else {
                     return ListView.separated(
                         itemBuilder: (context, index) {
-                          final productData = AllProductDetailModel.fromMap(
+                          final productData = ProductAddingModel.fromMap(
                               snapshot.data!.docs[index].data());
                           return ProductTile(
                             productData: productData,
@@ -127,7 +128,7 @@ class SingleHeadWidget extends StatelessWidget {
 
 class ProductTile extends StatelessWidget {
   ProductTile({super.key, required this.productData});
-  final AllProductDetailModel productData;
+  final ProductAddingModel productData;
   final cartCtr = Get.put(CartController());
   @override
   Widget build(BuildContext context) {

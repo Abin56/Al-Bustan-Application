@@ -213,6 +213,11 @@ class DeliveryController extends GetxController {
           .doc(deliveryProductListModel.docId)
           .update({'quantityinStock': availablQty});
 
+      //after qty deduct the actual qty compare with with limit and add to stock alert //
+
+      singleproductAddToLowStockAlert(availablQty,
+          deliveryProductListModel.limit, deliveryProductListModel);
+
 // checking product details avail or not if avail still pending otherwise the order become picked up//
       final checkData = await dataserver
           .collection('AllUsersCollection')
@@ -268,7 +273,7 @@ class DeliveryController extends GetxController {
   }
 
   singleproductAddToLowStockAlert(
-      int CurrentStockCount, int margin, ProductAddingModel product) {
+      int CurrentStockCount, int margin, DeliveryProductListModel product) {
     //single product add to low stock alter collection //
     if (CurrentStockCount <= margin) {
       dataserver
@@ -278,26 +283,5 @@ class DeliveryController extends GetxController {
     }
   }
 
-  allProductAddToLowStockAlert() async {
-    final availableProductList = await getAvailableProductList();
-
-    for (ProductAddingModel data in availableProductList) {
-      if (data.quantityinStock <= data.limit) {
-        dataserver
-            .collection('LowStockAlert')
-            .doc(data.docId)
-            .set(data.toMap());
-      }
-    }
-  }
-
-  Future<List<ProductAddingModel>> getAvailableProductList() async {
-    final avilableStockData =
-        await dataserver.collection('AvailableProducts').get();
-
-    final availableProdcutList = avilableStockData.docs
-        .map((e) => ProductAddingModel.fromMap(e.data()))
-        .toList();
-    return availableProdcutList;
-  }
+ 
 }

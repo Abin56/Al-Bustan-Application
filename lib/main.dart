@@ -1,6 +1,7 @@
 import 'package:canteen_productadd_application/firebase_options.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/shared_pref_helper.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/precheck_orders/precheck_order.dart';
+import 'package:canteen_productadd_application/view/pages/splash_screen/splash_screeen.dart';
 // import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -34,12 +35,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      //  home:
+        debugShowCheckedModeBanner: false, home: SplashScreen()
 // DeliveryAdminNavBar (),
-      //  SuperAdminNavBar(),
-      // NavigationBarPage(),
-      home: PreCheckordersScreen(),
-    );
+        //  SuperAdminNavBar(),
+        // NavigationBarPage(),
+        // home: PreCheckordersScreen(),
+        );
   }
 }

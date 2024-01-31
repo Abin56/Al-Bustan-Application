@@ -1,5 +1,6 @@
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
 import 'package:canteen_productadd_application/model/cart_model/cart_model.dart';
+import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +12,7 @@ class CartController extends GetxController {
   final firestore = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
 
-  addToEmployeeCart({required AllProductDetailModel data}) async {
+  addToEmployeeCart({required ProductAddingModel data}) async {
     final uuid = const Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
@@ -274,7 +275,7 @@ class CartController extends GetxController {
     return data.docs.map((e) => CartModel.fromMap(e.data())).toList();
   }
 
-  Future<List<AllProductDetailModel>>
+  Future<List<ProductAddingModel>>
       getEmployeeCartProductDetailsList() async {
     final data = await firestore
         .collection('AllUsersCollection')
@@ -282,7 +283,7 @@ class CartController extends GetxController {
         .collection('EmployeeCartProductDetails')
         .get();
     return data.docs
-        .map((e) => AllProductDetailModel.fromMap(e.data()))
+        .map((e) => ProductAddingModel.fromMap(e.data()))
         .toList();
   }
 
