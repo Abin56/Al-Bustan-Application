@@ -147,13 +147,13 @@ class AllTempProductSearch extends SearchDelegate {
                     leading: const Icon(Icons.do_disturb_alt_sharp),
                     title: GooglePoppinsWidgets(
                       text: data.productname,
-                      fontsize: 18,
-                      fontWeight: FontWeight.w400,
+                      fontsize: 14,
+                      fontWeight: FontWeight.w500,
                     ),
-                    trailing: GooglePoppinsWidgets(
+                    subtitle: GooglePoppinsWidgets(
                       text: data.companyName,
-                      fontsize: 16,
-                      fontWeight: FontWeight.bold,
+                      fontsize: 12,
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ),

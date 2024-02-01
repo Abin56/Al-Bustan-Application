@@ -13,9 +13,10 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class StoreAdminNavBar extends StatefulWidget {
-  final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
-  
-StoreAdminNavBar({super.key});
+  final PushNotificationController pushNotificationController =
+      Get.put(PushNotificationController());
+
+  StoreAdminNavBar({super.key});
 
   @override
   State<StoreAdminNavBar> createState() => _StoreAdminNavBarState();
@@ -50,13 +51,10 @@ class _StoreAdminNavBarState extends State<StoreAdminNavBar> {
           fontWeight: FontWeight.bold,
           color: cWhite,
         ),
-            actions: [
+        actions: [
           IconButton(
               onPressed: () async {
-                Get.offAll(() async {
-                  await logoutUser();
-                  return LoginScreen();
-                });
+                await logoutUser();
               },
               icon: const Icon(Icons.power_settings_new_rounded))
         ],

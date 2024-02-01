@@ -26,7 +26,7 @@ class CartWidget extends StatelessWidget {
             Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('AllUsersCollection')
+                    .collection('AvailableProduct')
                     .doc(FirebaseAuth.instance.currentUser!.uid)
                     .collection('cart')
                     .snapshots(),
