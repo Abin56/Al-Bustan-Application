@@ -41,6 +41,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+               foregroundColor: cWhite,
         elevation: 20,
         backgroundColor: themeColorBlue,
         title: GooglePoppinsWidgets(
@@ -54,7 +55,7 @@ class NavigationBarPageState extends State<NavigationBarPage> {
               onPressed: () async {
                 logoutUser();
               },
-              icon: const Icon(Icons.power_settings_new_rounded))
+              icon: const Icon(Icons.power_settings_new_rounded,color: cWhite,))
         ],
       ),
       body: Center(

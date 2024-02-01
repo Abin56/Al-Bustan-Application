@@ -43,6 +43,7 @@ class _StoreAdminNavBarState extends State<StoreAdminNavBar> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        foregroundColor: cWhite,
         elevation: 20,
         backgroundColor: themeColorBlue,
         title: GooglePoppinsWidgets(
@@ -56,7 +57,10 @@ class _StoreAdminNavBarState extends State<StoreAdminNavBar> {
               onPressed: () async {
                 await logoutUser();
               },
-              icon: const Icon(Icons.power_settings_new_rounded))
+              icon: const Icon(
+                Icons.power_settings_new_rounded,
+                color: cWhite,
+              ))
         ],
       ),
       body: Center(

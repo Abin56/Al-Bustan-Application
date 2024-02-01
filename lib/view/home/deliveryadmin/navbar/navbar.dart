@@ -13,7 +13,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class DeliveryAdminNavBar extends StatefulWidget {
-   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
+  final PushNotificationController pushNotificationController =
+      Get.put(PushNotificationController());
   DeliveryAdminNavBar({super.key});
 
   @override
@@ -41,6 +42,7 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        foregroundColor: cWhite,
         elevation: 20,
         backgroundColor: themeColorBlue,
         title: GooglePoppinsWidgets(
@@ -49,15 +51,15 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
           fontWeight: FontWeight.bold,
           color: cWhite,
         ),
-                    actions: [
+        actions: [
           IconButton(
               onPressed: () async {
-                Get.offAll(() async {
-                  await logoutUser();
-                  return LoginScreen();
-                });
+                await logoutUser();
               },
-              icon: const Icon(Icons.power_settings_new_rounded))
+              icon: const Icon(
+                Icons.power_settings_new_rounded,
+                color: cWhite,
+              ))
         ],
       ),
       body: Center(

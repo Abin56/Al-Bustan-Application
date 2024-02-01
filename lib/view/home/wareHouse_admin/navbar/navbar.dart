@@ -22,7 +22,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class WareHouseAdminNavBar extends StatefulWidget {
-   final PushNotificationController pushNotificationController=Get.put(PushNotificationController());
+  final PushNotificationController pushNotificationController =
+      Get.put(PushNotificationController());
   final SearchProductController searchProductController =
       Get.put(SearchProductController());
 
@@ -38,7 +39,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
       const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
     WareHouseHomePage(),
-     WareHouseHomePage(),
+    WareHouseHomePage(),
     const DeliveryHistoryPage(),
     ProductList()
   ];
@@ -47,6 +48,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        foregroundColor: cWhite,
         elevation: 20,
         backgroundColor: themeColorBlue,
         title: GooglePoppinsWidgets(
@@ -58,7 +60,6 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
         actions: [
           IconButton(
               onPressed: () async {
-                Get.offAll(() => LoginScreen());
                 await logoutUser();
               },
               icon: const Icon(
@@ -210,7 +211,8 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               title: Text("Dashboard"),
             ),
 
-            InkWell( onTap: () {
+            InkWell(
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const WareHouseAdminAllProduct();
@@ -230,7 +232,6 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
                   return const WareadminAvailableProduct();
                 }));
               },
-
               child: const ListTile(
                 leading: Icon(
                   Icons.event_available,
@@ -239,7 +240,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-                onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const wareAdminDeliveryRequest();
@@ -253,7 +254,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-                onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const wareAdminPendingOrders();
@@ -267,7 +268,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-               onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const WareAdminPickedOrders();
@@ -281,7 +282,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-               onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const WareAdminDeliveryOrders();
@@ -295,7 +296,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-               onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const WareAdminLowCostAlert();
@@ -309,7 +310,7 @@ class _WareHouseAdminNavBarState extends State<WareHouseAdminNavBar> {
               ),
             ),
             InkWell(
-               onTap: () {
+              onTap: () {
                 Navigator.of(context)
                     .push(MaterialPageRoute(builder: (context) {
                   return const WarwAdminReturns();
