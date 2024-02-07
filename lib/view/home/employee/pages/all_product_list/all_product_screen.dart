@@ -37,7 +37,7 @@ class AllProductScreen extends StatelessWidget {
             Expanded(
               child: StreamBuilder(
                 stream: FirebaseFirestore.instance
-                    .collection('AllProductStockCollection')
+                    .collection('AvailableProducts')
                     .snapshots(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {

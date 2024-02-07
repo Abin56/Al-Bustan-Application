@@ -3,7 +3,6 @@ import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
 import 'package:canteen_productadd_application/view/widgets/back_container/back_container.dart';
 import 'package:flutter/material.dart';
 
-
 customShowDilogBox(
     {required BuildContext context,
     required String title,
@@ -21,7 +20,10 @@ customShowDilogBox(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GooglePoppinsWidgets(
-                  text: title, fontsize: 13, fontWeight: FontWeight.w600,),
+                text: title,
+                fontsize: 13,
+                fontWeight: FontWeight.w600,
+              ),
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: const BackButtonContainerWidget(),
@@ -84,3 +86,39 @@ customShowDilogBox(
 //     },
 //   );
 // }
+
+showDialogWidget(
+    {required BuildContext context,
+    required String title,
+    required Function function}) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return AlertDialog(
+        shape: LinearBorder.none,
+        title: GooglePoppinsWidgets(text: title, fontsize: 14),
+        actions: [
+          TextButton(
+            child: GooglePoppinsWidgets(
+              text: 'No',
+              fontsize: 14,
+            ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            child: GooglePoppinsWidgets(
+              text: 'Yes',
+              fontsize: 14,
+            ),
+            onPressed: () {
+              function();
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}

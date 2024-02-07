@@ -1,7 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
+import 'package:canteen_productadd_application/controller/calender_controller/calender_controller.dart';
 import 'package:canteen_productadd_application/controller/wareHouse_controller/warehouse_controller.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
+import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:canteen_productadd_application/view/widgets/calender/calender.dart';
 import 'package:canteen_productadd_application/view/widgets/isLoadin_showDilogue/isaLoading_diloguebox.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,6 +16,7 @@ import 'package:canteen_productadd_application/view/widgets/textform%20feild%20W
 import 'package:uuid/uuid.dart';
 
 class AddProductWareHouseAdmin extends StatelessWidget {
+  final deliveryController = Get.put(CalenderController());
   final WareHouseController wareHouseController =
       Get.put(WareHouseController());
   final ProductAddingModel resultData;
@@ -215,14 +219,60 @@ class AddProductWareHouseAdmin extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
-                child: TextFormFiledContainerWidget(
-                  hintText: 'Enter in days eg 1,50,100..',
-                  title: 'Expiry Date',
-                  width: 380,
-                  validator: checkFieldEmpty,
-                  controller: wareHouseController.expirydateController,
-                  keyboardType: TextInputType.number,
+                child:
+                    GooglePoppinsWidgets(text: 'Expiry Date', fontsize: 12.5),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 10, right: 10, left: 10),
+                child: InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          actions: [
+                            SizedBox(
+                                height: 300,
+                                width: 300,
+                                child: CalendarWidget())
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Container(
+                    height: 45,
+                    width: 380,
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 0.4),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    child: Row(
+                      children: [
+                        Obx(
+                          () => Padding(
+                            padding: const EdgeInsets.only(left: 8, right: 8),
+                            child: GooglePoppinsWidgets(
+                              text: deliveryController.date.value == null
+                                  ? "Choose Expiry Date"
+                                  : dateConveter(deliveryController.date.value),
+                              fontsize: 12.5,
+                              color: cBlack,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
+                // child: TextFormFiledContainerWidget(
+                //   hintText: 'Enter in days eg 1,50,100..',
+                //   title: 'Expiry Date',
+                //   width: 380,
+                //   validator: checkFieldEmpty,
+                //   controller: wareHouseController.expirydateController,
+                //   keyboardType: TextInputType.number,
+                // ),
               ),
               Obx(
                 () => wareHouseController.productuploading.value == true

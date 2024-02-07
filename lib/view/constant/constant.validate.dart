@@ -8,6 +8,9 @@ import 'package:intl/intl.dart';
 const sw50 = SizedBox(
   width: 50,
 );
+const sw5 = SizedBox(
+  width: 5,
+);
 const sw10 = SizedBox(
   width: 10,
 );

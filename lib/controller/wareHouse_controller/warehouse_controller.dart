@@ -1,3 +1,4 @@
+import 'package:canteen_productadd_application/controller/calender_controller/calender_controller.dart';
 import 'package:canteen_productadd_application/controller/search_product_controller/search_product_controller.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
@@ -23,36 +24,36 @@ class WareHouseController extends GetxController {
     BuildContext context,
   ) async {
     try {
-      final 
-       productdetails = ProductAddingModel(
-        isEdit: false,
-        limit: int.parse(productlimitController.text.trim()),
-        productname: data.productname,
-        companyNameID: data.categoryName,
-        packageTypeID: data.packageTypeID,
-        unitcategoryID: data.unitcategoryID,
-        unitcategoryName: data.unitcategoryName,
-        addedDate: DateTime.now().toString(),
-        isavailable: true,
-        itemcode: itemcode,
-        outofstock: false,
-        subcategoryID: data.subcategoryID,
-        subcategoryName: data.subcategoryName,
-        companyName: data.companyName,
-        inPrice: int.parse(inpriceController.text),
-        returnType: '',
-        packageType: data.packageType,
-        categoryID: data.categoryID,
-        categoryName: data.categoryName,
-        authuid: FirebaseAuth.instance.currentUser!.uid,
-        docId: docid,
-        barcodeNumber: barcodeNumber.toString(),
-        quantityinStock: int.parse(quantityController.text.trim()),
-        outPrice: int.parse(outpriceController.text.trim()),
-        expiryDate: DateTime.now()
-            .add(Duration(days: int.parse(expirydateController.text)))
-            .toString(),
-      );
+      final productdetails = ProductAddingModel(
+          isEdit: false,
+          limit: int.parse(productlimitController.text.trim()),
+          productname: data.productname,
+          companyNameID: data.categoryName,
+          packageTypeID: data.packageTypeID,
+          unitcategoryID: data.unitcategoryID,
+          unitcategoryName: data.unitcategoryName,
+          addedDate: DateTime.now().toString(),
+          isavailable: true,
+          itemcode: itemcode,
+          outofstock: false,
+          subcategoryID: data.subcategoryID,
+          subcategoryName: data.subcategoryName,
+          companyName: data.companyName,
+          inPrice: int.parse(inpriceController.text),
+          returnType: '',
+          packageType: data.packageType,
+          categoryID: data.categoryID,
+          categoryName: data.categoryName,
+          authuid: FirebaseAuth.instance.currentUser!.uid,
+          docId: docid,
+          barcodeNumber: barcodeNumber.toString(),
+          quantityinStock: int.parse(quantityController.text.trim()),
+          outPrice: int.parse(outpriceController.text.trim()),
+          expiryDate: Get.find<CalenderController>().date.value.toString()
+          // expiryDate: DateTime.now()
+          //     .add(Duration(days: int.parse(expirydateController.text)))
+          //     .toString(),
+          );
       await dataserver
           .collection('AllProductStockCollection')
           .doc(docid)

@@ -1,7 +1,9 @@
 import 'package:canteen_productadd_application/model/all_product_model/all_productModel.dart';
+import 'package:canteen_productadd_application/model/canteen_model/canteen_model.dart';
 import 'package:canteen_productadd_application/model/cart_model/cart_model.dart';
 import 'package:canteen_productadd_application/model/produt_adding_model/product_adding_model.dart';
 import 'package:canteen_productadd_application/view/constant/const.dart';
+import 'package:canteen_productadd_application/view/core/core.dart';
 import 'package:canteen_productadd_application/view/utils/utils.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,8 +14,12 @@ class CartController extends GetxController {
   final firestore = FirebaseFirestore.instance;
   final auth = FirebaseAuth.instance;
 
+  RxString canteenName = ''.obs;
+  RxString canteenID = ''.obs;
+  List<CanteenModel> canteenList = [];
+
   addToEmployeeCart({required ProductAddingModel data}) async {
-    final uuid = const Uuid().v1();
+    // final uuid = const Uuid().v1();
     final cartdata = {
       "productDetailsDocId": data.docId,
       "barcodeNumber": data.barcodeNumber,
@@ -21,15 +27,15 @@ class CartController extends GetxController {
       "availableQuantity": data.quantityinStock,
       "inPrice": data.inPrice,
       "outPrice": data.outPrice,
-      "quantity": 0,
-      "totalAmount": 0,
-      "docId": uuid
+      "quantity": 1,
+      "totalAmount": data.outPrice,
+      "docId": data.docId
     };
     await firestore
         .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection("cart")
-        .doc(uuid)
+        .doc(data.docId)
         .set(cartdata)
         .then((value) {
       showToast(msg: 'Prodect Added to Cart');
@@ -48,7 +54,7 @@ class CartController extends GetxController {
         .doc(auth.currentUser!.uid)
         .collection("EmployeeCartProductDetails")
         .doc(data.docId)
-        .update({'quantityinStock': 0});
+        .update({'quantityinStock': 1});
   }
 
   addQuantity(CartModel data) {
@@ -77,7 +83,7 @@ class CartController extends GetxController {
   }
 
   lessQuantity(CartModel data) {
-    if (data.quantity > 0) {
+    if (data.quantity > 1) {
       int qty = data.quantity - 1;
       int totalAmount = data.outPrice * qty;
       final qtydata = {
@@ -97,7 +103,7 @@ class CartController extends GetxController {
           .doc(data.productDetailsDocId)
           .update({'quantityinStock': qty});
     } else {
-      showToast(msg: "Please add quantity");
+      showToast(msg: "Minimum 1 quantity required");
     }
   }
 
@@ -236,7 +242,9 @@ class CartController extends GetxController {
         "amount": amount,
         "requestId": requestId,
         "employeeName": employeeName,
-        "employeeId": auth.currentUser!.uid
+        "employeeId": auth.currentUser!.uid,
+        "canteenName": canteenName.value,
+        "canteenId": canteenID.value,
       };
 
       await firestore
@@ -275,16 +283,13 @@ class CartController extends GetxController {
     return data.docs.map((e) => CartModel.fromMap(e.data())).toList();
   }
 
-  Future<List<ProductAddingModel>>
-      getEmployeeCartProductDetailsList() async {
+  Future<List<ProductAddingModel>> getEmployeeCartProductDetailsList() async {
     final data = await firestore
         .collection('AllUsersCollection')
         .doc(auth.currentUser!.uid)
         .collection('EmployeeCartProductDetails')
         .get();
-    return data.docs
-        .map((e) => ProductAddingModel.fromMap(e.data()))
-        .toList();
+    return data.docs.map((e) => ProductAddingModel.fromMap(e.data())).toList();
   }
 
   Future<String> getCurrentEmplyeeName() async {
@@ -294,5 +299,37 @@ class CartController extends GetxController {
         .get();
     String name = data["name"];
     return name;
+  }
+
+  Future<List<CanteenModel>> fetchcanteenModel() async {
+    final firebase =
+        await FirebaseFirestore.instance.collection('CanteenList').get();
+
+    for (var i = 0; i < firebase.docs.length; i++) {
+      final list =
+          firebase.docs.map((e) => CanteenModel.fromMap(e.data())).toList();
+      canteenList.add(list[i]);
+    }
+    return canteenList;
+  }
+
+  removeItemFromCart(String docid) {
+    dataserver
+        .collection('AllUsersCollection')
+        .doc(auth.currentUser!.uid)
+        .collection('cart')
+        .doc(docid)
+        .delete()
+        .then((value) {
+      dataserver
+          .collection('AllUsersCollection')
+          .doc(auth.currentUser!.uid)
+          .collection('EmployeeCartProductDetails')
+          .doc(docid)
+          .delete()
+          .then((value) {
+        showToast(msg: "Item removed from cart");
+      });
+    });
   }
 }
