@@ -6,15 +6,30 @@ import 'package:get/get.dart';
 
 class IconButtonBackWidget extends StatelessWidget {
   Color? color;
-   IconButtonBackWidget({
+  IconButtonBackWidget({
     super.key,
     this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(onPressed: () {
-      Get.back();
-    }, icon: Icon(Icons.arrow_back,color:color ,size: 30,weight: 900),);
+    return IconButton(
+      onPressed: () {
+        Get.back();
+      },
+      icon: Icon(Icons.arrow_back, color: color, size: 30, weight: 900),
+    );
   }
+}
+
+Widget iconWidget({
+  required IconData icon,
+  required Color color,
+  required double size,
+}) {
+  return Icon(
+    icon,
+    color: color,
+    size: size,
+  );
 }

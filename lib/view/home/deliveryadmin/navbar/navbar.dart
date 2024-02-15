@@ -2,6 +2,12 @@ import 'package:canteen_productadd_application/controller/push_notification/push
 import 'package:canteen_productadd_application/view/colors/colors.dart';
 import 'package:canteen_productadd_application/view/core/shared_pref/user_auth/user_credentials.dart';
 import 'package:canteen_productadd_application/view/fonts/google_poppins.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivered/delivered.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivery_assign/delivery_assign.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivery_pending/delivery_pending.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivery_picked/delivery_picked.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivery_product/delivery_product.dart';
+import 'package:canteen_productadd_application/view/home/deliveryadmin/delivery_request/delivery_request.dart';
 import 'package:canteen_productadd_application/view/home/deliveryadmin/deliveryadmin.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/add_product/list%20products/product_list.dart';
 import 'package:canteen_productadd_application/view/home/employee/pages/delivery_management/delivery_Histroy/deliveryHistory_page.dart';
@@ -26,11 +32,17 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
   final TextStyle optionStyle =
       const TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
   static final List<Widget> _widgetOptions = <Widget>[
-    const DeliveryAdminHomePage(),
+    DeliveryProductScreen(),
+    DeliveryRequest(),
+    DeliveryAssign(),
+    DeliveryPendingList(),
+    DeliveryPickedUpList(),
+    DeliveredList()
+    // const DeliveryAdminHomePage(),
 
     //ProductList(),
-    const DeliveryHistoryPage(),
-    ProductList()
+    // const DeliveryHistoryPage(),
+    // ProductList()
     // Text(
     //   'Delivery',
     //   style: optionStyle,
@@ -65,6 +77,126 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+                decoration: const BoxDecoration(),
+                child: Column(
+                  children: [
+                    GooglePoppinsWidgets(
+                      text: 'ALBUSTAN',
+                      fontsize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: 100,
+                          width: 100,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage("images/albustanblack.png"))),
+                        ),
+                      ],
+                    ),
+                  ],
+                )),
+            InkWell(
+              child: const ListTile(
+                leading: Icon(
+                  Icons.dashboard,
+                ),
+                title: Text("Dashboard"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Get.to(DeliveryProductScreen());
+                setState(() {
+                  _selectedIndex = 0;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.food_bank,
+                ),
+                title: Text("All Product"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Get.to(const DeliveryRequest());
+                setState(() {
+                  _selectedIndex = 1;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.request_quote,
+                ),
+                title: Text("Delivery Request"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                // Get.to(DeliveryAssign());
+                setState(() {
+                  _selectedIndex = 2;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.event_available,
+                ),
+                title: Text("Delivery Assign List"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 3;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.pending_actions_sharp,
+                ),
+                title: Text("Pending Orders"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 4;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.shopping_bag_outlined,
+                ),
+                title: Text("Picked Orders"),
+              ),
+            ),
+            InkWell(
+              onTap: () {
+                setState(() {
+                  _selectedIndex = 5;
+                });
+              },
+              child: const ListTile(
+                leading: Icon(
+                  Icons.trolley,
+                ),
+                title: Text("Delivered Orders"),
+              ),
+            ),
+          ],
+        ),
+      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -95,7 +227,7 @@ class _DeliveryAdminNavBarState extends State<DeliveryAdminNavBar> {
                 ),
                 GButton(
                   icon: LineIcons.shoppingCart,
-                  text: 'Delivery',
+                  text: 'Delivery Req',
                 ),
                 GButton(
                   icon: LineIcons.history,

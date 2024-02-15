@@ -297,7 +297,7 @@ class AddProductWareHouseAdmin extends StatelessWidget {
                             getRandomInt(4);
 
                             if (_formKey.currentState!.validate()) {
-                              await wareHouseController.addProduct(
+                              await wareHouseController.addProduct2(
                                   '${resultData.productname}$uuid', //docid, //docid
                                   int.parse(barcoodevalue), //barcode
                                   "$i${getRandomInt(4)}", //ite,code,

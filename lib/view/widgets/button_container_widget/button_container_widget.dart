@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:canteen_productadd_application/view/colors/colors.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import '../../fonts/google_poppins.dart';
@@ -71,3 +72,55 @@ class ColorButtonContainerWidget extends StatelessWidget {
     );
   }
 }
+
+class CustomGradientButton extends StatelessWidget {
+  final String text;
+  final double height;
+  final double width;
+  final Function onPressed;
+
+  const CustomGradientButton({
+    super.key,
+    required this.text,
+    required this.height,
+    required this.width,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: width,
+      height: height,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [
+            Color(0xFF35B2A2),
+            Color(0xFF11967F),
+            Color(0xFF06876A),
+            Color(0xFF036952),
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: TextButton(
+        onPressed: () => onPressed(),
+        style: TextButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
+        child: Text(
+          text,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
